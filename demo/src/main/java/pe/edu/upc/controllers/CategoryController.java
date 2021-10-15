@@ -21,3 +21,4 @@ public class CategoryController {
 		return "";/*vista --> formulario para regisrar categoria*/
 	}
 }
+//asfas
