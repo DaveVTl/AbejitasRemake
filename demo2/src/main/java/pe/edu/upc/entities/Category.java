@@ -43,5 +43,5 @@ public class Category {
 	public void setNameCategory(String nameCategory) {
 		this.nameCategory = nameCategory;
 	}
-
+//uwu
 }
