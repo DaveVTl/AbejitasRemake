@@ -16,6 +16,6 @@ public interface IMypeRepository extends JpaRepository<Mype, Integer>{
 
 	public int FindMypeExists(String rucMype);
 	
-
+	
 
 }
