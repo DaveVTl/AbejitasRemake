@@ -1,8 +1,0 @@
-package pe.edu.upc.entities;
-
-public class Snippet {
-	public static void main(String[] args) {
-		pe.edu.upc.entities
-	}
-}
-
