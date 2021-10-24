@@ -15,7 +15,7 @@ import pe.edu.upc.entities.Mype;
 import pe.edu.upc.serviceinterface.IMypeService;
 
 @Controller
-@RequestMapping("/mypes")
+@RequestMapping("/mype")
 public class MypeController {
 	@Autowired
 	private IMypeService mC;
@@ -23,7 +23,7 @@ public class MypeController {
 	@GetMapping("/new")
 	public String newMype(Model model) {
 		model.addAttribute("mype", new Mype());
-		return "mype/mype";/*vista --> formulario para regisrar categoria*/
+		return "mype/mype";
 	}
 	
 	@GetMapping("/list")
@@ -34,7 +34,7 @@ public class MypeController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "mype/listMypes";
+		return "mype/listMype";
 	}
 	
 	@PostMapping("/save")
