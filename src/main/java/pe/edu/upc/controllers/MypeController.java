@@ -22,7 +22,7 @@ public class MypeController {
 	
 	@GetMapping("/new")
 	public String newMype(Model model) {
-		model.addAttribute("category", new Mype());
+		model.addAttribute("mype", new Mype());
 		return "mype/mype";/*vista --> formulario para regisrar categoria*/
 	}
 	

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,41 +13,47 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/dive.css">
 </head>
+
 <body>
 
-	<div th:fragment="sidebar" id="panel" class="activepanel ">
-		<div id="cpanel1head" style="margin: 0px; height: 10vh;" class="row">
-			<h2 id="titulopanel" class="col-lg-10">Web example</h2>
-			<i id="iconpanel" class="fa fa-bars col-lg-2"></i>
-		</div>
-		<div id="cpanelbody" class="row">
+	<div th:replace="fragments/sidebar :: sidebar" id="panel"
+		class="activepanel"></div>
 
-			<div class="panelitem">
-				<a th:href="@{/home}"> <i class="fa fa-home"
-					style="color: #7764E4;"></i>
-				</a>
-				<p>Inicio</p>
-			</div>
+	<div class="bg row">
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-			<div class="panelitem">
-				<a th:href="@{/categories/list}"> <i class="fa fa-th-large"
-					style="color: #5450D6;"></i>
-				</a>
-				<p>Categorias</p>
+		<div class="content container">
+
+			<div class="d-flex">
+				<h3 class="title-content">Lista de Tipos de trabajo</h3>
+				<a th:href="@{/tipotrabajo/new}" class="btn btn-warning">Nuevo</a>
 			</div>
-			<div class="panelitem">
-				<a th:href="@{/tipotrabajo/list}"> <i class="fa fa-th-large"
-					style="color: #5450D6;"></i>
-				</a>
-				<p>Tipos de Trabajo</p>
-			</div>
-			<div class="panelitem">
-				<a th:href="@{/products/list}"> <i class="fa fa-th-large"
-					style="color: #5450D6;"></i>
-				</a>
-				<p>Productos</p>
-			</div>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Nombre</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cat : ${listaTipoTrabajo}">
+						<td class="text-center" th:text="${cat.idTipoTrabajo}"></td>
+						<td class="text-center" th:text="${cat.nombreTrabajo}"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
+		<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+		</div>
+
 	</div>
+
+
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/jquery-3.3.1.slim.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/dive.js"></script>
 </body>
+
 </html>

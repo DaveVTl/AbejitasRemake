@@ -10,7 +10,7 @@ import pe.edu.upc.entities.Trabajo;
 @Repository
 public interface ITrabajoRepository extends JpaRepository<Trabajo,Integer>{
 
-	@Query("select count (t.EstadoTrabajo) from Trabajo t where c.EstadoTrabajo=:status")	
+	@Query("select count (t.EstadoTrabajo) from Trabajo t where t.EstadoTrabajo=:status")	
 	public int FindJobByStatus(@Param("status") String status);
 	
 }

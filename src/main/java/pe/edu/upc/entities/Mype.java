@@ -15,13 +15,13 @@ public class Mype {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMype;
-	@Column(name = "", length = 35, nullable=false)
+	@Column(name = "nameEmpresaMype", length = 35, nullable=false)
 	private String nameEmpresaMype;
-	@Column(name = "", length = 35, nullable=false)
+	@Column(name = "rucMype", length = 35, nullable=false)
 	private String rucMype;
-	@Column(name = "", length = 12, nullable=false)
+	@Column(name = "nameGerenteMype", length = 12, nullable=false)
 	private String nameGerenteMype;
-	@Column(name = "", length = 40, nullable=false)
+	@Column(name = "logoMype", length = 40, nullable=false)
 	private String logoMype;
 	
 	public Mype() {
@@ -38,55 +38,47 @@ public class Mype {
 		this.logoMype = logoMype;
 	}
 
-
 	public int getIdMype() {
 		return idMype;
 	}
-
 
 	public void setIdMype(int idMype) {
 		this.idMype = idMype;
 	}
 
-
 	public String getNameEmpresaMype() {
 		return nameEmpresaMype;
 	}
-
 
 	public void setNameEmpresaMype(String nameEmpresaMype) {
 		this.nameEmpresaMype = nameEmpresaMype;
 	}
 
-
 	public String getRucMype() {
 		return rucMype;
 	}
-
 
 	public void setRucMype(String rucMype) {
 		this.rucMype = rucMype;
 	}
 
-
 	public String getNameGerenteMype() {
 		return nameGerenteMype;
 	}
-
 
 	public void setNameGerenteMype(String nameGerenteMype) {
 		this.nameGerenteMype = nameGerenteMype;
 	}
 
-
 	public String getLogoMype() {
 		return logoMype;
 	}
 
-
 	public void setLogoMype(String logoMype) {
 		this.logoMype = logoMype;
 	}
+
+	
 
 	
 	
