@@ -24,92 +24,49 @@
 
 		<div class="content container row col-12">
 			<div class="col-6">
-				<h3>Registrar Producto</h3>
+				<h3>Registrar Avance</h3>
 				<img class="imgform" alt="" th:src="@{/img/form/producto.png}">
 			</div>
 			<div class="col-6 frm-registro">
-				<form th:action="@{/products/save}" method="post" class="row"
-					th:object="${product}" enctype="multipart/form-data">
+				<form th:action="@{/avances/save}" method="post" class="row"
+					th:object="${avance}" enctype="multipart/form-data">
 
 					<div class="col-6">
 						<div class="form-group">
-							<label for="idrace">ID:</label> <input type="text" readonly
-								class="form-control" th:field="*{idProducto}"></input>
+							<label for="idAvance">ID:</label> <input type="text" readonly
+								class="form-control" th:field="*{idAvance}"></input>
 						</div>
 
 						<div class="form-group">
 							<label for="nombre">NOMBRE:</label> <input type="text" required
-								th:field="*{nameProduct}" class="form-control" id="nombre"></input>
+								th:field="*{nombre}" class="form-control" id="nombre"></input>
 						</div>
 						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('nameProduct')}"
-							th:errors="*{nameProduct}"></div>
-
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 
 						<div class="form-group">
-							<label for="price">PRECIO:</label>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text">S/.</span>
-								</div>
-								<input type="number" th:field="*{priceProduct}" class="form-control" required
-									id="price"></input>
-								<div class="input-group-append">
-									<span class="input-group-text">.00</span>
-								</div>
-							</div>
+							<label for="descripcion">DESCRIPCION:</label> <input type="text"
+								th:field="*{descripcion}" class="form-control" id="descripcion"></input>
 						</div>
 						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('priceProduct')}" th:errors="*{priceProduct}"></div>
-
-
-
-						<div class="form-group">
-							<label for="unit">UNIDAD:</label> <input type="text"
-								th:field="*{unitProduct}" class="form-control" id="unit"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('unitProduct')}" th:errors="*{unitProduct}"></div>
+							th:if="${#fields.hasErrors('descripcion')}"
+							th:errors="*{descripcion}"></div>
 					</div>
-
-
 					<div class="col-6">
-						<div class="form-group">
-							<label for="category">CATEGORIA:</label> <select
-								class="form-control" th:field="*{category.idCategory}">
-								<option th:each="c: ${listaCategorias}"
-									th:value="${c.idCategory}" th:text="${c.nameCategory}"
-									th:selected="(${c.idCategory} == *{category.idCategory})"></option>
-							</select>
-						</div>
-
-						
-
-						<div class="form-group">
-							<label for="supplier">PROVEEDOR:</label> <select
-								class="form-control" th:field="*{supplier.idSupplier}">
-								<option th:each="s: ${listaProveedores}"
-									th:value="${s.idSupplier}" th:text="${s.nameSupplier}"
-									th:selected="(${s.idSupplier} == *{supplier.idSupplier})"></option>
-							</select>
-						</div>
-
-
 
 						<div class="form-group">
 							<label for="file" class="">FOTO:</label>
 							<div class="col-sm-6">
 								<input type="file" name="file" class="form-control"
-									th:text="${product.	photoProduct}" />
+									th:text="${avance.fotoavance}" />
 							</div>
 
 						</div>
 
 					</div>
-
 					<button style="margin: 0px 30px;" type="submit"
 						class="btnadd btn btn-primary">Aceptar</button>
-					<a href="/products/list" class="btn btn-danger">Cancelar</a>
+					<a href="/avances/list" class="btn btn-danger">Cancelar</a>
 				</form>
 
 				<div th:if="${mensaje}" class="alert alert-danger">

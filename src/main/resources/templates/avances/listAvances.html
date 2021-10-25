@@ -33,38 +33,29 @@
 					<tr>
 						<th scope="col" class="text-center">ID</th>
 						<th scope="col" class="text-center">Nombre</th>
-						<th scope="col" class="text-center">PRECIO</th>
-						<th scope="col" class="text-center">UNIDAD</th>
-						<th scope="col" class="text-center">CATEGORIA</th>
-						<th scope="col" class="text-center">PROVEEDOR</th>
-						<th scope="col" class="text-center">OPERACIÓN</th>
-						<th scope="col" class="text-center">DETALLE</th>
+						<th scope="col" class="text-center">Descripcion</th>
+
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="p: ${listaProductos}">
+					<tr th:each="p: ${listaAvances}">
 						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/products/view/} + ${p.idProducto}"
-							th:text="${p.idProducto}"></a></td>
-						<td class="text-center" th:text="${p.nameProduct}"></td>
-						<td class="text-center" th:text="${p.priceProduct}"></td>
-						<td class="text-center" th:text="${p.unitProduct}"></td>
-						<td class="text-center" th:text="${p.category.nameCategory}"></td>
-						<td class="text-center" th:text="${p.supplier.nameSupplier}"></td>
-						<td class="text-center"><a th:href="@{'/products/update/' + ${p.idProducto}}"><i class="fa fa-edit" style="color: rgb(240, 184, 15)ing;"></i></a></td>
+							th:href="@{/avances/view/} + ${p.idAvance}"
+							th:text="${p.idAvance}"></a></td>
+						<td class="text-center" th:text="${p.nombre}"></td>
+						<td class="text-center" th:text="${p.descripcion}"></td>
 						<td class="text-center" align="center"><a
-							th:href="@{/products/view/} + ${p.idProducto}">
-							
-							<i class="fa fa-eye" style="color: gray;"></i>
-							</a></td>
+							th:href="@{/avances/view/} + ${p.idAvance}"> <i
+								class="fa fa-eye" style="color: gray;"></i>
+						</a></td>
 					</tr>
 				</tbody>
 			</table>
 			<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
+				<p th:text="${mensaje}"></p>
+			</div>
 		</div>
-		</div>
-		
+
 
 	</div>
 

@@ -27,18 +27,17 @@
 		<div class="content container">
 
 			<div class="detail">
-				<img class="detailimg" th:if="${#strings.length(product.photoProduct)> 0}"
-					th:src="@{'/products/uploads/' + ${product.photoProduct}}"
-					th:alt="${product.photoProduct}">
+				<img class="detailimg" th:if="${#strings.length(avance.fotoavance)> 0}"
+					th:src="@{'/avances/uploads/' + ${avance.fotoavance}}"
+					th:alt="${avance.fotoavance}">
 				<div class="blend"></div>
 
 				<div class="detalles">
-					<a th:href="@{/products/list}" class="volverdet" href=""><i class="fa fa-arrow-left"></i></a>
-					<h2 th:text="${product.nameProduct}" class="prodnombre"></h2>
+					<a th:href="@{/avances/list}" class="volverdet" href=""><i class="fa fa-arrow-left"></i></a>
+					<h2 th:text="${avance.nombre}" class="prodnombre"></h2>
 
-					<p th:text="${product.priceProduct}" class="prodprecio"></p>
-					<p th:text="'Distribuido por '+${product.supplier.nameSupplier}"
-						class="prodproveedor"></p>
+					<p th:text="${avance.descripcion}" class="prodprecio"></p>
+					
 				</div>
 			</div>
 		</div>

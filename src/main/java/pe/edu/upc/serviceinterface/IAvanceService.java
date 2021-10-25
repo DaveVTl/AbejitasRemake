@@ -4,8 +4,11 @@ import java.util.List;
 
 import pe.edu.upc.entities.Avances;
 
+
 public interface IAvanceService {
-	public Integer insert(Avances anuncio);
+	public boolean insert(Avances anuncio);
 
 	List<Avances> list();
+	
+	Avances listarId(int idAvance);
 }

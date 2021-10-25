@@ -15,17 +15,17 @@ public class Avances {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAvance;
-	@Column(name = "nombre", nullable = true)
+	@Column(name = "nombre", nullable = false)
 	private String nombre;
-	@Column(name = "foto1", nullable = true)
+	@Column(name = "fotoavance", nullable = true)
 	private String fotoavance;
-	@Column(name = "foto2", nullable = true)
+	@Column(name = "fotoavance2", nullable = true)
 	private String fotoavance2;
 	@Column(name = "descripcion", nullable = false, length = 100)
 	private String descripcion;
-	@ManyToOne
-	@JoinColumn(name = "idTrabajo", nullable = false)
-	private Trabajo idTrabajo;
+	//@ManyToOne
+	//@JoinColumn(name = "idTrabajo", nullable = false)
+	//private Trabajo idTrabajo;
 
 	public Avances() {
 		super();
@@ -40,7 +40,7 @@ public class Avances {
 		this.fotoavance = fotoavance;
 		this.fotoavance2 = fotoavance2;
 		this.descripcion = descripcion;
-		this.idTrabajo = idTrabajo;
+		//this.idTrabajo = idTrabajo;
 	}
 
 	public int getIdAvance() {
@@ -83,13 +83,13 @@ public class Avances {
 		this.descripcion = descripcion;
 	}
 
-	public Trabajo getIdTrabajo() {
-		return idTrabajo;
-	}
+	//public Trabajo getIdTrabajo() {
+		//return idTrabajo;
+	//}
 
-	public void setIdTrabajo(Trabajo idTrabajo) {
-		this.idTrabajo = idTrabajo;
-	}
+	//public void setIdTrabajo(Trabajo idTrabajo) {
+		//this.idTrabajo = idTrabajo;
+	//}
 
 	
 

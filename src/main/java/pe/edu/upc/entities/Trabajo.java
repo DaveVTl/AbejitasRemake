@@ -40,7 +40,8 @@ public class Trabajo {
 	@Positive
 	@Column(name = "pagoTrabajo",columnDefinition = "Decimal(8,2)", nullable = false)
 	private Double pagoTrabajo;
-
+	
+	@ManyToOne
 	@JoinColumn(name = "idFreelancers", nullable = false)
 	private Freelancers freelancers;
 
