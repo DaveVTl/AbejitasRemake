@@ -3,7 +3,6 @@ package pe.edu.upc.entities;
 import java.util.Date;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -11,10 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
-
 
 @Entity
 @Table(name = "Freelancer")
@@ -23,13 +20,12 @@ public class Freelancers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFreelancers;
-	
+
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
 	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
 	@Column(name = "nameFreelancers", length = 45, nullable = false)
 	private String nameFreelancers;
 
-	
 	@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido")
 	@Column(name = "dniFreelancers", nullable = false, length = 15)
 	private String dniFreelancers;
@@ -40,13 +36,10 @@ public class Freelancers {
 	@Column(name = "CVFreelancers", nullable = false, length = 100)
 	private String CVFreelancers;
 
-	@Column(name = "fotoFreelancers", nullable = false, length = 100)
+	@Column(name = "fotoFreelancers", nullable = true)
 	private String fotoFreelancers;
 
 	private Date fechaInscripcionFreelancers;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "freelancer")
-	private Usuario usuario;
 
 	public Freelancers() {
 		super();
@@ -57,7 +50,7 @@ public class Freelancers {
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
 			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
 			String descriptionFreelancers, String cVFreelancers, String fotoFreelancers,
-			Date fechaInscripcionFreelancers, Usuario usuario) {
+			Date fechaInscripcionFreelancers) {
 		super();
 		this.idFreelancers = idFreelancers;
 		this.nameFreelancers = nameFreelancers;
@@ -66,7 +59,6 @@ public class Freelancers {
 		CVFreelancers = cVFreelancers;
 		this.fotoFreelancers = fotoFreelancers;
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
-		this.usuario = usuario;
 	}
 
 	public int getIdFreelancers() {
@@ -124,15 +116,5 @@ public class Freelancers {
 	public void setFechaInscripcionFreelancers(Date fechaInscripcionFreelancers) {
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-
 
 }
