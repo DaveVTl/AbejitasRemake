@@ -1,5 +1,4 @@
 package pe.edu.upc.entities;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Anuncio")
 public class Anuncio {
@@ -20,7 +18,7 @@ public class Anuncio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAnuncio;
 	@Column(name = "nameAnuncio", length = 45, nullable = false)
-	private String nameAnuncio;
+	private String nameAnuncio	;
 	@Column(name = "descriptionAnuncio", nullable = false, length = 254)
 	private String descriptionAnuncio;
 	private Date dateCreacionAnuncio;
@@ -106,7 +104,7 @@ public class Anuncio {
 	public void setTipoTrabajo(TipoTrabajo tipoTrabajo) {
 		this.tipoTrabajo = tipoTrabajo;
 	}
+=======
+>>>>>>> 422c72c45fb144c5edf6f95e28ce78460d0d83ab
 
-	
-	
 }
