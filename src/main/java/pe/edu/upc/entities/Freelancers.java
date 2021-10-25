@@ -3,7 +3,7 @@ package pe.edu.upc.entities;
 import java.util.Date;
 
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -23,6 +22,9 @@ public class Freelancers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFreelancers;
+	
+	@Column(name = "photo", nullable = true)
+	private String photoFreelancer;
 	
 	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
 	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
@@ -45,28 +47,25 @@ public class Freelancers {
 
 	private Date fechaInscripcionFreelancers;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "freelancer")
-	private Usuario usuario;
-
 	public Freelancers() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Freelancers(int idFreelancers,
+	public Freelancers(int idFreelancers, String photoFreelancer,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
 			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
 			String descriptionFreelancers, String cVFreelancers, String fotoFreelancers,
-			Date fechaInscripcionFreelancers, Usuario usuario) {
+			Date fechaInscripcionFreelancers) {
 		super();
 		this.idFreelancers = idFreelancers;
+		this.photoFreelancer = photoFreelancer;
 		this.nameFreelancers = nameFreelancers;
 		this.dniFreelancers = dniFreelancers;
 		this.descriptionFreelancers = descriptionFreelancers;
 		CVFreelancers = cVFreelancers;
 		this.fotoFreelancers = fotoFreelancers;
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
-		this.usuario = usuario;
 	}
 
 	public int getIdFreelancers() {
@@ -75,6 +74,14 @@ public class Freelancers {
 
 	public void setIdFreelancers(int idFreelancers) {
 		this.idFreelancers = idFreelancers;
+	}
+
+	public String getPhotoFreelancer() {
+		return photoFreelancer;
+	}
+
+	public void setPhotoFreelancer(String photoFreelancer) {
+		this.photoFreelancer = photoFreelancer;
 	}
 
 	public String getNameFreelancers() {
@@ -125,14 +132,9 @@ public class Freelancers {
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+	
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 
 
 }

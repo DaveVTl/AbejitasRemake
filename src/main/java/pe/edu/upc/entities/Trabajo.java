@@ -22,7 +22,8 @@ public class Trabajo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTrabajo;
 	
-	
+	@Column(name = "photo", nullable = true)
+	private String photoTrabajo;
 	
 	@Column(name = "nameTrabajo", length = 45, nullable = false)
 	private String nameTrabajo;
@@ -30,7 +31,7 @@ public class Trabajo {
 	@Column(name = "descriptionTrabajo", nullable = false, length = 254)
 	private String descriptionTrabajo;
 
-	@Column(name = "EstadoTrabajo", nullable = false, length = 10)
+	@Column(name = "EstadoTrabajo", nullable = false, length = 20)
 	private String EstadoTrabajo;
 
 	private Date dateCreacionAnuncio;
@@ -40,7 +41,8 @@ public class Trabajo {
 	@Positive
 	@Column(name = "pagoTrabajo",columnDefinition = "Decimal(8,2)", nullable = false)
 	private Double pagoTrabajo;
-
+	
+	@ManyToOne
 	@JoinColumn(name = "idFreelancers", nullable = false)
 	private Freelancers freelancers;
 
@@ -57,11 +59,12 @@ public class Trabajo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Trabajo(int idTrabajo, String nameTrabajo, String descriptionTrabajo, String estadoTrabajo,
-			Date dateCreacionAnuncio, @NotNull @DecimalMin("1.00") @Positive Double pagoTrabajo,
+	public Trabajo(int idTrabajo, String photoTrabajo, String nameTrabajo, String descriptionTrabajo,
+			String estadoTrabajo, Date dateCreacionAnuncio, @NotNull @DecimalMin("1.00") @Positive Double pagoTrabajo,
 			Freelancers freelancers, Anuncio anuncio, TipoPago tipoPago) {
 		super();
 		this.idTrabajo = idTrabajo;
+		this.photoTrabajo = photoTrabajo;
 		this.nameTrabajo = nameTrabajo;
 		this.descriptionTrabajo = descriptionTrabajo;
 		EstadoTrabajo = estadoTrabajo;
@@ -78,6 +81,14 @@ public class Trabajo {
 
 	public void setIdTrabajo(int idTrabajo) {
 		this.idTrabajo = idTrabajo;
+	}
+
+	public String getPhotoTrabajo() {
+		return photoTrabajo;
+	}
+
+	public void setPhotoTrabajo(String photoTrabajo) {
+		this.photoTrabajo = photoTrabajo;
 	}
 
 	public String getNameTrabajo() {
@@ -143,13 +154,12 @@ public class Trabajo {
 	public void setTipoPago(TipoPago tipoPago) {
 		this.tipoPago = tipoPago;
 	}
+
+	
+	
 	
 	
 
 	
-
-	
-
-
 
 }

@@ -104,7 +104,6 @@ public class Anuncio {
 	public void setTipoTrabajo(TipoTrabajo tipoTrabajo) {
 		this.tipoTrabajo = tipoTrabajo;
 	}
-=======
->>>>>>> 422c72c45fb144c5edf6f95e28ce78460d0d83ab
+
 
 }
