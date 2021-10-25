@@ -105,5 +105,4 @@ public class Anuncio {
 		this.tipoTrabajo = tipoTrabajo;
 	}
 
-
 }

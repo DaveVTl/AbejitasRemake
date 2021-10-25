@@ -27,10 +27,11 @@
 				<h3>Registrar Producto</h3>
 				<img class="imgform" alt="" th:src="@{/img/form/producto.png}">
 			</div>
+			
 			<div class="col-6 frm-registro">
 				<form th:action="@{/products/save}" method="post" class="row"
 					th:object="${product}" enctype="multipart/form-data">
-
+					
 					<div class="col-6">
 						<div class="form-group">
 							<label for="idrace">ID:</label> <input type="text" readonly

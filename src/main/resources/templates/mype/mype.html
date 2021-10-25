@@ -34,26 +34,26 @@
 					th:object="${mype}">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idMype"></input>
+							readonly th:field="*{idMype}"></input>
 							
 						<div class="form-group">
 							<label for="nombre">Nombre Empresa:</label> <input type="text" required
-								th:field="nameEmpresaMype" class="form-control" id="nameEmpresaMype"></input>
+								th:field="*{nameEmpresaMype}" class="form-control" id="nameEmpresaMype"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('nameEmpresaMype')}"
 								th:errors="nameEmpresaMype"></div>
 							<label for="nombre">Ruc:</label> <input type="text" required
-								th:field="rucMype" class="form-control" id="rucMype"></input>
+								th:field="*{rucMype}" class="form-control" id="rucMype"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('rucMype')}"
 								th:errors="rucMype"></div>		
 							<label for="nombre">Nombre Gerente:</label> <input type="text" required
-								th:field="nameGerenteMype" class="form-control" id="nameGerenteMype"></input>
+								th:field="*{nameGerenteMype}" class="form-control" id="nameGerenteMype"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('nameGerenteMype')}"
 								th:errors="nameGerenteMype"></div>
 							<label for="nombre">Logo:</label> <input type="text" required
-								th:field="logoMype" class="form-control" id="logoMype"></input>
+								th:field="*{logoMype}" class="form-control" id="logoMype"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('logoMype')}"
 								th:errors="logoMype"></div>	
