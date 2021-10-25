@@ -42,8 +42,6 @@ public class Freelancers {
 	@Column(name = "CVFreelancers", nullable = false, length = 100)
 	private String CVFreelancers;
 
-	@Column(name = "fotoFreelancers", nullable = false, length = 100)
-	private String fotoFreelancers;
 
 	private Date fechaInscripcionFreelancers;
 
@@ -55,7 +53,7 @@ public class Freelancers {
 	public Freelancers(int idFreelancers, String photoFreelancer,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
 			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
-			String descriptionFreelancers, String cVFreelancers, String fotoFreelancers,
+			String descriptionFreelancers, String cVFreelancers,
 			Date fechaInscripcionFreelancers) {
 		super();
 		this.idFreelancers = idFreelancers;
@@ -64,7 +62,7 @@ public class Freelancers {
 		this.dniFreelancers = dniFreelancers;
 		this.descriptionFreelancers = descriptionFreelancers;
 		CVFreelancers = cVFreelancers;
-		this.fotoFreelancers = fotoFreelancers;
+	
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 	}
 
@@ -116,13 +114,6 @@ public class Freelancers {
 		CVFreelancers = cVFreelancers;
 	}
 
-	public String getFotoFreelancers() {
-		return fotoFreelancers;
-	}
-
-	public void setFotoFreelancers(String fotoFreelancers) {
-		this.fotoFreelancers = fotoFreelancers;
-	}
 
 	public Date getFechaInscripcionFreelancers() {
 		return fechaInscripcionFreelancers;
