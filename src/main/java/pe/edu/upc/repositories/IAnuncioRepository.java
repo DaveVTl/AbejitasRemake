@@ -10,6 +10,6 @@ import pe.edu.upc.entities.Anuncio;
 @Repository
 public interface IAnuncioRepository extends JpaRepository<Anuncio, Integer>{
 	
-	@Query("select count (a.idAnuncio) from Mype a where a.idAnuncio=:name")	
-	public int FindMypeExists(@Param("name") String name);
+	@Query("select count (a.idAnuncio) from Anuncio a where a.idAnuncio=:name")	
+	public int FindMypeExists(@Param("name") int i);
 }
