@@ -26,8 +26,9 @@ public class Anuncio {
 	private Date dateCreacionAnuncio;
 	@Column(name = "pagoAnuncio", nullable = false, length = 254)
 	private String pagoAnuncio;
+	
 	@ManyToOne
-    @JoinColumn(name="idMypes", nullable = false)
+    @JoinColumn(name="idMype", nullable = false)
     private Mype mype;
 	@ManyToOne
     @JoinColumn(name="idTipoTrabajo", nullable = false)
