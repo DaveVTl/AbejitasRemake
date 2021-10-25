@@ -23,7 +23,7 @@ public class ReviewController {
 	@GetMapping("/new")
 	public String newTipoT(Model model) {
 		model.addAttribute("review", new Reviews());
-		return "reviews/reviews";
+		return "review/review";
 	}
 
 	@GetMapping("/list")
@@ -34,25 +34,25 @@ public class ReviewController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "reviews/listReviews";
+		return "review/listReviews";
 	}
 
 	@PostMapping("/save")
 	public String saveMarca(@Valid Reviews tipo, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "reviews/reviews";
+			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
-				return "reviews/reviews";
+				return "review/review";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
 				status.setComplete();
 			}
 		}
 		model.addAttribute("reviews", new Reviews());
-		return "redirect:/reviews/list";
+		return "redirect:/review/list";
 	}
 }

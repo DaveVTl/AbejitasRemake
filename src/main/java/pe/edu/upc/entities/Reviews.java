@@ -21,7 +21,6 @@ public class Reviews {
 	@Column(name ="descripcionre", length=80, nullable=false)
 	private String descripcionre;	
 	
-	@Max(10)
 	@Positive
 	@Column(name ="calificacionre", length=2, nullable=false)
 	private String calificacionre;

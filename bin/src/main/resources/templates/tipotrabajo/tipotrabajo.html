@@ -27,28 +27,27 @@
 				<h3></h3>
 			</div>
 			<div class="col-3">
-				<h3>Registrar Proveedor</h3>
+				<h3>Registrar Tipo Trabajo</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/suppliers/save}" method="post"
-					th:object="${supplier}">
+				<form th:action="@{/tipotrabajo/save}" method="post"
+					th:object="${tipotrabajo}">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idSupplier}"></input>
+							readonly th:field="*{idTipoTrabajo}"></input>
 
 						<div class="form-group">
-							<label for="nombre">Proveedor:</label> <input type="text"
-								required th:field="*{nameSupplier}" class="form-control"
-								id="nombre"></input>
+							<label for="nombre">NOMBRE:</label> <input type="text" required
+								th:field="*{nombreTrabajo}" class="form-control" id="nombre"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameSupplier')}"
-								th:errors="*{nameSupplier}"></div>
+								th:if="${#fields.hasErrors('nombreTrabajo')}"
+								th:errors="*{nombreTrabajo}"></div>
 
 						</div>
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/suppliers/list" class="btn btn-light">Cancelar</a>
+					<a href="/tipotrabajo/list" class="btn btn-light">Cancelar</a>
 
 				</form>
 				<div th:if="${mensaje}" class="alert alert-danger">

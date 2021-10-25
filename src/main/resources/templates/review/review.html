@@ -22,31 +22,58 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
-
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Proveedores</h3>
-				<a th:href="@{/suppliers/new}" class="btn btn-warning">Nuevo</a>
+		<div class="content container row col-12">
+			<div class="col-1">
+				<h3></h3>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Proveedor</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="s : ${listaProveedores}">
-						<td class="text-center" th:text="${s.idSupplier}"></td>
-						<td class="text-center" th:text="${s.nameSupplier}"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+			<div class="col-3">
+				<h3>Registrar Review</h3>
+			</div>
+			<div class="col-8 frm-registro">
+				<form th:action="@{/reviews/save}" method="post"
+					th:object="${review}">
+					<div class="form-group">
+						<label>ID:</label> <input type="text" class="form-control"
+							readonly th:field="*{idReview}"></input>
+					</div>
+					<div class="form-group">
+						<label for="calificacion">Calificación:</label> <input type="text"
+							required th:field="*{calificacionre}" class="form-control"
+							id="calificacion"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('calificacionre')}"
+							th:errors="*{calificacionre}"></div>
 
+					</div>
+
+					<div class="form-group">
+						<label for="descripcion">Descripcion:</label> <input type="text"
+							required th:field="*{descripcionre}" class="form-control"
+							id="descripcion"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('descripcionre')}"
+							th:errors="*{descripcionre}"></div>
+
+					</div>
+					<div class="col-6">
+						<div class="form-group">
+							<label for="category">Trabajo:</label> <select
+								class="form-control" th:field="*{trabajo.idTrabajo}">
+								<option th:each="c: ${listaTrabajo}" th:value="${c.idTrabajo}"
+									th:text="${c.nameTrabajo}"
+									th:selected="(${c.idTrabajo} == *{trabajo.idTrabajo})"></option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-warning">Aceptar</button>
+					<a href="/reviews/list" class="btn btn-light">Cancelar</a>
+				</form>
+				<div th:if="${mensaje}" class="alert alert-danger">
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
 
