@@ -14,6 +14,7 @@ import javax.persistence.Id;
 
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -23,7 +24,9 @@ public class Freelancers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFreelancers;
-
+	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre no puede contener caracteres especiales")
+	@Pattern(regexp = "[^0-9]+", message = "El nombre no puede contener un número")
 	@Column(name = "nameFreelancers", length = 45, nullable = false)
 	private String nameFreelancers;
 

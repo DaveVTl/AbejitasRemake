@@ -1,8 +1,6 @@
 package pe.edu.upc.entities;
 
-import java.io.Serializable;
 import java.util.Date;
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,17 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
-@Table(name = "Trabajo")
-public class Trabajo implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(name = "trabajos")
+public class Trabajo {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTrabajo;
-
+	
+	
+	
 	@Column(name = "nameTrabajo", length = 45, nullable = false)
 	private String nameTrabajo;
 
@@ -31,38 +34,42 @@ public class Trabajo implements Serializable {
 	private String EstadoTrabajo;
 
 	private Date dateCreacionAnuncio;
-
-	@Column(name = "nuevoPagoTrabajo", nullable = false)
-	private double nuevoPagoTrabajo;
-
 	
+	@NotNull
+	@DecimalMin("1.00")
+	@Positive
+	@Column(name = "pagoTrabajo",columnDefinition = "Decimal(8,2)", nullable = false)
+	private Double pagoTrabajo;
+
 	@JoinColumn(name = "idFreelancers", nullable = false)
-	private int freelancers;
+	private Freelancers freelancers;
+
+	@ManyToOne
+	@JoinColumn(name = "idAnuncio", nullable = false)
+	private Anuncio anuncio;
+
+	@ManyToOne
+	@JoinColumn(name = "idTipoPago", nullable = false)
+	private TipoPago tipoPago;
 
 	public Trabajo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param idTrabajo
-	 * @param nameTrabajo
-	 * @param descriptionTrabajo
-	 * @param estadoTrabajo
-	 * @param dateCreacionAnuncio
-	 * @param nuevoPagoTrabajo
-	 * @param freelancers
-	 */
 	public Trabajo(int idTrabajo, String nameTrabajo, String descriptionTrabajo, String estadoTrabajo,
-			Date dateCreacionAnuncio, double nuevoPagoTrabajo, int freelancers) {
+			Date dateCreacionAnuncio, @NotNull @DecimalMin("1.00") @Positive Double pagoTrabajo,
+			Freelancers freelancers, Anuncio anuncio, TipoPago tipoPago) {
 		super();
 		this.idTrabajo = idTrabajo;
 		this.nameTrabajo = nameTrabajo;
 		this.descriptionTrabajo = descriptionTrabajo;
 		EstadoTrabajo = estadoTrabajo;
 		this.dateCreacionAnuncio = dateCreacionAnuncio;
-		this.nuevoPagoTrabajo = nuevoPagoTrabajo;
+		this.pagoTrabajo = pagoTrabajo;
 		this.freelancers = freelancers;
+		this.anuncio = anuncio;
+		this.tipoPago = tipoPago;
 	}
 
 	public int getIdTrabajo() {
@@ -105,21 +112,41 @@ public class Trabajo implements Serializable {
 		this.dateCreacionAnuncio = dateCreacionAnuncio;
 	}
 
-	public double getNuevoPagoTrabajo() {
-		return nuevoPagoTrabajo;
+	public Double getPagoTrabajo() {
+		return pagoTrabajo;
 	}
 
-	public void setNuevoPagoTrabajo(double nuevoPagoTrabajo) {
-		this.nuevoPagoTrabajo = nuevoPagoTrabajo;
+	public void setPagoTrabajo(Double pagoTrabajo) {
+		this.pagoTrabajo = pagoTrabajo;
 	}
 
-	public int getFreelancers() {
+	public Freelancers getFreelancers() {
 		return freelancers;
 	}
 
-	public void setFreelancers(int freelancers) {
+	public void setFreelancers(Freelancers freelancers) {
 		this.freelancers = freelancers;
 	}
+
+	public Anuncio getAnuncio() {
+		return anuncio;
+	}
+
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
+	}
+
+	public TipoPago getTipoPago() {
+		return tipoPago;
+	}
+
+	public void setTipoPago(TipoPago tipoPago) {
+		this.tipoPago = tipoPago;
+	}
+	
+	
+
+	
 
 	
 
