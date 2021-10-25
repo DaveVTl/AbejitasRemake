@@ -34,7 +34,7 @@ public class AnuncioController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "mype/listAnuncio";
+		return "anuncio/listAnuncio";
 	}
 	
 	@PostMapping("/save")
@@ -52,7 +52,7 @@ public class AnuncioController {
 				status.setComplete();
 			}
 		}
-		model.addAttribute("mype", new Anuncio());
+		model.addAttribute("anuncio", new Anuncio());
 		return "redirect:/anuncio/list";
 	}
 }
