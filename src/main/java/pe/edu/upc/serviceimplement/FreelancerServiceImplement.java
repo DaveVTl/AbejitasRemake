@@ -17,7 +17,8 @@ public class FreelancerServiceImplement implements IFreelancerService {
 
 	@Override
 	public Integer insert(Freelancers freelancer) {
-		int rpta = fR.FindFreelancersExists(freelancer.getNameFreelancers());
+		
+		int rpta = fR.FindFreelancersExists(freelancer.getDniFreelancers());
 		if (rpta == 0) {
 			fR.save(freelancer);
 		}

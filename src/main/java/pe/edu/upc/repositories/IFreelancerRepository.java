@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entities.Freelancers;
 
 @Repository
-public interface IFreelancerRepository extends JpaRepository<Freelancers,Integer>{
+public interface IFreelancerRepository extends JpaRepository<Freelancers, Integer> {
 
-	@Query("select count (f.nameFreelancers) from Freelancers f where f.nameFreelancers=:name")	
-	public int FindFreelancersExists(@Param("name") String name);
-	
+	@Query("select count (f.dniFreelancers) from Freelancers f where f.dniFreelancers=:dni")
+	public int FindFreelancersExists(@Param("dni") String dni);
+
 }

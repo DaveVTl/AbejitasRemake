@@ -1,8 +1,7 @@
 package pe.edu.upc.entities;
 
-
 import java.util.Date;
-import java.util.Objects;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,20 +17,22 @@ import javax.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name = "Freelancers")
+@Table(name = "Freelancer")
 public class Freelancers {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFreelancers;
 	
-	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "El nombre no puede contener caracteres especiales")
-	@Pattern(regexp = "[^0-9]+", message = "El nombre no puede contener un número")
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
+	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
 	@Column(name = "nameFreelancers", length = 45, nullable = false)
 	private String nameFreelancers;
 
+	
+	@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido")
 	@Column(name = "dniFreelancers", nullable = false, length = 15)
-	private int dniFreelancers;
+	private String dniFreelancers;
 
 	@Column(name = "descriptionFreelancers", nullable = false, length = 254)
 	private String descriptionFreelancers;
@@ -47,18 +48,16 @@ public class Freelancers {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "freelancer")
 	private Usuario usuario;
 
-	/**
-	 * @param idFreelancers
-	 * @param nameFreelancers
-	 * @param dniFreelancers
-	 * @param descriptionFreelancers
-	 * @param cVFreelancers
-	 * @param fotoFreelancers
-	 * @param fechaInscripcionFreelancers
-	 * @param usuario
-	 */
-	public Freelancers(int idFreelancers, String nameFreelancers, int dniFreelancers, String descriptionFreelancers,
-			String cVFreelancers, String fotoFreelancers, Date fechaInscripcionFreelancers, Usuario usuario) {
+	public Freelancers() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Freelancers(int idFreelancers,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
+			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
+			String descriptionFreelancers, String cVFreelancers, String fotoFreelancers,
+			Date fechaInscripcionFreelancers, Usuario usuario) {
 		super();
 		this.idFreelancers = idFreelancers;
 		this.nameFreelancers = nameFreelancers;
@@ -68,14 +67,6 @@ public class Freelancers {
 		this.fotoFreelancers = fotoFreelancers;
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 		this.usuario = usuario;
-	}
-
-	/**
-	 * 
-	 */
-	public Freelancers() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdFreelancers() {
@@ -94,11 +85,11 @@ public class Freelancers {
 		this.nameFreelancers = nameFreelancers;
 	}
 
-	public int getDniFreelancers() {
+	public String getDniFreelancers() {
 		return dniFreelancers;
 	}
 
-	public void setDniFreelancers(int dniFreelancers) {
+	public void setDniFreelancers(String dniFreelancers) {
 		this.dniFreelancers = dniFreelancers;
 	}
 
@@ -134,34 +125,14 @@ public class Freelancers {
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(CVFreelancers, descriptionFreelancers, dniFreelancers, fechaInscripcionFreelancers,
-				fotoFreelancers, idFreelancers, nameFreelancers, usuario);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Freelancers other = (Freelancers) obj;
-		return Objects.equals(CVFreelancers, other.CVFreelancers)
-				&& Objects.equals(descriptionFreelancers, other.descriptionFreelancers)
-				&& dniFreelancers == other.dniFreelancers
-				&& Objects.equals(fechaInscripcionFreelancers, other.fechaInscripcionFreelancers)
-				&& Objects.equals(fotoFreelancers, other.fotoFreelancers) && idFreelancers == other.idFreelancers
-				&& Objects.equals(nameFreelancers, other.nameFreelancers) && Objects.equals(usuario, other.usuario);
-	}
-	public Usuario getUser() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setUser(Usuario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+
 
 }
