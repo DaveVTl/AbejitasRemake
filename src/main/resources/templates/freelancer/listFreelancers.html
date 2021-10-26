@@ -35,17 +35,21 @@
 						<th scope="col" class="text-center">Descripcion</th>
 						<th scope="col" class="text-center">Curriculum</th>
 						<th scope="col" class="text-center">Fecha</th>
+						<th scope="col" class="text-center">Foto</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="free : ${listaFreelancers}">
+
 						<td class="text-center" th:text="${free.idFreelancers}"></td>
 						<td class="text-center" th:text="${free.nameFreelancers}"></td>
 						<td class="text-center" th:text="${free.dniFreelancers}"></td>
 						<td class="text-center" th:text="${free.descriptionFreelancers}"></td>
 						<td class="text-center" th:text="${free.CVFreelancers}"></td>
 						<td class="text-center" th:text="${free.fechaInscripcionFreelancers}"></td>
-						
+						<td class="text-center" th:img="${free.fotoFreelancers}"></td>
+					
+
 					</tr>
 				</tbody>
 			</table>

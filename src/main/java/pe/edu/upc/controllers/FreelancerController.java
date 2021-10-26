@@ -15,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
@@ -52,12 +51,12 @@ public class FreelancerController {
 		return "freelancer/listFreelancers";
 	}
 
-	@PostMapping("/save")
+	@RequestMapping("/save")
 	public String saveMarca(@ModelAttribute("newFreelancer") @Valid Freelancers newFreelancer, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "freelancer/freelancer";
+			return "freelancers/freelancer";
 		} else {
 			if (!foto.isEmpty()) {
 
