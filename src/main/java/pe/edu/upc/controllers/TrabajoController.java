@@ -14,15 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.support.SessionStatus;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 import pe.edu.upc.serviceinterface.IFreelancerService;
-import pe.edu.upc.serviceinterface.ITipoTrabajoService;
+import pe.edu.upc.serviceinterface.ITipoPagoService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
 
 @Controller
@@ -35,21 +33,21 @@ public class TrabajoController {
 	@Autowired
 	private IFreelancerService fS;
 	@Autowired
-	private ITipoTrabajoService tpS;
+	private ITipoPagoService tpS;
 
 
 	@GetMapping("/new")
-	public String newProduct(Model model) {
+	public String newTrabajo(Model model) {
 		model.addAttribute("trabajo", new Trabajo());
-		model.addAttribute("listaAnuncio", aS.list());
+		model.addAttribute("listaAnuncios", aS.list());
 		model.addAttribute("listaFreelancers", fS.list());
-		model.addAttribute("listaTipoTrabajo", tpS.list());
+		model.addAttribute("listaTipoPagos", tpS.list());
 		model.addAttribute("trabajo", new Trabajo());
 		return "trabajo/trabajo";
 	}
 
 	@GetMapping("/list")
-	public String listProducts(Model model) {
+	public String listTrabajos(Model model) {
 		try {
 			model.addAttribute("trabajo", new Trabajo());
 			model.addAttribute("listaTrabajos", tS.list());
@@ -63,9 +61,9 @@ public class TrabajoController {
 	public String insertTrabajo(@Valid Trabajo objTrabajo, BindingResult result, Model model, SessionStatus status)
 			throws ParseException {
 		if (result.hasErrors()) {
-			model.addAttribute("listaAnuncio", aS.list());
+			model.addAttribute("listaAnuncios", aS.list());
 			model.addAttribute("listaFreelancers", fS.list());
-			model.addAttribute("listaTipoTrabajo", tpS.list());
+			model.addAttribute("listaTipoPagos", tpS.list());
 			return "trabajo/trabajo";
 		} else {
 			
@@ -118,9 +116,9 @@ public class TrabajoController {
 			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
 			return "redirect:/trabajos/list";
 		} else {
-			model.addAttribute("listaAnuncio", aS.list());
+			model.addAttribute("listaAnuncios", aS.list());
 			model.addAttribute("listaFreelancers", fS.list());
-			model.addAttribute("listaTipoTrabajo", tpS.list());
+			model.addAttribute("listaTipoPagos", tpS.list());
 			model.addAttribute("trabajo", objTrabajo);
 			return "trabajo/trabajo";
 		}

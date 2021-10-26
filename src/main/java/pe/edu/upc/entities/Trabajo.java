@@ -15,13 +15,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
-@Table(name = "trabajos")
+@Table(name = "Trabajo")
 public class Trabajo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTrabajo;
-	
 	
 	
 	@Column(name = "nameTrabajo", length = 45, nullable = false)
