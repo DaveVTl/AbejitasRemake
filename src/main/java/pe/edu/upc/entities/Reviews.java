@@ -34,7 +34,7 @@ public class Reviews {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reviews(int idReview, String descripcionre, @Max(10) @Positive String calificacionre, Trabajo idTrabajo) {
+	public Reviews(int idReview, String descripcionre,  @Positive String calificacionre, Trabajo idTrabajo) {
 		super();
 		this.idReview = idReview;
 		this.descripcionre = descripcionre;

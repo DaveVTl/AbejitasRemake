@@ -13,16 +13,19 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Reviews;
 import pe.edu.upc.serviceinterface.IReviewsService;
+import pe.edu.upc.serviceinterface.ITrabajoService;
 
 @Controller
 @RequestMapping("/reviews")
 public class ReviewController {
 	@Autowired
 	private IReviewsService rS;
-
+	@Autowired
+	private ITrabajoService tS;
 	@GetMapping("/new")
 	public String newTipoT(Model model) {
 		model.addAttribute("review", new Reviews());
+		model.addAttribute("listaTrabajos", tS.list());
 		return "review/review";
 	}
 
@@ -41,6 +44,7 @@ public class ReviewController {
 	public String saveMarca(@Valid Reviews tipo, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaTrabajos", tS.list());
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);
