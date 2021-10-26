@@ -47,7 +47,10 @@
 						<td class="text-center" th:text="${free.descriptionFreelancers}"></td>
 						<td class="text-center" th:text="${free.CVFreelancers}"></td>
 						<td class="text-center" th:text="${free.fechaInscripcionFreelancers}"></td>
-						<td class="text-center" th:text="${free.fotoFreelancers}"></td>
+						<td><img class=" "
+							th:if="${#strings.length(free.fotoFreelancers)> 0}"
+							th:src="@{'/freelancers/uploads/' + ${free.fotoFreelancers}}"
+							th:alt="${free.fotoFreelancers}" height= 40px; width=40px;></td>
 					
 
 					</tr>
