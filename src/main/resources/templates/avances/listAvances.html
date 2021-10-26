@@ -34,7 +34,7 @@
 						<th scope="col" class="text-center">ID</th>
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Descripcion</th>
-
+						<th scope="col" class="text-center">Foto</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,10 +44,10 @@
 							th:text="${p.idAvance}"></a></td>
 						<td class="text-center" th:text="${p.nombre}"></td>
 						<td class="text-center" th:text="${p.descripcion}"></td>
-						<td class="text-center" align="center"><a
-							th:href="@{/avances/view/} + ${p.idAvance}"> <i
-								class="fa fa-eye" style="color: gray;"></i>
-						</a></td>
+						<td><img class=" "
+							th:if="${#strings.length(p.fotoavance)> 0}"
+							th:src="@{'/avances/uploads/' + ${p.fotoavance}}"
+							th:alt="${p.fotoavance}" ></td>
 					</tr>
 				</tbody>
 			</table>
