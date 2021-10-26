@@ -56,9 +56,9 @@
 
 					</div>
 					
-					<label for="mype">Trabajo: </label>
+					<label for="trabajo">Trabajo: </label>
 					<select
-						class="form-control" th:field="*{trabajo.idtrabajo}">
+						class="form-control" th:field="*{trabajo.idTrabajo}">
 						<option th:each="m: ${listaTrabajos}" th:value="${m.idTrabajo}"
 							th:text="${m.nameTrabajo}"
 							th:selected="(${m.idTrabajo} == *{trabajo.idTrabajo})"></option>
