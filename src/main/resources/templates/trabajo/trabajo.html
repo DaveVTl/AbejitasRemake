@@ -91,7 +91,7 @@
 								th:field="*{freelancers.idFreelancers}">
 								<option th:each="t: ${listaFreelancers}" th:value="${t.idFreelancers}"
 									th:text="${t.nameFreelancers}"
-									th:selected="(${t.idFreelancers} == *{freelancer.idFreelancers})"></option>
+									th:selected="(${t.idFreelancers} == *{freelancers.idFreelancers})"></option>
 							</select>
 						</div>
 
@@ -109,7 +109,7 @@
 								th:field="*{tipoPago.idTipoPago}">
 								<option th:each="tp: ${listaTipoPagos}" th:value="${tp.idTipoPago}"
 									th:text="${tp.nombrePago}"
-									th:selected="(${tp.idTipoPago} == *{tipo_pago.idTipoPago})"></option>
+									th:selected="(${tp.idTipoPago} == *{tipoPago.idTipoPago})"></option>
 							</select>
 						</div>
 
