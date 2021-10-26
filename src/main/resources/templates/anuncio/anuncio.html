@@ -52,13 +52,6 @@
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('pagoAnuncio')}"
 								th:errors="pagoAnuncio"></div>
-
-					<label for="dateStart">Fecha De Creacion de Anuncio:</label> <input
-						type="date" th:field="*{dateStart}" class="form-control"
-						id="dateStart"></input>
-					<div class="alert alert-danger"
-						th:if="${#fields.hasErrors('dateStart')}"
-						th:errors="dateStart"></div>
 								
 					<label for="mype">Mype: </label>
 					<select

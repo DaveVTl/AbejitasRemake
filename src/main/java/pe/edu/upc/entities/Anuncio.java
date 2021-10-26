@@ -26,9 +26,6 @@ public class Anuncio {
 	@Column(name = "pagoAnuncio", nullable = false, length = 254)
 	private String pagoAnuncio;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private Date dateStart;
-	
 	@ManyToOne
     @JoinColumn(name="idMype", nullable = false)
     private Mype mype;
@@ -48,7 +45,6 @@ public class Anuncio {
 		this.nameAnuncio = nameAnuncio;
 		this.descriptionAnuncio = descriptionAnuncio;
 		this.pagoAnuncio = pagoAnuncio;
-		this.dateStart = dateStart;
 		this.mype = mype;
 		this.tipoTrabajo = tipoTrabajo;
 	}
@@ -83,14 +79,6 @@ public class Anuncio {
 
 	public void setPagoAnuncio(String pagoAnuncio) {
 		this.pagoAnuncio = pagoAnuncio;
-	}
-
-	public Date getDateStart() {
-		return dateStart;
-	}
-
-	public void setDateStart(Date dateStart) {
-		this.dateStart = dateStart;
 	}
 
 	public Mype getMype() {
