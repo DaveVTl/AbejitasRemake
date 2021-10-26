@@ -65,15 +65,15 @@
 						</div>
 						<label for="trabajo">TRABAJO: </label> <select
 							class="form-control" th:field="*{trabajo.idTrabajo}">
-							<option th:each="r: ${listaTrabajos}" th:value="${r.idTrabajo}"
+							<option th:each="r: ${listaTrabajo}" th:value="${r.idTrabajo}"
 								th:text="${r.nameTrabajo}"
 								th:selected="(${r.idTrabajo} == *{trabajo.idTrabajo})"></option>
 								
 						</select> <label for="trabajo">FREELANCER: </label> <select
 							class="form-control" th:field="*{freelancer.idFreelancers}">
-							<option th:each="r: ${listaTrabajos}" th:value="${r.idFreelancers}"
+							<option th:each="r: ${listaFreelancer}" th:value="${r.idFreelancers}"
 								th:text="${r.nameFreelancers}"
-								th:selected="(${r.idFreelancers} == *{freelancers.idFreelancers})"></option>
+								th:selected="(${r.idFreelancers} == *{freelancer.idFreelancers})"></option>
 						</select>
 
 					</div>

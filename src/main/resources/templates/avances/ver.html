@@ -30,16 +30,16 @@
 		<div class="content container">
 
 			<div class="detail">
-				
+
 				<img class="detailimg"
 					th:if="${#strings.length(avance.fotoavance)> 0}"
 					th:src="@{'/avances/uploads/' + ${avance.fotoavance}}"
 					th:alt="${avance.fotoavance}">
 			</div>
 			<div class="form-group">
-					<a th:href="@{/avances/list}" class="volverdet" href=""
-						style="color: gray;"><i class="fa fa-arrow-left"></i></a>
-				</div>
+				<a th:href="@{/avances/list}" class="volverdet" href=""
+					style="color: gray;"><i class="fa fa-arrow-left"></i></a>
+			</div>
 		</div>
 		<div class="content container">
 			<div class="detalles">
@@ -47,10 +47,20 @@
 
 				<div class="form-group">
 					<h1 th:text="${avance.nombre}" class="text-center"
-						style="color: gray;" ></h1>
+						style="color: rgb(64, 0, 64);"></h1>
 
-					<h2 th:text="${avance.descripcion}"  class="text-center"
+					<h2 th:text="${avance.descripcion}" class="text-center"
 						style="color: gray;"></h2>
+					
+					<h2 th:text="TRABAJO" class="text-center"
+						style="color: rgb(0, 0, 0);"></h2>
+					<h2 th:text="${avance.trabajo.nameTrabajo}" class="text-center"
+						style="color: gray;"></h2>
+					
+					<h2 th:text="FREELANCER" class="text-center"
+						style="color: rgb(0, 0, 0);"></h2>
+					<h2 th:text="${avance.freelancer.nameFreelancers}"
+						class="text-center" style="color: gray;"></h2>
 
 				</div>
 			</div>
