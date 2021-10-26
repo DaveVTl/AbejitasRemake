@@ -63,12 +63,14 @@ public class Admin {
 		DNI = dNI;
 	}
 
-	public Date getdateInicio() {
+	public Date getDateInicio() {
 		return dateInicio;
 	}
 
-	public void setdateInicio(Date dateInicio) {
+	public void setDateInicio(Date dateInicio) {
 		this.dateInicio = dateInicio;
 	}
+
+
 	
 }

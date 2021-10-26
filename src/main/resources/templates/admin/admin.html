@@ -30,33 +30,31 @@
 				<h3>Iniciar Admin</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/admin/save}" method="post"
-					th:object="${admin}">
+				<form th:action="@{/admin/save}" method="post" th:object="${admin}">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
 							readonly th:field="*{idAdmin}"></input>
-							
+
 						<div class="form-group">
-							<label for="nombre">Nombre Admin:</label> <input type="text" required
-								th:field="*{nameAdmin}" class="form-control" id="nameAdmin"></input>
+							<label for="nombre">Nombre Admin:</label> <input type="text"
+								required th:field="*{nameAdmin}" class="form-control"
+								id="nameAdmin"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameAdmin')}"
-								th:errors="nameAdmin"></div>
+								th:if="${#fields.hasErrors('nameAdmin')}" th:errors="nameAdmin"></div>
 							<label for="DNI">DNI:</label> <input type="text" required
 								th:field="*{DNI}" class="form-control" id="DNI"></input>
 							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('DNI')}"
-								th:errors="DNI"></div>	
-								
+								th:if="${#fields.hasErrors('DNI')}" th:errors="DNI"></div>
+
 							<label for="dateInicio">Fecha De Inicio:</label> <input
 								type="date" th:field="*{dateInicio}" class="form-control"
 								id="dateInicio"></input>
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('dateInicio')}"
 								th:errors="*{dateInicio}"></div>
-							
-							
-							</div>
+
+
+						</div>
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
 					<a href="/admin/list" class="btn btn-light">Cancelar</a>
