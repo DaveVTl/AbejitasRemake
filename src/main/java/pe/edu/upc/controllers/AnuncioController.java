@@ -31,6 +31,8 @@ public class AnuncioController {
 	@GetMapping("/new")
 	public String newAnuncio(Model model) {
 		model.addAttribute("anuncio", new Anuncio());
+		model.addAttribute("listaTipoTrabajo", tService.list());
+		model.addAttribute("listaMype", mService.list());
 		return "anuncio/anuncio";
 	}
 	
@@ -39,8 +41,6 @@ public class AnuncioController {
 		try {
 			model.addAttribute("anuncio", new Anuncio());
 			model.addAttribute("listaAnuncios", aC.list());
-			model.addAttribute("listaMype", mService.list());
-			model.addAttribute("listaTipoTrabajo", tService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
@@ -48,7 +48,7 @@ public class AnuncioController {
 	}
 	
 	@PostMapping("/save")
-	public String saveMarca(@Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
+	public String saveAnuncio(@Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			return "anuncio/anuncio";
