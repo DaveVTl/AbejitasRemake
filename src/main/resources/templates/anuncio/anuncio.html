@@ -60,13 +60,15 @@
 						th:if="${#fields.hasErrors('dateStart')}"
 						th:errors="dateStart"></div>
 								
-					<label for="mype">Mype: </label>
-					<select
-						class="form-control" th:field="*{mype.idMype}">
-						<option th:each="m: ${listaMypes}" th:value="${m.idMype}"
-							th:text="${m.nameEmpresaMype}"
-							th:selected="(${m.idMype} == *{mype.idMype})"></option>
-					</select>
+					<div class="col-6">
+						<div class="form-group">
+							<label for="mype">Mype:</label> <select
+								class="form-control" th:field="*{mype.idMype}">
+								<option th:each="m: ${listaMype}"
+									th:value="${m.idMype}" th:text="${m.nameEmpresaMype}"
+									th:selected="(${m.idMype} == *{mype.idMype})"></option>
+							</select>
+						</div>
 					
 					<label for="raza">Tipo de Trabajo: </label>
 					<select

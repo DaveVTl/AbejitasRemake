@@ -13,6 +13,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Anuncio;
 import pe.edu.upc.serviceinterface.IAnuncioService;
+import pe.edu.upc.serviceinterface.IMypeService;
+import pe.edu.upc.serviceinterface.ITipoTrabajoService;
 
 
 @Controller
@@ -21,6 +23,10 @@ public class AnuncioController {
 	
 	@Autowired
 	private IAnuncioService aC;
+	@Autowired
+	private IMypeService mService;
+	@Autowired
+	private ITipoTrabajoService tService;
 	
 	@GetMapping("/new")
 	public String newAnuncio(Model model) {
@@ -33,6 +39,8 @@ public class AnuncioController {
 		try {
 			model.addAttribute("anuncio", new Anuncio());
 			model.addAttribute("listaAnuncios", aC.list());
+			model.addAttribute("listaMype", mService.list());
+			model.addAttribute("listaTipoTrabajo", tService.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
