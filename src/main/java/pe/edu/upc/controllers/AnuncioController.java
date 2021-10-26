@@ -17,6 +17,7 @@ import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.ITipoTrabajoService;
 
 
+
 @Controller
 @RequestMapping("/anuncio")
 public class AnuncioController {

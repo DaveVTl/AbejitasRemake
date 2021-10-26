@@ -35,39 +35,38 @@
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
 							readonly th:field="*{idAnuncio}"></input>
-							
-						<div class="form-group">
-							<label for="nombre">Nombre Anuncio:</label> <input type="text" required
-								th:field="*{nameAnuncio}" class="form-control" id="nameAnuncio"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameAnuncio')}"
-								th:errors="nameAnuncio"></div>
-							<label for="nombre">Descripcion:</label> <input type="text" required
-								th:field="*{descriptionAnuncio}" class="form-control" id="descriptionAnuncio"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('descriptionAnuncio')}"
-								th:errors="descriptionAnuncio"></div>		
-							<label for="nombre">Pago Anuncio:</label> <input type="text" required
-								th:field="*{pagoAnuncio}" class="form-control" id="pagoAnuncio"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('pagoAnuncio')}"
-								th:errors="pagoAnuncio"></div>
-								
-					<label for="mype">Mype: </label>
-					<select
-						class="form-control" th:field="*{mype.idMype}">
-						<option th:each="m: ${listaMype}" th:value="${m.idMype}"
-							th:text="${m.nameEmpresaMype}"
-							th:selected="(${m.idMype} == *{mype.idMype})"></option>
-					</select>
-					
-					<label for="raza">Tipo de Trabajo: </label>
-					<select
-						class="form-control" th:field="*{TipoTrabajo.idTipoTrabajo}">
-						<option th:each="t: ${listaTipoTrabajo}" th:value="${t.idTipoTrabajo}"
-							th:text="${t.nombreTrabajo}"
-							th:selected="(${t.idTipoTrabajo} == *{TipoTrabajo.idTipoTrabajo})"></option>
-					</select>
+					</div>
+					<div class="form-group">
+						<label for="nombre">Nombre Anuncio:</label> <input type="text"
+							required th:field="*{nameAnuncio}" class="form-control"
+							id="nameAnuncio"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('nameAnuncio')}"
+							th:errors="nameAnuncio"></div>
+						<label for="nombre">Descripcion:</label> <input type="text"
+							required th:field="*{descriptionAnuncio}" class="form-control"
+							id="descriptionAnuncio"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('descriptionAnuncio')}"
+							th:errors="descriptionAnuncio"></div>
+						<label for="nombre">Pago Anuncio:</label> <input type="text"
+							required th:field="*{pagoAnuncio}" class="form-control"
+							id="pagoAnuncio"></input>
+						<div class="alert alert-danger"
+							th:if="${#fields.hasErrors('pagoAnuncio')}"
+							th:errors="pagoAnuncio"></div>
+
+						<label for="mype">Mype: </label> <select class="form-control"
+							th:field="*{mype.idMype}">
+							<option th:each="m: ${listaMype}" th:value="${m.idMype}"
+								th:text="${m.nameEmpresaMype}"
+								th:selected="(${m.idMype} == *{mype.idMype})"></option>
+						</select> <label for="raza">Tipo de Trabajo: </label> <select
+							class="form-control" th:field="*{TipoTrabajo.idTipoTrabajo}">
+							<option th:each="t: ${listaTipoTrabajo}"
+								th:value="${t.idTipoTrabajo}" th:text="${t.nombreTrabajo}"
+								th:selected="(${t.idTipoTrabajo} == *{TipoTrabajo.idTipoTrabajo})"></option>
+						</select>
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>

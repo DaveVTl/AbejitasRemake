@@ -34,20 +34,23 @@
 						<th scope="col" class="text-center">ID</th>
 						<th scope="col" class="text-center">Nombre</th>
 						<th scope="col" class="text-center">Descripcion</th>
+						<th scope="col" class="text-center">Trabajo</th>
 						<th scope="col" class="text-center">Foto</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="p: ${listaAvances}">
+					<tr th:each="av: ${listaAvances}">
 						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/avances/view/} + ${p.idAvance}"
-							th:text="${p.idAvance}"></a></td>
-						<td class="text-center" th:text="${p.nombre}"></td>
-						<td class="text-center" th:text="${p.descripcion}"></td>
+							th:href="@{/avances/view/} + ${av.idAvance}"
+							th:text="${av.idAvance}"></a></td>
+						<td class="text-center" th:text="${av.nombre}"></td>
+						<td class="text-center" th:text="${av.descripcion}"></td>
+						<td class="text-center" th:text="${av.trabajo.nameTrabajo}"></td>
+						<td class="text-center" th:text="${av.freelancer.nameFreelancers}"></td>
 						<td><img class=" "
-							th:if="${#strings.length(p.fotoavance)> 0}"
-							th:src="@{'/avances/uploads/' + ${p.fotoavance}}"
-							th:alt="${p.fotoavance}" height= 40px; width=40px;></td>
+							th:if="${#strings.length(av.fotoavance)> 0}"
+							th:src="@{'/avances/uploads/' + ${av.fotoavance}}"
+							th:alt="${av.fotoavance}" height= 40px; width=40px;></td>
 					</tr>
 				</tbody>
 			</table>

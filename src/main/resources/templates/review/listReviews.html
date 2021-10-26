@@ -38,11 +38,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat : ${listaReviews}">
-						<td class="text-center" th:text="${cat.idReview}"></td>
-						<td class="text-center" th:text="${cat.calificacionre}"></td>
-						<td class="text-center" th:text="${cat.descripcionre}"></td>
-						<td class="text-center" th:text="${cat.trabajo.idTrabajo}"></td>
+					<tr th:each="rev : ${listaReviews}">
+						<td class="text-center" th:text="${rev.idReview}"></td>
+						<td class="text-center" th:text="${rev.calificacionre}"></td>
+						<td class="text-center" th:text="${rev.descripcionre}"></td>
+						<td class="text-center" th:text="${rev.trabajo.nameTrabajo}"></td>
 					</tr>
 				</tbody>
 			</table>

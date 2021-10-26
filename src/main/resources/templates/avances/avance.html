@@ -29,7 +29,8 @@
 			</div>
 			<div class="col-6 frm-registro">
 				<form th:action="@{/avances/save}" method="post" class="row"
-					th:object="${avance}" enctype="multipart/form-data" height= 100px; width=100px;>
+					th:object="${avance}" enctype="multipart/form-data" height=100px;
+					width=100px;>
 
 					<div class="col-6">
 						<div class="form-group">
@@ -62,6 +63,18 @@
 							</div>
 
 						</div>
+						<label for="trabajo">TRABAJO: </label> <select
+							class="form-control" th:field="*{trabajo.idTrabajo}">
+							<option th:each="r: ${listaTrabajos}" th:value="${r.idTrabajo}"
+								th:text="${r.nameTrabajo}"
+								th:selected="(${r.idTrabajo} == *{trabajo.idTrabajo})"></option>
+								
+						</select> <label for="trabajo">FREELANCER: </label> <select
+							class="form-control" th:field="*{freelancer.idFreelancers}">
+							<option th:each="r: ${listaTrabajos}" th:value="${r.idFreelancers}"
+								th:text="${r.nameFreelancers}"
+								th:selected="(${r.idFreelancers} == *{freelancers.idFreelancers})"></option>
+						</select>
 
 					</div>
 					<button style="margin: 0px 30px;" type="submit"

@@ -25,6 +25,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Avances;
 import pe.edu.upc.serviceinterface.IAvanceService;
+import pe.edu.upc.serviceinterface.IFreelancerService;
+import pe.edu.upc.serviceinterface.ITrabajoService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
 
 
@@ -34,12 +36,19 @@ public class AvanceController {
 	@Autowired
 	private IAvanceService pService;
 	@Autowired
+	private ITrabajoService tService;
+	@Autowired
+	private IFreelancerService fService;
+	@Autowired
 	private IUploadFileService uploadFileService;
 
 	@GetMapping("/new")
 	public String newAvance(Model model) {
 		model.addAttribute("avance", new Avances());
+		model.addAttribute("listaTrabajo", tService.list());
+		model.addAttribute("listaFreelancer", fService.list());
 		return "avances/avance";
+		
 	}
 
 	@RequestMapping("/save")
@@ -47,6 +56,8 @@ public class AvanceController {
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws ParseException {
 		if (binRes.hasErrors()) {
+			model.addAttribute("listaTrabajo", tService.list());
+			model.addAttribute("listaFreelancer", fService.list());
 			return "avances/avance";
 		} else {
 			if (!foto.isEmpty()) {
