@@ -20,20 +20,20 @@ import pe.edu.upc.serviceinterface.ITrabajoService;
 public class ReviewController {
 	@Autowired
 	private IReviewsService rS;
-	//@Autowired
-	//private ITrabajoService tS;
-	
+	@Autowired
+	private ITrabajoService tS;
+
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("review", new Reviews());
-		//model.addAttribute("listaTrabajos", tS.list());
+		model.addAttribute("listaTrabajos", tS.list());
 		return "review/review";
 	}
 
 	@GetMapping("/list")
 	public String listReviews(Model model) {
 		try {
-			model.addAttribute("reviews", new Reviews());
+			model.addAttribute("review", new Reviews());
 			model.addAttribute("listaReviews", rS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -45,7 +45,7 @@ public class ReviewController {
 	public String saveReview(@Valid Reviews tipo, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-		//	model.addAttribute("listaTrabajos", tS.list());
+			model.addAttribute("listaTrabajos", tS.list());
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);

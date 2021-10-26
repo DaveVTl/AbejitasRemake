@@ -56,6 +56,14 @@
 
 					</div>
 					
+					<label for="mype">Trabajo: </label>
+					<select
+						class="form-control" th:field="*{trabajo.idtrabajo}">
+						<option th:each="m: ${listaTrabajos}" th:value="${m.idTrabajo}"
+							th:text="${m.nameTrabajo}"
+							th:selected="(${m.idTrabajo} == *{trabajo.idTrabajo})"></option>
+					</select>
+					
 					<button type="submit" class="btn btn-warning">Aceptar</button>
 					<a href="/reviews/list" class="btn btn-light">Cancelar</a>
 				</form>

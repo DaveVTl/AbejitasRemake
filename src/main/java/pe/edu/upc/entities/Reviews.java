@@ -15,31 +15,31 @@ import javax.validation.constraints.Positive;
 @Table(name = "reviews")
 public class Reviews {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)//ALLI ESTÁ A, XD
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // ALLI ESTÁ A, XD
 	private int idReview;
-	
-	@Column(name ="descripcionre", length=80, nullable=false)
-	private String descripcionre;	
-	
+
+	@Column(name = "descripcionre", length = 80, nullable = false)
+	private String descripcionre;
+
 	@Positive
-	@Column(name ="calificacionre", length=2, nullable=false)
+	@Column(name = "calificacionre", length = 2, nullable = false)
 	private String calificacionre;
-	
-	//@ManyToOne
-	//@JoinColumn(name ="idTrabajo", nullable=false)
-	//private Trabajo idTrabajo;
+
+	@ManyToOne
+	@JoinColumn(name = "idTrabajo", nullable = false)
+	private Trabajo idTrabajo;
 
 	public Reviews() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reviews(int idReview, String descripcionre,  @Positive String calificacionre, Trabajo idTrabajo) {
+	public Reviews(int idReview, String descripcionre, @Positive String calificacionre, Trabajo idTrabajo) {
 		super();
 		this.idReview = idReview;
 		this.descripcionre = descripcionre;
 		this.calificacionre = calificacionre;
-		//this.idTrabajo = idTrabajo;
+		// this.idTrabajo = idTrabajo;
 	}
 
 	public int getIdReview() {
@@ -66,13 +66,12 @@ public class Reviews {
 		this.calificacionre = calificacionre;
 	}
 
-//	public Trabajo getIdTrabajo() {
-	//	return idTrabajo;
-	//}
+	public Trabajo getIdTrabajo() {
+		return idTrabajo;
+	}
 
-//	public void setIdTrabajo(Trabajo idTrabajo) {
-	//	this.idTrabajo = idTrabajo;
-	//}
-	
-	
+	public void setIdTrabajo(Trabajo idTrabajo) {
+		this.idTrabajo = idTrabajo;
+	}
+
 }
