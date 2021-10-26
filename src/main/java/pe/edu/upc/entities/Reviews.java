@@ -25,9 +25,9 @@ public class Reviews {
 	@Column(name ="calificacionre", length=2, nullable=false)
 	private String calificacionre;
 	
-	@ManyToOne
-	@JoinColumn(name ="idTrabajo", nullable=false)
-	private Trabajo idTrabajo;
+	//@ManyToOne
+	//@JoinColumn(name ="idTrabajo", nullable=false)
+	//private Trabajo idTrabajo;
 
 	public Reviews() {
 		super();
@@ -39,7 +39,7 @@ public class Reviews {
 		this.idReview = idReview;
 		this.descripcionre = descripcionre;
 		this.calificacionre = calificacionre;
-		this.idTrabajo = idTrabajo;
+		//this.idTrabajo = idTrabajo;
 	}
 
 	public int getIdReview() {
@@ -66,13 +66,13 @@ public class Reviews {
 		this.calificacionre = calificacionre;
 	}
 
-	public Trabajo getIdTrabajo() {
-		return idTrabajo;
-	}
+//	public Trabajo getIdTrabajo() {
+	//	return idTrabajo;
+	//}
 
-	public void setIdTrabajo(Trabajo idTrabajo) {
-		this.idTrabajo = idTrabajo;
-	}
+//	public void setIdTrabajo(Trabajo idTrabajo) {
+	//	this.idTrabajo = idTrabajo;
+	//}
 	
 	
 }

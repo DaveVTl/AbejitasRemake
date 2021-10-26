@@ -16,7 +16,7 @@ public class ReviewsServiceImplement implements  IReviewsService{
 	
 	@Override
 	public Integer insert(Reviews review) {
-		int rpta=rR.FindReviewExists(review.getIdTrabajo());
+		int rpta=rR.FindReviewExists(review.getDescripcionre());
 		if (rpta==0) {
 			rR.save(review);
 		}
