@@ -42,7 +42,6 @@ public class TrabajoController {
 		model.addAttribute("listaAnuncios", aS.list());
 		model.addAttribute("listaFreelancers", fS.list());
 		model.addAttribute("listaTipoPagos", tpS.list());
-		model.addAttribute("trabajo", new Trabajo());
 		return "trabajo/trabajo";
 	}
 
