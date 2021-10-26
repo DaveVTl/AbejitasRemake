@@ -23,9 +23,9 @@ public class Avances {
 	private String fotoavance2;
 	@Column(name = "descripcion", nullable = false, length = 100)
 	private String descripcion;
-	//@ManyToOne
-	//@JoinColumn(name = "idTrabajo", nullable = false)
-	//private Trabajo idTrabajo;
+	@ManyToOne
+	@JoinColumn(name = "idTrabajo", nullable = false)
+	private Trabajo idTrabajo;
 
 	public Avances() {
 		super();

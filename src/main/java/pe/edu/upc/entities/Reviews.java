@@ -27,19 +27,19 @@ public class Reviews {
 
 	@ManyToOne
 	@JoinColumn(name = "idTrabajo", nullable = false)
-	private Trabajo idTrabajo;
+	private Trabajo trabajo;
 
 	public Reviews() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reviews(int idReview, String descripcionre, @Positive String calificacionre, Trabajo idTrabajo) {
+	public Reviews(int idReview, String descripcionre, @Positive String calificacionre, Trabajo trabajo) {
 		super();
 		this.idReview = idReview;
 		this.descripcionre = descripcionre;
 		this.calificacionre = calificacionre;
-		// this.idTrabajo = idTrabajo;
+		this.trabajo = trabajo;
 	}
 
 	public int getIdReview() {
@@ -66,12 +66,14 @@ public class Reviews {
 		this.calificacionre = calificacionre;
 	}
 
-	public Trabajo getIdTrabajo() {
-		return idTrabajo;
+	public Trabajo getTrabajo() {
+		return trabajo;
 	}
 
-	public void setIdTrabajo(Trabajo idTrabajo) {
-		this.idTrabajo = idTrabajo;
+	public void setTrabajo(Trabajo trabajo) {
+		this.trabajo = trabajo;
 	}
+
+	
 
 }
