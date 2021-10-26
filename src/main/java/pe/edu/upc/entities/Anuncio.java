@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Anuncio")
 public class Anuncio {
@@ -21,9 +23,11 @@ public class Anuncio {
 	private String nameAnuncio	;
 	@Column(name = "descriptionAnuncio", nullable = false, length = 254)
 	private String descriptionAnuncio;
-	private Date dateCreacionAnuncio;
 	@Column(name = "pagoAnuncio", nullable = false, length = 254)
 	private String pagoAnuncio;
+	
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private Date dateStart;
 	
 	@ManyToOne
     @JoinColumn(name="idMype", nullable = false)
@@ -37,14 +41,14 @@ public class Anuncio {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Anuncio(int idAnuncio, String nameAnuncio, String descriptionAnuncio, Date dateCreacionAnuncio,
-			String pagoAnuncio, Mype mype, TipoTrabajo tipoTrabajo) {
+	public Anuncio(int idAnuncio, String nameAnuncio, String descriptionAnuncio,
+			String pagoAnuncio, Date dateStart, Mype mype, TipoTrabajo tipoTrabajo) {
 		super();
 		this.idAnuncio = idAnuncio;
 		this.nameAnuncio = nameAnuncio;
 		this.descriptionAnuncio = descriptionAnuncio;
-		this.dateCreacionAnuncio = dateCreacionAnuncio;
 		this.pagoAnuncio = pagoAnuncio;
+		this.dateStart = dateStart;
 		this.mype = mype;
 		this.tipoTrabajo = tipoTrabajo;
 	}
@@ -73,20 +77,20 @@ public class Anuncio {
 		this.descriptionAnuncio = descriptionAnuncio;
 	}
 
-	public Date getDateCreacionAnuncio() {
-		return dateCreacionAnuncio;
-	}
-
-	public void setDateCreacionAnuncio(Date dateCreacionAnuncio) {
-		this.dateCreacionAnuncio = dateCreacionAnuncio;
-	}
-
 	public String getPagoAnuncio() {
 		return pagoAnuncio;
 	}
 
 	public void setPagoAnuncio(String pagoAnuncio) {
 		this.pagoAnuncio = pagoAnuncio;
+	}
+
+	public Date getDateStart() {
+		return dateStart;
+	}
+
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
 	}
 
 	public Mype getMype() {

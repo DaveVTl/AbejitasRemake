@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Admin")
 
@@ -21,6 +23,7 @@ public class Admin {
 	private String nameAdmin;
 	@Column(name = "DNI", length = 35, nullable=false)
 	private String DNI;
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date dateInicio;
 
 	public Admin() {
@@ -60,12 +63,14 @@ public class Admin {
 		DNI = dNI;
 	}
 
-	public Date getdateInicio() {
+	public Date getDateInicio() {
 		return dateInicio;
 	}
 
-	public void setdateInicio(Date dateInicio) {
+	public void setDateInicio(Date dateInicio) {
 		this.dateInicio = dateInicio;
 	}
+
+
 	
 }

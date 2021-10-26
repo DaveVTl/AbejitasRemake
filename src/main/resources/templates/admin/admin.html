@@ -27,48 +27,37 @@
 				<h3></h3>
 			</div>
 			<div class="col-3">
-				<h3>Registrar Mype</h3>
+				<h3>Iniciar Admin</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/mype/save}" method="post"
-					th:object="${mype}">
+				<form th:action="@{/admin/save}" method="post" th:object="${admin}">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idMype}"></input>
-							
-						<div class="form-group">
-							<label for="nombre">Nombre Empresa:</label> <input type="text" required
-								th:field="*{nameEmpresaMype}" class="form-control" id="nameEmpresaMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameEmpresaMype')}"
-								th:errors="nameEmpresaMype"></div>
-							<label for="nombre">Ruc:</label> <input type="text" required
-								th:field="*{rucMype}" class="form-control" id="rucMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('rucMype')}"
-								th:errors="rucMype"></div>		
-							<label for="nombre">Nombre Gerente:</label> <input type="text" required
-								th:field="*{nameGerenteMype}" class="form-control" id="nameGerenteMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameGerenteMype')}"
-								th:errors="nameGerenteMype"></div>
-							<label for="nombre">Logo:</label> <input type="text" required
-								th:field="*{logoMype}" class="form-control" id="logoMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('logoMype')}"
-								th:errors="logoMype"></div>	
-								
-							<label for="dateInscripcion">Fecha De Registro:</label> <input
-								type="date" th:field="*{dateInscripcion}" class="form-control"
-								id="dateInscripcion"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('dateInscripcion')}"
-								th:errors="*{dateInscripcion}"></div>
-						</div>
+							readonly th:field="*{idAdmin}"></input>
 
+						<div class="form-group">
+							<label for="nombre">Nombre Admin:</label> <input type="text"
+								required th:field="*{nameAdmin}" class="form-control"
+								id="nameAdmin"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('nameAdmin')}" th:errors="nameAdmin"></div>
+							<label for="DNI">DNI:</label> <input type="text" required
+								th:field="*{DNI}" class="form-control" id="DNI"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('DNI')}" th:errors="DNI"></div>
+
+							<label for="dateInicio">Fecha De Inicio:</label> <input
+								type="date" th:field="*{dateInicio}" class="form-control"
+								id="dateInicio"></input>
+							<div class="alert alert-danger"
+								th:if="${#fields.hasErrors('dateInicio')}"
+								th:errors="*{dateInicio}"></div>
+
+
+						</div>
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/mype/list" class="btn btn-light">Cancelar</a>
+					<a href="/admin/list" class="btn btn-light">Cancelar</a>
 
 				</form>
 				<div th:if="${mensaje}" class="alert alert-danger">
