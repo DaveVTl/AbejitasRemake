@@ -28,7 +28,7 @@
 				<h3>Registrar Freelancer</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/freelancers/save}" method="post" th:object="${freelancer}">
+				<form th:action="@{/freelancers/save}" method="post" th:object="${newFreelancer}" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control" readonly
 							th:field="*{idFreelancers}"></input>
@@ -78,7 +78,7 @@
 							<label for="file" class="">FOTO:</label>
 							<div class="col-sm-6">
 								<input type="file" name="file" class="form-control"
-									th:text="${freelancers.fotoFreelancers}" />
+									th:text="${newFreelancer.fotoFreelancers}" />
 							</div>
 
 						</div>

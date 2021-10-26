@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,7 @@ public class FreelancerController {
 	
 	@GetMapping("/new")
 	public String newCategory(Model model) {
-		model.addAttribute("freelancer", new Freelancers());
+		model.addAttribute("newFreelancer", new Freelancers());
 		return "freelancer/freelancer";/*vista --> formulario para regisrar categoria*/
 	}
 	
@@ -52,7 +53,7 @@ public class FreelancerController {
 	}
 
 	@PostMapping("/save")
-	public String saveMarca(@Valid Freelancers freelancer, BindingResult result, Model model,
+	public String saveMarca(@ModelAttribute("newFreelancer") @Valid Freelancers newFreelancer, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
@@ -60,10 +61,10 @@ public class FreelancerController {
 		} else {
 			if (!foto.isEmpty()) {
 
-				if (freelancer.getIdFreelancers() > 0 && freelancer.getFotoFreelancers() != null
-						&& freelancer.getFotoFreelancers().length() > 0) {
+				if (newFreelancer.getIdFreelancers() > 0 && newFreelancer.getFotoFreelancers() != null
+						&& newFreelancer.getFotoFreelancers().length() > 0) {
 
-					uploadFileService.delete(freelancer.getFotoFreelancers());
+					uploadFileService.delete(newFreelancer.getFotoFreelancers());
 				}
 
 				String uniqueFilename = null;
@@ -74,10 +75,10 @@ public class FreelancerController {
 				}
 
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-				freelancer.setFotoFreelancers(uniqueFilename);
+				newFreelancer.setFotoFreelancers(uniqueFilename);
 			}
 			
-			int rpta = fS.insert(freelancer);
+			int rpta = fS.insert(newFreelancer);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
 				return "freelancer/freelancer";
