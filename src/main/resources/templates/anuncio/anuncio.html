@@ -63,7 +63,7 @@
 					<label for="mype">Mype: </label>
 					<select
 						class="form-control" th:field="*{mype.idMype}">
-						<option th:each="m: ${listaMypes}" th:value="${m.idMype}"
+						<option th:each="m: ${listaMype}" th:value="${m.idMype}"
 							th:text="${m.nameEmpresaMype}"
 							th:selected="(${m.idMype} == *{mype.idMype})"></option>
 					</select>

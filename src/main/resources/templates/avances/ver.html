@@ -26,32 +26,31 @@
 
 
 
-		
+
 		<div class="content container">
 
 			<div class="detail">
-
+				
 				<img class="detailimg"
 					th:if="${#strings.length(avance.fotoavance)> 0}"
 					th:src="@{'/avances/uploads/' + ${avance.fotoavance}}"
 					th:alt="${avance.fotoavance}">
-				
-
 			</div>
-		</div>
-<div class="content container">
-			<div class="detalles">
-				<div class="form-group">
+			<div class="form-group">
 					<a th:href="@{/avances/list}" class="volverdet" href=""
 						style="color: gray;"><i class="fa fa-arrow-left"></i></a>
 				</div>
+		</div>
+		<div class="content container">
+			<div class="detalles">
+
 
 				<div class="form-group">
-					<h2 th:text="${avance.nombre}" class="text-center" align="center"
-						style="color: gray;"></h2>
+					<h1 th:text="${avance.nombre}" class="text-center"
+						style="color: gray;" ></h1>
 
-					<p th:text="${avance.descripcion}" class="text-center"
-						style="color: gray;"></p>
+					<h2 th:text="${avance.descripcion}"  class="text-center"
+						style="color: gray;"></h2>
 
 				</div>
 			</div>

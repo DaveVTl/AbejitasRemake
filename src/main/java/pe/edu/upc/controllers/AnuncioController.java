@@ -13,6 +13,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entities.Anuncio;
 import pe.edu.upc.serviceinterface.IAnuncioService;
+import pe.edu.upc.serviceinterface.IMypeService;
+import pe.edu.upc.serviceinterface.ITipoTrabajoService;
 
 
 @Controller
@@ -21,10 +23,16 @@ public class AnuncioController {
 	
 	@Autowired
 	private IAnuncioService aC;
+	@Autowired
+	private IMypeService mService;
+	@Autowired
+	private ITipoTrabajoService tService;
 	
 	@GetMapping("/new")
 	public String newAnuncio(Model model) {
 		model.addAttribute("anuncio", new Anuncio());
+		model.addAttribute("listaTipoTrabajo", tService.list());
+		model.addAttribute("listaMype", mService.list());
 		return "anuncio/anuncio";
 	}
 	
@@ -40,7 +48,7 @@ public class AnuncioController {
 	}
 	
 	@PostMapping("/save")
-	public String saveMarca(@Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
+	public String saveAnuncio(@Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			return "anuncio/anuncio";

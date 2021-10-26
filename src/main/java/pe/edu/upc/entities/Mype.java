@@ -23,12 +23,10 @@ public class Mype {
 	private String nameEmpresaMype;
 	@Column(name = "rucMype", length = 35, nullable=false)
 	private String rucMype;
-	@Column(name = "nameGerenteMype", length = 12, nullable=false)
+	@Column(name = "nameGerenteMype", length = 40, nullable=false)
 	private String nameGerenteMype;
 	@Column(name = "logoMype", length = 40, nullable=false)
 	private String logoMype;
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private Date dateInscripcion;
 	
 	public Mype() {
 		super();
@@ -43,7 +41,6 @@ public class Mype {
 		this.rucMype = rucMype;
 		this.nameGerenteMype = nameGerenteMype;
 		this.logoMype = logoMype;
-		this.dateInscripcion = dateInscripcion;
 	}
 
 	public int getIdMype() {
@@ -86,12 +83,4 @@ public class Mype {
 		this.logoMype = logoMype;
 	}
 
-	public Date getDateInscripcion() {
-		return dateInscripcion;
-	}
-
-	public void setDateInscripcion(Date dateInscripcion) {
-		this.dateInscripcion = dateInscripcion;
-	}
-	
 }
