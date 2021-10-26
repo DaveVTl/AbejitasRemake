@@ -20,17 +20,18 @@ import pe.edu.upc.serviceinterface.ITrabajoService;
 public class ReviewController {
 	@Autowired
 	private IReviewsService rS;
-	@Autowired
-	private ITrabajoService tS;
+	//@Autowired
+	//private ITrabajoService tS;
+	
 	@GetMapping("/new")
-	public String newTipoT(Model model) {
+	public String newReview(Model model) {
 		model.addAttribute("review", new Reviews());
-		model.addAttribute("listaTrabajos", tS.list());
+		//model.addAttribute("listaTrabajos", tS.list());
 		return "review/review";
 	}
 
 	@GetMapping("/list")
-	public String listCategories(Model model) {
+	public String listReviews(Model model) {
 		try {
 			model.addAttribute("reviews", new Reviews());
 			model.addAttribute("listaReviews", rS.list());
@@ -41,10 +42,10 @@ public class ReviewController {
 	}
 
 	@PostMapping("/save")
-	public String saveMarca(@Valid Reviews tipo, BindingResult result, Model model, SessionStatus status)
+	public String saveReview(@Valid Reviews tipo, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("listaTrabajos", tS.list());
+		//	model.addAttribute("listaTrabajos", tS.list());
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);
@@ -57,6 +58,6 @@ public class ReviewController {
 			}
 		}
 		model.addAttribute("reviews", new Reviews());
-		return "redirect:/review/list";
+		return "redirect:/reviews/list";
 	}
 }

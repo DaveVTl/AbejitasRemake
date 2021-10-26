@@ -45,8 +45,8 @@
 
 
 						<div class="form-group">
-							<label for="idrace">Descripcion:</label> <input type="text" readonly class="form-control"
-								th:field="*{descriptionTrabajo}"></input>
+							<label for="idrace">Descripcion:</label> <input type="text"  class="form-control"
+								th:field="*{descriptionTrabajo}" id="idrace"></input>
 						</div>
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('descriptionTrabajo')}"
 							th:errors="*{descriptionTrabajo}"></div>

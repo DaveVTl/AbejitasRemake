@@ -55,16 +55,7 @@
 							th:errors="*{descripcionre}"></div>
 
 					</div>
-					<div class="col-6">
-						<div class="form-group">
-							<label for="trabajo">Trabajo:</label> <select
-								class="form-control" th:field="*{Trabajo.idTrabajo}">
-								<option th:each="c: ${listaTrabajos}"
-									th:value="${c.idTrabajo}" th:text="${c.nameTrabajo}"
-									th:selected="(${c.idTrabajo} == *{trabajos.idTrabajo})"></option>
-							</select>
-						</div>
-					</div>
+					
 					<button type="submit" class="btn btn-warning">Aceptar</button>
 					<a href="/reviews/list" class="btn btn-light">Cancelar</a>
 				</form>

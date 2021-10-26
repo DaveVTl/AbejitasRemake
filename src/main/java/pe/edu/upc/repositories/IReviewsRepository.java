@@ -6,10 +6,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entities.Reviews;
-import pe.edu.upc.entities.Trabajo;
+
 
 @Repository
 public interface IReviewsRepository extends  JpaRepository<Reviews,Integer> {
-	@Query("select count (r.idTrabajo) from Reviews r where r.idTrabajo=:name")	
-	public int FindReviewExists(@Param("name") Trabajo name);
+	@Query("select count (r.descripcionre) from Reviews r where r.descripcionre=:name")	
+	public int FindReviewExists(@Param("name") String name);
 }
