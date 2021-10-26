@@ -40,13 +40,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="cat : ${listaMypes}">
+					<tr th:each="cat : ${listaAnuncios}">
 						<td class="text-center" th:text="${cat.idAnuncio}"></td>
 						<td class="text-center" th:text="${cat.nameAnuncio}"></td>
 						<td class="text-center" th:text="${cat.descriptionAnuncio}"></td>
 						<td class="text-center" th:text="${cat.pagoAnuncio}"></td>
-						<td class="text-center" th:text="${cat.idMypes}"></td>
-						<td class="text-center" th:text="${cat.idTipoTrabajo}"></td>
+						<td class="text-center" th:text="${cat.mype.idMype}"></td>
+						<td class="text-center" th:text="${cat.tipoTrabajo.idTipoTrabajo}"></td>
 					</tr>
 				</tbody>
 			</table>
