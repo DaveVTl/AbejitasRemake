@@ -52,23 +52,29 @@
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('pagoAnuncio')}"
 								th:errors="pagoAnuncio"></div>
-							<label for="nombre">Creacion Anuncio:</label> <input type="text" required
-								th:field="*{dateCreacionAnuncio}" class="form-control" id="dateCreacionAnuncio"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('dateCreacionAnuncio')}"
-								th:errors="dateCreacionAnuncio"></div>
+
+					<label for="dateCreacionAnuncio">Fecha De Creacion de Anuncio:</label> <input
+						type="date" th:field="*{dateCreacionAnuncio}" class="form-control"
+						id="dateCreacionAnuncio"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('dateCreacionAnuncio')}"
+						th:errors="*{dateCreacionAnuncio}"></div>
 								
-							<label for="nombre">ID Mype:</label> <input type="text" required
-								th:field="*{idMype}" class="form-control" id="idMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('idTipoTrabajo')}"
-								th:errors="idMype"></div>	
-							<label for="nombre">Tipo de Trabajo:</label> <input type="text" required
-								th:field="*{idTipoTrabajo}" class="form-control" id="idTipoTrabajo"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('idTipoTrabajo')}"
-								th:errors="idTipoTrabajo"></div>	
-						</div>
+					<label for="mype">Mype: </label>
+					<select
+						class="form-control" th:field="*{mype.idMype}">
+						<option th:each="m: ${listaMypes}" th:value="${m.idMype}"
+							th:text="${m.nameEmpresaMype}"
+							th:selected="(${m.idMype} == *{mype.idMype})"></option>
+					</select>
+					
+					<label for="raza">Tipo de Trabajo: </label>
+					<select
+						class="form-control" th:field="*{TipoTrabajo.idTipoTrabajo}">
+						<option th:each="t: ${listaTipoTrabajo}" th:value="${t.idTipoTrabajo}"
+							th:text="${t.nombreTrabajo}"
+							th:selected="(${t.idTipoTrabajo} == *{TipoTrabajo.idTipoTrabajo})"></option>
+					</select>
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>

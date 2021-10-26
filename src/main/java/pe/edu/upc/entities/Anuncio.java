@@ -89,11 +89,11 @@ public class Anuncio {
 		this.pagoAnuncio = pagoAnuncio;
 	}
 
-	public Mype getMypes() {
+	public Mype getMype() {
 		return mype;
 	}
 
-	public void setMypes(Mype mype) {
+	public void setMype(Mype mype) {
 		this.mype = mype;
 	}
 

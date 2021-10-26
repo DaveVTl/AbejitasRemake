@@ -14,20 +14,22 @@ import org.springframework.web.bind.support.SessionStatus;
 import pe.edu.upc.entities.Anuncio;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 
+
 @Controller
 @RequestMapping("/anuncio")
 public class AnuncioController {
+	
 	@Autowired
 	private IAnuncioService aC;
 	
 	@GetMapping("/new")
-	public String newMype(Model model) {
+	public String newAnuncio(Model model) {
 		model.addAttribute("anuncio", new Anuncio());
 		return "anuncio/anuncio";
 	}
 	
 	@GetMapping("/list")
-	public String listMypes(Model model) {
+	public String listAnuncio(Model model) {
 		try {
 			model.addAttribute("anuncio", new Anuncio());
 			model.addAttribute("listaAnuncios", aC.list());
