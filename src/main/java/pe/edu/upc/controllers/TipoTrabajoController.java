@@ -48,6 +48,7 @@ public class TipoTrabajoController {
 			} else {
 				int rpta = cT.insert(tipo);
 				if (rpta > 0) {
+					model.addAttribute("tipotrabajo", tipo);
 					model.addAttribute("mensaje", "Ya existe");
 					return "tipotrabajo/tipotrabajo";
 				} else {
