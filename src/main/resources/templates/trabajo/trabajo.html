@@ -43,10 +43,9 @@
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('nameTrabajo')}"
 							th:errors="*{nameTrabajo}"></div>
 
-
 						<div class="form-group">
-							<label for="idrace">Descripcion:</label> <input type="text" readonly class="form-control"
-								th:field="*{descriptionTrabajo}"></input>
+							<label for="descripcion">Descripcion Trabajo:</label> <input type="text" required
+								th:field="*{descriptionTrabajo}" class="form-control" id="estado"></input>
 						</div>
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('descriptionTrabajo')}"
 							th:errors="*{descriptionTrabajo}"></div>
@@ -87,7 +86,7 @@
 					<div class="col-6">
 
 						<div class="form-group">
-							<label for="freelancer">FREELANCER:</label> <select class="form-control"
+							<label for="freelancers">FREELANCER:</label> <select class="form-control"
 								th:field="*{freelancers.idFreelancers}">
 								<option th:each="t: ${listaFreelancers}" th:value="${t.idFreelancers}"
 									th:text="${t.nameFreelancers}"
