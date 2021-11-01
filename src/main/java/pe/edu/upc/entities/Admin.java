@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,7 +25,9 @@ public class Admin {
 	private String nameAdmin;
 	@Column(name = "DNI", length = 35, nullable=false)
 	private String DNI;
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateInicio;
 
 	public Admin() {
