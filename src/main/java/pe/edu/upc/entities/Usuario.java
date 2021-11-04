@@ -1,16 +1,20 @@
 package pe.edu.upc.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "users")
@@ -19,12 +23,8 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@MapsId
-	@JoinColumn(name = "id", nullable = false)
-	private Freelancers freelancer;
 
 	@Column(name = "username", nullable = false, length = 30)
 	private String username;
@@ -32,32 +32,24 @@ public class Usuario implements Serializable {
 	@Column(name = "password", nullable = false, length = 80)
 	private String password;
 
-	@Column(name = "state", nullable = false, length = 1)
-	private String state;
+	private Boolean enabled;
 
-	
-	/**
-	 * 
-	 */
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private List<Rol> roles;
+
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param id
-	 * @param freelancer
-	 * @param username
-	 * @param password
-	 * @param state
-	 */
-	public Usuario(int id, Freelancers freelancer, String username, String password, String state) {
+	public Usuario(int id, String username, String password, Boolean enabled, List<Rol> roles) {
 		super();
 		this.id = id;
-		this.freelancer = freelancer;
 		this.username = username;
 		this.password = password;
-		this.state = state;
+		this.enabled = enabled;
+		this.roles = roles;
 	}
 
 	public int getId() {
@@ -66,14 +58,6 @@ public class Usuario implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Freelancers getFreelancer() {
-		return freelancer;
-	}
-
-	public void setFreelancer(Freelancers freelancer) {
-		this.freelancer = freelancer;
 	}
 
 	public String getUsername() {
@@ -92,33 +76,24 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public String getState() {
-		return state;
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(freelancer, id, password, state, username);
+	public List<Rol> getRoles() {
+		return roles;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		return Objects.equals(freelancer, other.freelancer) && id == other.id
-				&& Objects.equals(password, other.password) && Objects.equals(state, other.state)
-				&& Objects.equals(username, other.username);
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
+	
+	
 
 	
 }
