@@ -33,6 +33,8 @@
 						<th scope="col" class="text-center">Calificación</th>
 						<th scope="col" class="text-center">Descripción</th>
 						<th scope="col" class="text-center">Trabajo</th>
+						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,6 +43,11 @@
 						<td class="text-center" th:text="${rev.calificacionre}"></td>
 						<td class="text-center" th:text="${rev.descripcionre}"></td>
 						<td class="text-center" th:text="${rev.trabajo.nameTrabajo}"></td>
+						<td><a th:href="@{/reviews/delete?id=}+${rev.idReview}"
+							class="btn btn-dark">Eliminar</a></td>
+						<td align="center"><a
+							th:href="@{'/reviews/update/' + ${rev.idReview}}"
+							class="btn btn-dark">Actualizar</a></td>
 					</tr>
 				</tbody>
 			</table>
