@@ -22,7 +22,7 @@ class DemoApplicationTests {
 	public void crearUsuarioTest() {
 		Usuario us= new Usuario();
 		us.setId(1);
-		us.setEnabled(null);
+		us.setEnabled(true);
 		us.setPassword("123");
 		us.setUsername("ara");
 		Usuario retorno = repo.save(us);
