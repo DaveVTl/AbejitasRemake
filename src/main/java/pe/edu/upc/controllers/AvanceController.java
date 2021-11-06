@@ -30,6 +30,7 @@ import pe.edu.upc.serviceinterface.ITrabajoService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
 
 
+
 @Controller
 @RequestMapping("/avances")
 public class AvanceController {
@@ -135,6 +136,39 @@ public class AvanceController {
 		pService.listarId(pro.getIdAvance());
 		return "avance/listAvances";
 
+	}
+	
+	@RequestMapping("/update/{id}")
+	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+
+		Avances objPro = pService.listarId(id);
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			return "redirect:/avances/list";
+		} else {
+			model.addAttribute("listaTrabajo", tService.list());
+			model.addAttribute("listaFreelancer", fService.list());
+			model.addAttribute("avance", objPro);
+			return "avances/avance";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+		try {
+			if (id != null && id > 0) {
+				pService.delete(id);
+				model.put("mensaje", "Se eliminó correctamente");
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.put("mensaje", "No se puede eliminar un avance");
+		}
+		model.put("listCategories", pService.list());
+
+//		return "redirect:/categories/list";
+		return "/category/listCategories";
 	}
 
 }

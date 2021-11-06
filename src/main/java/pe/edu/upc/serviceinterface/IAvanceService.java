@@ -11,4 +11,6 @@ public interface IAvanceService {
 	List<Avances> list();
 	
 	Avances listarId(int idAvance);
+	
+	public void delete(int idAvance);
 }
