@@ -1,5 +1,7 @@
 package pe.edu.upc.controllers;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Reviews;
 import pe.edu.upc.serviceinterface.IReviewsService;
@@ -59,5 +64,36 @@ public class ReviewController {
 		}
 		model.addAttribute("reviews", new Reviews());
 		return "redirect:/reviews/list";
+	}
+	
+	@RequestMapping("/update/{id}")
+	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+
+		Reviews objPro = rS.listarId(id);
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			return "redirect:/avances/list";
+		} else {
+			model.addAttribute("listaTrabajos", tS.list());
+			model.addAttribute("review", objPro);
+			return "review/review";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+		try {
+			if (id != null && id > 0) {
+				rS.delete(id);
+				model.put("mensaje", "Se eliminó correctamente");
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.put("mensaje", "No se puede eliminar un review");
+		}
+		model.put("listReviews", rS.list());
+;
+		return "/review/listReviews";
 	}
 }

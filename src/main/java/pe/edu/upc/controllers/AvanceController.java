@@ -165,10 +165,10 @@ public class AvanceController {
 			System.out.println(e.getMessage());
 			model.put("mensaje", "No se puede eliminar un avance");
 		}
-		model.put("listCategories", pService.list());
+		model.put("listAvances", pService.list());
 
 //		return "redirect:/categories/list";
-		return "/category/listCategories";
+		return "/avances/listAvances";
 	}
 
 }
