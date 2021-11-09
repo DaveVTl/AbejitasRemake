@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Reviews;
 import pe.edu.upc.serviceinterface.IReviewsService;
+import pe.edu.upc.serviceinterface.IScoreService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
 
 @Controller
@@ -27,11 +28,14 @@ public class ReviewController {
 	private IReviewsService rS;
 	@Autowired
 	private ITrabajoService tS;
+	@Autowired
+	private IScoreService sS;
 
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("review", new Reviews());
 		model.addAttribute("listaTrabajos", tS.list());
+		model.addAttribute("listaScores", sS.list());
 		return "review/review";
 	}
 
@@ -51,10 +55,12 @@ public class ReviewController {
 			throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("listaTrabajos", tS.list());
+			model.addAttribute("listaScores", sS.list());
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);
 			if (rpta > 0) {
+				model.addAttribute("review", tipo);
 				model.addAttribute("mensaje", "Ya existe");
 				return "review/review";
 			} else {
@@ -75,6 +81,7 @@ public class ReviewController {
 			return "redirect:/avances/list";
 		} else {
 			model.addAttribute("listaTrabajos", tS.list());
+			model.addAttribute("listaScores", sS.list());
 			model.addAttribute("review", objPro);
 			return "review/review";
 		}

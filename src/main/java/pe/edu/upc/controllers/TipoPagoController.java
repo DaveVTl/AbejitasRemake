@@ -17,65 +17,65 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import pe.edu.upc.entities.TipoTrabajo;
-import pe.edu.upc.serviceinterface.ITipoTrabajoService;
+import pe.edu.upc.entities.TipoPago;
+import pe.edu.upc.serviceinterface.ITipoPagoService;
 
 
 @Controller
-@RequestMapping("/tipotrabajo")
-public class TipoTrabajoController {
+@RequestMapping("/tipopago")
+public class TipoPagoController {
 	
 
 		@Autowired
-		private ITipoTrabajoService cT;
+		private ITipoPagoService pS;
 
 		
 		@GetMapping("/new")
 		public String newTipoT(Model model) {
-			model.addAttribute("tipotrabajo",new TipoTrabajo());
-			return "tipotrabajo/tipotrabajo";
+			model.addAttribute("tipopago",new TipoPago());
+			return "tipopago/tipopago";
 		}
 		@GetMapping("/list")
 		public String listCategories(Model model) {
 			try {
-				model.addAttribute("tipotrabajo", new TipoTrabajo());
-				model.addAttribute("listaTipoTrabajo", cT.list());
+				model.addAttribute("tipopago", new TipoPago());
+				model.addAttribute("listaTipoPago", pS.list());
 			} catch (Exception e) {
 				model.addAttribute("error", e.getMessage());
 			}
-			return "tipotrabajo/listTipoTra";
+			return "tipopago/listTipoPago";
 		}
 		
 		@PostMapping("/save")
-		public String saveMarca(@Valid TipoTrabajo tipo, BindingResult result, Model model, SessionStatus status)
+		public String saveMarca(@Valid TipoPago tipo, BindingResult result, Model model, SessionStatus status)
 				throws Exception {
 			if (result.hasErrors()) {
-				return "tipotrabajo/tipotrabajo";
+				return "tipopago/tipopago";
 			} else {
-				int rpta = cT.insert(tipo);
+				int rpta = pS.insert(tipo);
 				if (rpta > 0) {
-					model.addAttribute("tipotrabajo", tipo);
+					model.addAttribute("tipopago", tipo);
 					model.addAttribute("mensaje", "Ya existe");
-					return "tipotrabajo/tipotrabajo";
+					return "tipopago/tipopago";
 				} else {
 					model.addAttribute("mensaje", "Se guardó correctamente");
 					status.setComplete();
 				}
 			}
-			model.addAttribute("tipotrabajo", new TipoTrabajo());
-			return "redirect:/tipotrabajo/list";
+			model.addAttribute("tipopago", new TipoPago());
+			return "redirect:/tipopago/list";
 		}
 		
 		@RequestMapping("/update/{id}")
 		public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
-			TipoTrabajo objPro = cT.listarId(id);
+			TipoPago objPro = pS.listarId(id);
 			if (objPro == null) {
 				objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
-				return "redirect:/tipotrabajo/list";
+				return "redirect:/tipopago/list";
 			} else {
-				model.addAttribute("tipotrabajo", objPro);
-				return "tipotrabajo/tipotrabajo";
+				model.addAttribute("tipopago", objPro);
+				return "tipopago/tipopago";
 			}
 		}
 		
@@ -83,15 +83,15 @@ public class TipoTrabajoController {
 		public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 			try {
 				if (id != null && id > 0) {
-					cT.delete(id);
+					pS.delete(id);
 					model.put("mensaje", "Se eliminó correctamente");
 
 				}
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				model.put("mensaje", "No se puede eliminar un review");
+				model.put("mensaje", "No se puede eliminar un tipo pago");
 			}
-			model.put("listTipoTrabajo", cT.list());
-			return "/tipotrabajo/listTipoTra";
+			model.put("listTipoPagos", pS.list());
+			return "/tipopago/listTipoPago";
 		}
 }

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "TipoTrabajo")
@@ -15,7 +16,9 @@ public class TipoTrabajo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTipoTrabajo;
 	
-	@Column(name = "nombretrabajo",length=35,nullable=false)
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
+	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
+	@Column(name = "nombreTrabajo",length=35,nullable=false)
 	private String nombreTrabajo;
 
 	public TipoTrabajo() {
@@ -23,7 +26,8 @@ public class TipoTrabajo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TipoTrabajo(int idTipoTrabajo, String nombreTrabajo) {
+	public TipoTrabajo(int idTipoTrabajo,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nombreTrabajo) {
 		super();
 		this.idTipoTrabajo = idTipoTrabajo;
 		this.nombreTrabajo = nombreTrabajo;
@@ -45,4 +49,5 @@ public class TipoTrabajo {
 		this.nombreTrabajo = nombreTrabajo;
 	}
 
+	
 }

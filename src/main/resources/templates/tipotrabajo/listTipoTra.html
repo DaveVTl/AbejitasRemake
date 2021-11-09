@@ -33,12 +33,19 @@
 					<tr>
 						<th scope="col" class="text-center">Código</th>
 						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="cat : ${listaTipoTrabajo}">
 						<td class="text-center" th:text="${cat.idTipoTrabajo}"></td>
 						<td class="text-center" th:text="${cat.nombreTrabajo}"></td>
+						<td><a th:href="@{/tipotrabajo/delete?id=}+${cat.idTipoTrabajo}"
+							class="btn btn-dark "><i class="fa fa-trash" style="color: rgb(255, 255, 255)g;"></i></a></td>
+						<td align="center"><a
+							th:href="@{'/tipotrabajo/update/' + ${cat.idTipoTrabajo}}"
+							class="btn btn-dark">Actualizar</a></td>
 					</tr>
 				</tbody>
 			</table>
