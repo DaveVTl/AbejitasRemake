@@ -15,10 +15,10 @@
 
 <body>
 
-	
+	<div th:replace="fragments/sidebar :: sidebar" id="panel" class="activepanel"></div>
 
 	<div class="bg row">
-
+		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
 			<div class="col-1">
@@ -67,7 +67,7 @@
 
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="@{/login}" class="btn btn-light">Cancelar</a>
+					<a href="/users/list" class="btn btn-light">Cancelar</a>
 
 				</form>
 				<div th:if="${mensaje}" class="alert alert-danger">
