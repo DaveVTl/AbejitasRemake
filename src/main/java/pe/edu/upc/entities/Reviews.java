@@ -28,7 +28,12 @@ public class Reviews {
 	@ManyToOne
 	@JoinColumn(name = "idTrabajo", nullable = false)
 	private Trabajo trabajo;
-
+	@ManyToOne
+	@JoinColumn(name = "idmype", nullable = false)
+	private Mype mype;
+	@ManyToOne
+	@JoinColumn(name = "idfreelancer", nullable = false)
+	private Freelancers freelancer;
 	public Reviews() {
 		super();
 		// TODO Auto-generated constructor stub

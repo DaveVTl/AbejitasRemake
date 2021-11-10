@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Avances;
+import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IAvanceService;
 import pe.edu.upc.serviceinterface.IFreelancerService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
@@ -170,5 +172,21 @@ public class AvanceController {
 //		return "redirect:/categories/list";
 		return "/avances/listAvances";
 	}
-
+	@GetMapping("/form/{id}")
+	public String formOrder(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Trabajo> customer = tService.findById(id);
+			if (!customer.isPresent()) {
+				model.addAttribute("info", "Cliente no existe");
+				return "redirect:/trabajos/list";
+			} else {
+				Avances a = new Avances();
+				a.setTrabajo(customer.get());
+				model.addAttribute("avance", a);
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "avances/avance";
+	}
 }

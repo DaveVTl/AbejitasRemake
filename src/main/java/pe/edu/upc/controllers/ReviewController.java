@@ -17,6 +17,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Reviews;
+import pe.edu.upc.serviceinterface.IFreelancerService;
+import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.IReviewsService;
 import pe.edu.upc.serviceinterface.IScoreService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
@@ -30,12 +32,18 @@ public class ReviewController {
 	private ITrabajoService tS;
 	@Autowired
 	private IScoreService sS;
-
+	@Autowired
+	private IMypeService mS;
+	@Autowired
+	private IFreelancerService fS;
+	
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("review", new Reviews());
 		model.addAttribute("listaTrabajos", tS.list());
 		model.addAttribute("listaScores", sS.list());
+		model.addAttribute("listaMypes", mS.list());
+		model.addAttribute("listaFreelancers", fS.list());
 		return "review/review";
 	}
 
@@ -56,6 +64,8 @@ public class ReviewController {
 		if (result.hasErrors()) {
 			model.addAttribute("listaTrabajos", tS.list());
 			model.addAttribute("listaScores", sS.list());
+			model.addAttribute("listaMypes", mS.list());
+			model.addAttribute("listaFreelancers", fS.list());
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);

@@ -38,5 +38,9 @@ public class TrabajoServiceImplement implements ITrabajoService{
 		Optional<Trabajo> op = tR.findById(idTrabajo);
 		return op.isPresent() ? op.get() : new Trabajo();
 	}
+	@Override
+	public Optional<Trabajo> findById(int id) {
+		return tR.findById(id);
 
+	}
 }
