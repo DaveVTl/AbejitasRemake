@@ -1,15 +1,16 @@
 package pe.edu.upc.serviceinterface;
 
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import pe.edu.upc.entities.Usuario;
 
-@Service
+
+
 public interface IUsuarioService {
 	
-	public Usuario findByUsername(String username);
-	
-	public Usuario register(Usuario u);
-	
+	public List<Usuario> list() ;
+
+	public Integer insert(Usuario u);
+
 }

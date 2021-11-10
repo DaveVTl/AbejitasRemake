@@ -13,7 +13,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Mypes")
-
 public class Mype {
 	
 	@Id

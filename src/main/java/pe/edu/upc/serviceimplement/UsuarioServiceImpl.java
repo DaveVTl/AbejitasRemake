@@ -1,10 +1,12 @@
 package pe.edu.upc.serviceimplement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import pe.edu.upc.entities.Usuario;
+
 import pe.edu.upc.repositories.UserRepository;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
@@ -12,23 +14,25 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Autowired
-	private BCryptPasswordEncoder passCryp;
-	
-	@Autowired
 	private UserRepository uR;
 	
 	@Override
-	public Usuario findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return uR.findByUsername(username);
+	public Integer insert(Usuario u) {
+		int rpta = uR.buscarUsername(u.getUsername());
+		if (rpta == 0) {
+			uR.save(u);
+		}
+		return rpta;
 	}
 
 	@Override
-	public Usuario register(Usuario u) {
-		u.setPassword(passCryp.encode(u.getPassword()));
-		return uR.save(u);
+	public List<Usuario> list() {
+		// TODO Auto-generated method stub
+		return uR.findAll();
 	}
+
+
 	
-	
+
 	
 }
