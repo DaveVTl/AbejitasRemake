@@ -8,4 +8,8 @@ public interface IReviewsService {
 	public Integer insert(Reviews review);
 
 	List<Reviews> list();
+
+	Reviews listarId(int idreview);
+
+	public void delete(int idreview);
 }

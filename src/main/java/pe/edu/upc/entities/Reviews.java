@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Positive;
+
 
 @Entity
 @Table(name = "reviews")
@@ -21,24 +20,30 @@ public class Reviews {
 	@Column(name = "descripcionre", length = 80, nullable = false)
 	private String descripcionre;
 
-	@Positive
-	@Column(name = "calificacionre", length = 2, nullable = false)
-	private String calificacionre;
 
+	@ManyToOne
+	@JoinColumn(name = "idScore", nullable = false)
+	private Score score;
+	
 	@ManyToOne
 	@JoinColumn(name = "idTrabajo", nullable = false)
 	private Trabajo trabajo;
-
+	@ManyToOne
+	@JoinColumn(name = "idmype", nullable = false)
+	private Mype mype;
+	@ManyToOne
+	@JoinColumn(name = "idfreelancer", nullable = false)
+	private Freelancers freelancer;
 	public Reviews() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reviews(int idReview, String descripcionre, @Positive String calificacionre, Trabajo trabajo) {
+	public Reviews(int idReview, String descripcionre, Score score, Trabajo trabajo) {
 		super();
 		this.idReview = idReview;
 		this.descripcionre = descripcionre;
-		this.calificacionre = calificacionre;
+		this.score = score;
 		this.trabajo = trabajo;
 	}
 
@@ -58,12 +63,12 @@ public class Reviews {
 		this.descripcionre = descripcionre;
 	}
 
-	public String getCalificacionre() {
-		return calificacionre;
+	public Score getScore() {
+		return score;
 	}
 
-	public void setCalificacionre(String calificacionre) {
-		this.calificacionre = calificacionre;
+	public void setScore(Score score) {
+		this.score = score;
 	}
 
 	public Trabajo getTrabajo() {
@@ -73,7 +78,5 @@ public class Reviews {
 	public void setTrabajo(Trabajo trabajo) {
 		this.trabajo = trabajo;
 	}
-
-	
 
 }

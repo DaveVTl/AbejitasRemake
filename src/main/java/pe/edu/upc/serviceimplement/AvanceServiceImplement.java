@@ -37,4 +37,10 @@ public class AvanceServiceImplement implements IAvanceService{
 		Optional<Avances> op = aR.findById(idAvance);
 		return op.isPresent() ? op.get() : new Avances();
 	}
+	
+	@Override
+	@Transactional
+	public void delete(int idAvance) {
+		aR.deleteById(idAvance);
+	}
 }

@@ -33,14 +33,21 @@
 						<th scope="col" class="text-center">Calificación</th>
 						<th scope="col" class="text-center">Descripción</th>
 						<th scope="col" class="text-center">Trabajo</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="rev : ${listaReviews}">
 						<td class="text-center" th:text="${rev.idReview}"></td>
-						<td class="text-center" th:text="${rev.calificacionre}"></td>
+						<td class="text-center" th:text="${rev.score.number}"></td>
 						<td class="text-center" th:text="${rev.descripcionre}"></td>
 						<td class="text-center" th:text="${rev.trabajo.nameTrabajo}"></td>
+						<td><a th:href="@{/reviews/delete?id=}+${rev.idReview}"
+							class="btn btn-dark"><i class="fa fa-trash" style="color: rgb(255, 255, 255)g;"></i></a></td>
+						<td align="center"><a
+							th:href="@{'/reviews/update/' + ${rev.idReview}}"
+							class="btn btn-dark">Actualizar</a></td>
 					</tr>
 				</tbody>
 			</table>

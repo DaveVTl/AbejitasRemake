@@ -40,6 +40,7 @@
 						<th scope="col" class="text-center">FREELANCER</th>
 						<th scope="col" class="text-center">ANUNCIO</th>
 						<th scope="col" class="text-center">TIPO_PAGO</th>
+						<th scope="col" class="text-center">Operación</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,6 +54,9 @@
 						<td class="text-center" th:text="${tr.freelancers.nameFreelancers}"></td>
 						<td class="text-center" th:text="${tr.anuncio.nameAnuncio}"></td>
 						<td class="text-center" th:text="${tr.tipoPago.nombrePago}"></td>
+						<td align="center"><a
+							th:href="@{'/avances/form/' + ${tr.idTrabajo}}"
+							class="btn btn-dark">Avance nuevo</a></td>
 						
 						
 					</tr>

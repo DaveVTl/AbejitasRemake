@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -24,10 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Avances;
+import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IAvanceService;
 import pe.edu.upc.serviceinterface.IFreelancerService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
+
 
 
 @Controller
@@ -136,5 +139,54 @@ public class AvanceController {
 		return "avance/listAvances";
 
 	}
+	
+	@RequestMapping("/update/{id}")
+	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
+		Avances objPro = pService.listarId(id);
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
+			return "redirect:/avances/list";
+		} else {
+			model.addAttribute("listaTrabajo", tService.list());
+			model.addAttribute("listaFreelancer", fService.list());
+			model.addAttribute("avance", objPro);
+			return "avances/avance";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+		try {
+			if (id != null && id > 0) {
+				pService.delete(id);
+				model.put("mensaje", "Se eliminó correctamente");
+
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.put("mensaje", "No se puede eliminar un avance");
+		}
+		model.put("listAvances", pService.list());
+
+//		return "redirect:/categories/list";
+		return "/avances/listAvances";
+	}
+	@GetMapping("/form/{id}")
+	public String formOrder(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Trabajo> customer = tService.findById(id);
+			if (!customer.isPresent()) {
+				model.addAttribute("info", "Cliente no existe");
+				return "redirect:/trabajos/list";
+			} else {
+				Avances a = new Avances();
+				a.setTrabajo(customer.get());
+				model.addAttribute("avance", a);
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "avances/avance";
+	}
 }
