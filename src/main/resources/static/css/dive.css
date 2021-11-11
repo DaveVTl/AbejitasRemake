@@ -1,15 +1,34 @@
 *, body {
+	background-image: url('../static/images/fondo.jpg');
 	box-sizing: border-box;
 	height: fit-content;
 
 }
 
-.full {
-  background-image: url('../static/images/fondo.jpg');
-  background-repeat: re-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
+.fondito{
+background-image: url('../images/fondo.jpg');
+background-repeat: no-repeat;
+height: 100vh;
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+
+}
+
+
+.img {
+	 width: 300%;
+}
+
+.img-fluid {
+  width: 250px;
+  height: 220px;
+  padding: 5px;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 17px 60px -31px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 17px 60px -31px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 17px 60px -31px rgba(0, 0, 0, 0.75);
+
 }
 
 #panel {

@@ -198,6 +198,9 @@ figure {
 img {
   vertical-align: middle;
   border-style: none;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
 }
 
 svg {
@@ -477,8 +480,11 @@ mark,
 }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 17px 60px -31px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 17px 60px -31px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 17px 60px -31px rgba(0, 0, 0, 0.75);
+
 }
 
 .img-thumbnail {
@@ -551,6 +557,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  
 }
 
 @media (min-width: 576px) {
