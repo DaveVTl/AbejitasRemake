@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Freelancers;
 import pe.edu.upc.repositories.IFreelancerRepository;
@@ -17,6 +18,7 @@ public class FreelancerServiceImplement implements IFreelancerService {
 	private IFreelancerRepository fR;
 
 	@Override
+	@Transactional
 	public Integer insert(Freelancers freelancer) {
 		
 		int rpta = fR.FindFreelancersExists(freelancer.getDniFreelancers());

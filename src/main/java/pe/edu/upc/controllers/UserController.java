@@ -44,15 +44,37 @@ public class UserController {
 	}
 
 	
-	@PostMapping("/save")
-	public String saveUser(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
+	@PostMapping("/savefree")
+	public String saveUserfree(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			//return "usuarios/user";
 		} else {
 			String bcryptPassword = passwordEncoder.encode(user.getPassword());
 			user.setPassword(bcryptPassword);
-			int rpta = uService.insert(user);
+			int rpta = uService.insert_freelancer(user);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				return "usuarios/user";
+			} else {
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
+			}
+		}
+		model.addAttribute("listaUsuarios", uService.list());
+
+		return "redirect:/users/list";
+	}
+	
+	@PostMapping("/savemype")
+	public String saveUsermype(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
+		if (result.hasErrors()) {
+			//return "usuarios/user";
+		} else {
+			String bcryptPassword = passwordEncoder.encode(user.getPassword());
+			user.setPassword(bcryptPassword);
+			int rpta = uService.insert_mype(user);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
 				return "usuarios/user";

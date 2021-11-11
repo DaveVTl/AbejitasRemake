@@ -5,10 +5,12 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,7 @@ public class TipoTrabajoController {
 		@Autowired
 		private ITipoTrabajoService cT;
 
-		
+		@Secured({"ROLE_ADMIN"})
 		@GetMapping("/new")
 		public String newTipoT(Model model) {
 			model.addAttribute("tipotrabajo",new TipoTrabajo());
@@ -47,7 +49,7 @@ public class TipoTrabajoController {
 		}
 		
 		@PostMapping("/save")
-		public String saveMarca(@Valid TipoTrabajo tipo, BindingResult result, Model model, SessionStatus status)
+		public String saveMarca(@ModelAttribute("tipotrabajo") @Valid TipoTrabajo tipo, BindingResult result, Model model, SessionStatus status)
 				throws Exception {
 			if (result.hasErrors()) {
 				return "tipotrabajo/tipotrabajo";

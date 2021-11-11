@@ -17,6 +17,7 @@ public class TipoTrabajoServiceImplement implements ITipoTrabajoService {
 	private ITipoTrabajoRepository tR;
 
 	@Override
+	@Transactional
 	public Integer insert(TipoTrabajo tipo) {
 		int rpta=tR.TrabajoExistente(tipo.getNombreTrabajo());
 		if(rpta==0){

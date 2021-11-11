@@ -17,6 +17,7 @@ public class AvanceServiceImplement implements IAvanceService{
 	private IAvanceRepository aR;
 	
 	@Override
+	@Transactional
 	public boolean insert(Avances avance) {
 		Avances objavance = aR.save(avance);
 		if (objavance == null) {

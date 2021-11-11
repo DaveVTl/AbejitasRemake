@@ -18,6 +18,7 @@ public class TrabajoServiceImplement implements ITrabajoService{
 	private ITrabajoRepository tR;
 
 	@Override
+	@Transactional
 	public boolean insert(Trabajo trabajo) {
 		Trabajo objTrabajo = tR.save(trabajo);
 		if (objTrabajo==null) {
@@ -39,6 +40,7 @@ public class TrabajoServiceImplement implements ITrabajoService{
 		return op.isPresent() ? op.get() : new Trabajo();
 	}
 	@Override
+	@Transactional
 	public Optional<Trabajo> findById(int id) {
 		return tR.findById(id);
 

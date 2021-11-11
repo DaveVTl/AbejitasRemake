@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "avances")
@@ -15,6 +16,9 @@ public class Avances {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idAvance;
+	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
+	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 	@Column(name = "fotoavance", nullable = true)
@@ -26,15 +30,14 @@ public class Avances {
 	@ManyToOne
 	@JoinColumn(name = "idTrabajo", nullable = false)
 	private Trabajo trabajo;
-	@ManyToOne
-	@JoinColumn(name = "idFreelancer", nullable = false)
-	private Freelancers freelancer;
+	
 	public Avances() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Avances(int idAvance, String nombre, String fotoavance, String fotoavance2, String descripcion,
-			Trabajo trabajo, Freelancers freelancer) {
+	public Avances(int idAvance,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nombre,
+			String fotoavance, String fotoavance2, String descripcion, Trabajo trabajo) {
 		super();
 		this.idAvance = idAvance;
 		this.nombre = nombre;
@@ -42,7 +45,7 @@ public class Avances {
 		this.fotoavance2 = fotoavance2;
 		this.descripcion = descripcion;
 		this.trabajo = trabajo;
-		this.freelancer = freelancer;
+	
 	}
 	public int getIdAvance() {
 		return idAvance;
@@ -80,18 +83,6 @@ public class Avances {
 	public void setTrabajo(Trabajo trabajo) {
 		this.trabajo = trabajo;
 	}
-	public Freelancers getFreelancer() {
-		return freelancer;
-	}
-	public void setFreelancer(Freelancers freelancer) {
-		this.freelancer = freelancer;
-	}
-
-	
-
-	
-
-
 	
 
 }

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+
 import pe.edu.upc.entities.Avances;
 import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IAvanceService;
-import pe.edu.upc.serviceinterface.IFreelancerService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
 
@@ -40,8 +42,7 @@ public class AvanceController {
 	private IAvanceService pService;
 	@Autowired
 	private ITrabajoService tService;
-	@Autowired
-	private IFreelancerService fService;
+
 	@Autowired
 	private IUploadFileService uploadFileService;
 
@@ -49,18 +50,17 @@ public class AvanceController {
 	public String newAvance(Model model) {
 		model.addAttribute("avance", new Avances());
 		model.addAttribute("listaTrabajo", tService.list());
-		model.addAttribute("listaFreelancer", fService.list());
 		return "avances/avance";
 		
 	}
 
+	@Transactional
 	@RequestMapping("/save")
-	public String insertAvance(@ModelAttribute @Valid Avances objPro, BindingResult binRes, Model model,
+	public String insertAvance(@ModelAttribute("avance") @Valid Avances objPro, BindingResult binRes, Model model,
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws ParseException {
 		if (binRes.hasErrors()) {
 			model.addAttribute("listaTrabajo", tService.list());
-			model.addAttribute("listaFreelancer", fService.list());
 			return "avances/avance";
 		} else {
 			if (!foto.isEmpty()) {
@@ -82,10 +82,12 @@ public class AvanceController {
 			}
 			boolean flag = pService.insert(objPro);
 			if (flag) {
+				status.setComplete();
 				return "redirect:/avances/list";
 			} else {
+				model.addAttribute("avance", objPro);
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "redirect:/avances/new";
+				return "avances/avance";
 			}
 		}
 	}
@@ -149,7 +151,6 @@ public class AvanceController {
 			return "redirect:/avances/list";
 		} else {
 			model.addAttribute("listaTrabajo", tService.list());
-			model.addAttribute("listaFreelancer", fService.list());
 			model.addAttribute("avance", objPro);
 			return "avances/avance";
 		}
@@ -175,13 +176,13 @@ public class AvanceController {
 	@GetMapping("/form/{id}")
 	public String formOrder(@PathVariable(value = "id") int id, Model model) {
 		try {
-			Optional<Trabajo> customer = tService.findById(id);
-			if (!customer.isPresent()) {
+			Optional<Trabajo> trabajo = tService.findById(id);
+			if (!trabajo.isPresent()) {
 				model.addAttribute("info", "Cliente no existe");
 				return "redirect:/trabajos/list";
 			} else {
 				Avances a = new Avances();
-				a.setTrabajo(customer.get());
+				a.setTrabajo(trabajo.get());
 				model.addAttribute("avance", a);
 			}
 		} catch (Exception e) {
