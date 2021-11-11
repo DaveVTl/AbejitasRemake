@@ -2,6 +2,9 @@ package pe.edu.upc.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -32,16 +35,16 @@ import pe.edu.upc.serviceinterface.IUploadFileService;
 public class FreelancerController {
 	@Autowired
 	private IFreelancerService fS;
-	
+
 	@Autowired
 	private IUploadFileService uploadFileService;
-	
+
 	@GetMapping("/new")
 	public String newCategory(Model model) {
 		model.addAttribute("newFreelancer", new Freelancers());
-		return "freelancer/freelancer";/*vista --> formulario para regisrar categoria*/
+		return "freelancer/freelancer";/* vista --> formulario para regisrar categoria */
 	}
-	
+
 	@GetMapping("/list")
 	public String listFreelancers(Model model) {
 		try {
@@ -54,11 +57,11 @@ public class FreelancerController {
 	}
 
 	@RequestMapping("/save")
-	public String saveMarca(@ModelAttribute("newFreelancer") @Valid Freelancers newFreelancer, BindingResult result, Model model,
-			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
+	public String saveMarca(@ModelAttribute("newFreelancer") @Valid Freelancers newFreelancer, BindingResult result,
+			Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "freelancers/freelancer";
+			return "freelancer/freelancer";
 		} else {
 			if (!foto.isEmpty()) {
 
@@ -78,7 +81,7 @@ public class FreelancerController {
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				newFreelancer.setFotoFreelancers(uniqueFilename);
 			}
-			
+
 			int rpta = fS.insert(newFreelancer);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
@@ -91,7 +94,7 @@ public class FreelancerController {
 		model.addAttribute("freelancer", new Freelancers());
 		return "redirect:/freelancers/list";
 	}
-	
+
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
@@ -107,7 +110,24 @@ public class FreelancerController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
-	
+
+	@GetMapping("/detalle/{id}")
+	public String detailsCategory(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Freelancers> freelancer = fS.listarId(id);
+			if (!freelancer.isPresent()) {
+				model.addAttribute("info", "Freelancer no existe");
+				return "redirect:/freelancers/list";
+			} else {
+				model.addAttribute("freelancer", freelancer.get());
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/freelancer/update";
+	}
+
 	@GetMapping("/detail/{id}")
 	public String detailsCustomer(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -126,7 +146,35 @@ public class FreelancerController {
 
 		return "/freelancer/detail";
 	}
-	
-	
-	
+
+	@GetMapping("/listFind")
+	public String listFreelancersFind(Model model) {
+		try {
+			model.addAttribute("freelancer", new Freelancers());
+			model.addAttribute("listaFreelancers", fS.list());
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/freelancer/find";
+	}
+
+	@RequestMapping("/find")
+	public String findByFreelancer(Map<String, Object> model,@ModelAttribute("freelancer") @Valid Freelancers freelancer)
+			throws ParseException {
+
+		List<Freelancers> listaFreelancers;
+		freelancer.setNameFreelancers(freelancer.getNameFreelancers());
+		listaFreelancers = fS.findByName(freelancer.getNameFreelancers());
+
+		if (listaFreelancers.isEmpty()) {
+			listaFreelancers = fS.findByNameFreelancersIgnoreCase(freelancer.getNameFreelancers());
+		}
+		if (listaFreelancers.isEmpty()) {
+			model.put("mensaje", "No se encontró");
+		}
+		model.put("listaFreelancers", listaFreelancers);
+		return "freelancer/find";
+
+	}
+
 }
