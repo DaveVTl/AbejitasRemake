@@ -11,6 +11,7 @@ public interface IUsuarioService {
 	
 	public List<Usuario> list() ;
 
-	public Integer insert(Usuario u);
+	public Integer insert_mype(Usuario u);
+	public Integer insert_freelancer(Usuario u);
 
 }

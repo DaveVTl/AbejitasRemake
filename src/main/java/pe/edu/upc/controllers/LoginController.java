@@ -65,10 +65,36 @@ public class LoginController {
 		} else {
 			String bcryptPassword = passwordEncoder.encode(user.getPassword());
 			user.setPassword(bcryptPassword);
-			int rpta = uService.insert(user);
+			int rpta = uService.insert_mype(user);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
 				model.addAttribute("newUser", new Usuario());
+				return "registro";
+			} else {
+				model.addAttribute("mensaje", "Se guardó correctamente");
+			}
+		}
+		return "login";
+	}
+	
+	@GetMapping("/login/newfree")
+	public String newUserFreelancer(Model model) {
+		model.addAttribute("newUserFree", new Usuario());
+		return "registrofree";
+	}
+	
+	@PostMapping("/login/savefree")
+	public String saveUserFreelancer(@ModelAttribute("newUserFree") @Valid Usuario user, BindingResult result, Model model)
+			throws Exception {
+		if (result.hasErrors()) {
+			return "usuarios/user";
+		} else {
+			String bcryptPassword = passwordEncoder.encode(user.getPassword());
+			user.setPassword(bcryptPassword);
+			int rpta = uService.insert_freelancer(user);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				model.addAttribute("newUserFree", new Usuario());
 				return "registro";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
