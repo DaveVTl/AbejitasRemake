@@ -36,7 +36,7 @@ public class LoginController {
 			RedirectAttributes flash) {
 
 		if (principal != null) {
-			return "redirect:/anuncios/list";
+			return "redirect:/anuncio/list";
 		}
 
 		if (error != null) {

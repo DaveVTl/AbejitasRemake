@@ -36,6 +36,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		}
 		return rpta;
 	}
+	
+	
 
 	@Override
 	public List<Usuario> list() {

@@ -25,46 +25,35 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Avances</h3>
-				<a th:href="@{/avances/new}" class="btnnew btn btn-warning">Nuevo</a>
+				<h3 class="title-content">Lista de Anuncios</h3>
+				<a th:href="@{/anuncio/new}" class="btn btn-warning">Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
 					<tr>
-						<th scope="col" class="text-center">ID</th>
-						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Nombre Anuncio</th>
 						<th scope="col" class="text-center">Descripcion</th>
-						<th scope="col" class="text-center">Trabajo</th>
-						<th scope="col" class="text-center">Foto</th>
-						<th scope="col" class="text-center">Operación</th>
-						<th scope="col" class="text-center">Operación</th>
+						<th scope="col" class="text-center">Pago</th>
+						<th scope="col" class="text-center">Mype</th>
+						<th scope="col" class="text-center">Tipo Trabajo</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="av: ${listaAvances}">
-						<td class="text-center"><a class="btn btn-warning btn-xs"
-							th:href="@{/avances/view/} + ${av.idAvance}"
-							th:text="${av.idAvance}"></a></td>
-						<td class="text-center" th:text="${av.nombre}"></td>
-						<td class="text-center" th:text="${av.descripcion}"></td>
-						<td class="text-center" th:text="${av.trabajo.nameTrabajo}"></td>
-						<td><img class=" "
-							th:if="${#strings.length(av.fotoavance)> 0}"
-							th:src="@{'/avances/uploads/' + ${av.fotoavance}}"
-							th:alt="${av.fotoavance}" height=40px; width=40px;></td>
-						<td><a th:href="@{/avances/delete?id=}+${av.idAvance}"
-							class="btn btn-dark">Eliminar</a></td>
-						<td align="center"><a
-							th:href="@{'/avances/update/' + ${av.idAvance}}"
-							class="btn btn-dark">Actualizar</a></td>
+					<tr th:each="cat : ${listaAnuncios}">
+						<td class="text-center" th:text="${cat.idAnuncio}"></td>
+						<td class="text-center" th:text="${cat.nameAnuncio}"></td>
+						<td class="text-center" th:text="${cat.descriptionAnuncio}"></td>
+						<td class="text-center" th:text="${cat.pagoAnuncio}"></td>
+						<td class="text-center" th:text="${cat.mype.idMype}"></td>
+						<td class="text-center" th:text="${cat.tipoTrabajo.idTipoTrabajo}"></td>
 					</tr>
 				</tbody>
 			</table>
-			<div th:if="${mensaje}" class="alert alert-danger">
-				<p th:text="${mensaje}"></p>
-			</div>
 		</div>
-
+		<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+		</div>
 
 	</div>
 
