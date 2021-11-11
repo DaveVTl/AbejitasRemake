@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class FreelancerServiceImplement implements IFreelancerService {
 	@Override
 	public List<Freelancers> list() {
 		// TODO Auto-generated method stub
-		return fR.findAll();
+		return fR.findAll(Sort.by(Sort.Direction.DESC, "nameFreelancers"));
 	}
 	
 	@Override
@@ -39,5 +40,25 @@ public class FreelancerServiceImplement implements IFreelancerService {
 		// TODO Auto-generated method stub
 		return fR.findById(idCustomer);
 	}
+
+	@Override
+	public List<Freelancers> findByName(String nameFreelancers) {
+		// TODO Auto-generated method stub
+		return fR.findByName(nameFreelancers);
+	}
+
+	
+	@Override
+	public List<Freelancers> findByNameFreelancersIgnoreCase(String nameFreelancers){
+		return fR.findByNameFreelancersIgnoreCase(nameFreelancers);
+	}
+	
+	@Override
+	public Optional<Freelancers> listarId(int id) {
+		// TODO Auto-generated method stub
+		return fR.findById(id);
+	}
+
+	
 
 }

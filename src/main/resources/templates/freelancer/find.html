@@ -23,9 +23,22 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Freelancers</h3>
-				<a th:href="@{/freelancers/new}" class="btn btn-warning">Nuevo</a>
-				<a th:href="@{/freelancers/listFind}" class="btn btn-warning">Buscar</a>
+				<form th:action="@{/freelancers/find}" method="post" th:object="${freelancer}">
+					<div class="form-group">
+
+						<label for=fre>Buscar:</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" th:field="*{nameFreelancers}" id="fre"
+								placeholder="Ingrese nombre del Freelancer"></input>
+							<div align="right">
+								<button type="submit" class="btn btn-danger">Buscar</button>
+								<a href="/freelancers/listFind" class="btn btn-dark">Cancelar</a>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
 			</div>
 
 			<div class="row pt-5">
@@ -44,7 +57,8 @@
 							<span><i class="fas fa-star"> 4,8 (745)</i></span>
 							<a class="btn btn-primary" th:href="@{'/freelancers/detail/' + ${free.idFreelancers}}"
 								role="button">VerPerfil</a>
-
+							<a class="btn btn-primary" th:href="@{'/freelancers/detalle/' + ${free.idFreelancers}}"
+								role="button">Editar</a>
 							<br>
 							<br>
 							<br>
