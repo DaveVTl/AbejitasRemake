@@ -20,42 +20,42 @@
 	<div class="fondito">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-			<div class="content container">
+		<div class="content container">
 
-				<div class="d-flex">
-					<h3 class="title-content">Lista de Freelancers</h3>
-					<a th:href="@{/freelancers/new}" class="btn btn-warning">Nuevo</a>
-				</div>
-
-				<div class="row pt-5">
-					<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="free : ${listaFreelancers}">
-						<div class="row">
-							<div class="col-lg-5 col-md-6 col-sm-6 col-6">
-								<img style="border-radius: 20px" ; class="img-fluid"
-									th:if="${#strings.length(free.fotoFreelancers)> 0}"
-									th:src="@{'/freelancers/uploads/' + ${free.fotoFreelancers}}"
-									th:alt="${free.fotoFreelancers}">
-							</div>
-							<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
-								<h5 th:text=" ${free.nameFreelancers}">Name</h5>
-								<small>DISPONIBLE</small>
-								<p th:text=" ${free.descriptionFreelancers}">Descripcion</p>
-								<span><i class="fas fa-star"> 4,8 (745)</i></span>
-								<div class="buttons-deliveryman">
-									<button type="button" class="btn btn-light">Ver perfil</button>
-								</div>
-								<br>
-								<br>
-								<br>
-								<br>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
+			<div class="d-flex">
+				<h3 class="title-content">Lista de Freelancers</h3>
+				<a th:href="@{/freelancers/new}" class="btn btn-warning">Nuevo</a>
 			</div>
-		
+
+			<div class="row pt-5">
+				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="free : ${listaFreelancers}">
+					<div class="row">
+						<div class="col-lg-5 col-md-6 col-sm-6 col-6">
+							<img style="border-radius: 20px" ; class="img-fluid"
+								th:if="${#strings.length(free.fotoFreelancers)> 0}"
+								th:src="@{'/freelancers/uploads/' + ${free.fotoFreelancers}}"
+								th:alt="${free.fotoFreelancers}">
+						</div>
+						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
+							<h5 th:text=" ${free.nameFreelancers}">Name</h5>
+							<small>DISPONIBLE</small>
+							<p th:text=" ${free.descriptionFreelancers}">Descripcion</p>
+							<span><i class="fas fa-star"> 4,8 (745)</i></span>
+							<a class="btn btn-primary" th:href="@{'/freelancers/detail/' + ${free.idFreelancers}}"
+								role="button">VerPerfil</a>
+
+							<br>
+							<br>
+							<br>
+							<br>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
 
 
 	</div>

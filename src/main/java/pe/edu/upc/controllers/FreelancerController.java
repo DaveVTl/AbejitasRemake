@@ -2,6 +2,7 @@ package pe.edu.upc.controllers;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -105,6 +107,26 @@ public class FreelancerController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
 				.body(recurso);
 	}
+	
+	@GetMapping("/detail/{id}")
+	public String detailsCustomer(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Freelancers> freelancer = fS.findById(id);
+
+			if (!freelancer.isPresent()) {
+				model.addAttribute("info", "Freelancer no existe");
+				return "redirect:/freelancers/list";
+			} else {
+				model.addAttribute("freelancer", freelancer.get());
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+
+		return "/freelancer/detail";
+	}
+	
 	
 	
 }
