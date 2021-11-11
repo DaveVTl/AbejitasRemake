@@ -37,12 +37,12 @@ public class TipoTrabajoController {
 			model.addAttribute("tipotrabajo",new TipoTrabajo());
 			return "tipotrabajo/tipotrabajo";
 		}
-		@Secured({"ROLE_ADMIN"})
+		
 		@GetMapping("/list")
-		public String listCategories(Model model) {
+		public String listTipoTrabajo(Model model) {
 			try {
 				model.addAttribute("tipotrabajo", new TipoTrabajo());
-				model.addAttribute("listaTipoTrabajo", cT.list());
+				model.addAttribute("listaTipoTrabajos", cT.list());
 			} catch (Exception e) {
 				model.addAttribute("error", e.getMessage());
 			}

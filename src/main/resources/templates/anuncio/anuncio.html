@@ -61,14 +61,14 @@
 							th:field="*{mype.idMype}">
 							<option th:each="a: ${listaMypes}" th:value="${a.idMype}"
 								th:text="${a.nameEmpresaMype}"
-								th:selected="(${a.idMype} == *{anuncio.idMype})"></option>
+								th:selected="(${a.idMype} == *{mype.idMype})"></option>
 						</select> 
 						<label for="raza">Tipo de Trabajo: </label> 
 						<select
-							class="form-control" th:field="*{TipoTrabajo.idTipoTrabajo}">
-							<option th:each="a: ${listaTipoTrabajo}"
+							class="form-control" th:field="*{tipoTrabajo.idTipoTrabajo}">
+							<option th:each="a: ${listaTipoTrabajos}"
 								th:value="${a.idTipoTrabajo}" th:text="${a.nombreTrabajo}"
-								th:selected="(${a.idTipoTrabajo} == *{anuncio.idTipoTrabajo})"></option>
+								th:selected="(${a.idTipoTrabajo} == *{tipoTrabajo.idTipoTrabajo})"></option>
 						</select>
 
 					</div>
