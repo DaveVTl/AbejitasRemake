@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +31,7 @@ public class TipoTrabajoController {
 		@Autowired
 		private ITipoTrabajoService cT;
 
-		
+		@Secured({"ROLE_ADMIN"})
 		@GetMapping("/new")
 		public String newTipoT(Model model) {
 			model.addAttribute("tipotrabajo",new TipoTrabajo());
