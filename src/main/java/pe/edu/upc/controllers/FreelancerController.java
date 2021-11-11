@@ -58,7 +58,7 @@ public class FreelancerController {
 			@RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "freelancers/freelancer";
+			return "freelancer/freelancer";
 		} else {
 			if (!foto.isEmpty()) {
 

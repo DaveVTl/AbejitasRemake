@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,12 +31,13 @@ public class TipoPagoController {
 		@Autowired
 		private ITipoPagoService pS;
 
-		
+		@Secured({"ROLE_ADMIN"})
 		@GetMapping("/new")
 		public String newTipoT(Model model) {
 			model.addAttribute("tipopago",new TipoPago());
 			return "tipopago/tipopago";
 		}
+		@Secured({"ROLE_ADMIN"})
 		@GetMapping("/list")
 		public String listCategories(Model model) {
 			try {
@@ -47,6 +49,7 @@ public class TipoPagoController {
 			return "tipopago/listTipoPago";
 		}
 		
+		@Secured({"ROLE_ADMIN"})
 		@PostMapping("/save")
 		public String saveMarca(@ModelAttribute("tipopago") @Valid TipoPago tipo, BindingResult result, Model model, SessionStatus status)
 				throws Exception {
@@ -67,6 +70,7 @@ public class TipoPagoController {
 			return "redirect:/tipopago/list";
 		}
 		
+		@Secured({"ROLE_ADMIN"})
 		@RequestMapping("/update/{id}")
 		public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
@@ -80,6 +84,7 @@ public class TipoPagoController {
 			}
 		}
 		
+		@Secured({"ROLE_ADMIN"})
 		@RequestMapping("/delete")
 		public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 			try {

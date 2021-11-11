@@ -1232,6 +1232,7 @@ pre code {
     -ms-flex: 0 0 75%;
     flex: 0 0 75%;
     max-width: 75%;
+
   }
   .col-lg-10 {
     -ms-flex: 0 0 83.333333%;
@@ -4065,9 +4066,9 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  background: #4e54c8;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background:black;  /* fallback for old browsers */
+background: black;  /* Chrome 10-25, Safari 5.1-6 */
+
 
 }
 
