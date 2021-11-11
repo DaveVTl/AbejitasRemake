@@ -44,9 +44,5 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		// TODO Auto-generated method stub
 		return uR.findAll();
 	}
-
-
-	
-
 	
 }

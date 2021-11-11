@@ -32,14 +32,14 @@ public class Anuncio {
 	@ManyToOne
     @JoinColumn(name="idTipoTrabajo", nullable = false)
     private TipoTrabajo tipoTrabajo;
-
+	
 	public Anuncio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Anuncio(int idAnuncio, String nameAnuncio, String descriptionAnuncio,
-			String pagoAnuncio, Date dateStart, Mype mype, TipoTrabajo tipoTrabajo) {
+	
+	public Anuncio(int idAnuncio, String nameAnuncio, String descriptionAnuncio, String pagoAnuncio, Mype mype,
+			TipoTrabajo tipoTrabajo) {
 		super();
 		this.idAnuncio = idAnuncio;
 		this.nameAnuncio = nameAnuncio;
