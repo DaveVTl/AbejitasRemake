@@ -8,7 +8,7 @@
 .fondito{
 background-image: url('../images/fondo.jpg');
 background-repeat: no-repeat;
-height: 100vh;
+height: 100em;
 background-size: cover;
 background-position: center;
 background-attachment: fixed;
