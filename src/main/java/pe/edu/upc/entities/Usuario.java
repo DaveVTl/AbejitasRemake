@@ -92,8 +92,10 @@ public class Usuario implements Serializable {
 		this.roles = roles;
 	}
 
-	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 	
 }

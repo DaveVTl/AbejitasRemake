@@ -13,58 +13,44 @@
 	<link rel="stylesheet" href="/css/dive.css">
 </head>
 
+
 <body>
 
-	
-
 	<div class="bg row">
-
-
 		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
+		
+		<div class="col-1">
 			</div>
 			<div class="col-3">
-				<h3>Registro</h3>
+				<h3>Registro Usuarios</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/users/save}" method="post" th:object="${newUser}" enctype="multipart/form-data">
+				<form th:action="@{/login/save}" method="post" th:object="${newUser}" enctype="multipart/form-data">
 					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control" readonly th:field="*{id}"></input>
+						<label>ID:</label> <input type="text" class="form-control" 
+							readonly th:field="*{id}"></input>
 
+					<div class="form-group">
+						<label for="username">Username:</label> <input type="text" required
+							th:field="*{username}" class="form-control" id="username"></input></div> 
+						<div class="alert alert-danger" 
+							th:if="${#fields.hasErrors('username')}"
+							th:errors="*{username}"></div>
 						<div class="form-group">
-
-
-							<div class="form-group">
-								<label for="username">Username:</label> <input type="text" required
-									th:field="*{username}" class="form-control" id="username"></input>
-							</div>
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('username')}"
-								th:errors="*{username}"></div>
-
-							<div class="form-group">
-								<label for="password">Password:</label> <input type="password" required
-									th:field="*{password}" class="form-control" id="password"></input>
-							</div>
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
-								th:errors="*{password}"></div>
-
-							<div class="form-group">
-								<label for="name" class="col-sm-2 col-form-label">Estado:</label>
-								<div class="col-sm-6">
-									<input type="checkbox" th:field="*{enabled}" class="form-control"
-										th:errorclass="'form-control alert-danger'" /> <small
-										class="form-text text-danger" th:if="${#fields.hasErrors('enabled')}"
-										th:errors="{enabled}"></small>
-								</div>
-							</div>
-
-
+						<label for="password">Password:</label> <input type="password" required
+							th:field="*{password}" class="form-control" id="password"></input></div>
+						<div class="alert alert-danger" 
+							th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}"></div>
+						<div class="form-group">
+						<label for="name" class="col-sm-2 col-form-label">Estado:</label>
+						<div class="col-sm-6">
+						
+						<input type="checkbox" th:field="*{enabled}" class="form-control"
+							th:errorclass="'form-control alert-danger'" /> <small
+							class="form-text text-danger" th:if="${#fields.hasErrors('enabled')}"
+							th:errors="{enabled}"></small></div>
 						</div>
-
-
-
-
 					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
 					<a href="@{/login}" class="btn btn-light">Cancelar</a>

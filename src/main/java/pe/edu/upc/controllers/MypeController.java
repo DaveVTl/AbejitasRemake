@@ -20,6 +20,7 @@ public class MypeController {
 	@Autowired
 	private IMypeService mC;
 	
+	
 	@GetMapping("/new")
 	public String newMype(Model model) {
 		model.addAttribute("mype", new Mype());

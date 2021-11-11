@@ -45,10 +45,10 @@ public class UserController {
 
 	
 	@PostMapping("/save")
-	public String saveUser(@ModelAttribute("newUser" )@Valid Usuario user, BindingResult result, Model model, SessionStatus status)
+	public String saveUser(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "usuarios/user";
+			//return "usuarios/user";
 		} else {
 			String bcryptPassword = passwordEncoder.encode(user.getPassword());
 			user.setPassword(bcryptPassword);

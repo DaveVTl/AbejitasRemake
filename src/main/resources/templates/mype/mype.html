@@ -30,8 +30,7 @@
 				<h3>Registrar Mype</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<form th:action="@{/mype/save}" method="post"
-					th:object="${mype}">
+				<form th:action="@{/mype/save}" method="post"th:object="${mype}">
 					<div class="form-group">
 						<label>ID:</label> <input type="text" class="form-control"
 							readonly th:field="*{idMype}"></input>
@@ -57,10 +56,8 @@
 							<div class="alert alert-danger"
 								th:if="${#fields.hasErrors('logoMype')}"
 								th:errors="logoMype"></div>	
-								
+							</div>
 						</div>
-
-					</div>
 					<button type="submit" class="btn btn-warning">Aceptar</button>
 					<a href="/mype/list" class="btn btn-light">Cancelar</a>
 

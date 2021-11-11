@@ -26,7 +26,7 @@
 
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Mypes</h3>
-				<a th:href="@{/mype/new}" class="btn btn-warning">Nuevo</a>
+				<a sec:authorize="hasRole('ROLE_MYPE')" th:href="@{/mype/new}" class="btn btn-warning" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >Nuevo</a>
 			</div>
 			<table class="table">
 				<thead class="thead-light">
