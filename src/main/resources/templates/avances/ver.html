@@ -19,7 +19,7 @@
 
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
-
+<div class="fondito">
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
@@ -27,9 +27,9 @@
 
 
 
-		<div class="content container">
+		<div class="content container row col-12">
 
-			<div class="detail">
+			<div class="col-6">
 
 				<img class="detailimg"
 					th:if="${#strings.length(avance.fotoavance)> 0}"
@@ -40,8 +40,8 @@
 				<a th:href="@{/avances/list}" class="volverdet" href=""
 					style="color: gray;"><i class="fa fa-arrow-left"></i></a>
 			</div>
-		</div>
-		<div class="content container">
+		
+		<div class="col-6 frm-registro">
 			<div class="detalles">
 
 
@@ -64,10 +64,12 @@
 
 				</div>
 			</div>
-
+</div>
+		</div>
 		</div>
 	</div>
 
+</div>
 </div>
 
 	<script src="/js/popper.min.js"></script>

@@ -18,7 +18,7 @@
 
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
-
+<div class="fondito">
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
@@ -49,6 +49,7 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
 		</div>
 		<div th:if="${mensaje}" class="alert alert-danger">
 			<p th:text="${mensaje}"></p>
