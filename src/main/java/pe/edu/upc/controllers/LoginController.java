@@ -73,7 +73,7 @@ public class LoginController {
 				model.addAttribute("mensaje", "Se guardó correctamente");
 			}
 		}
-		return "redirect:/mype/mype";
+		return "redirect:/mype/new";
 	}
 	
 	@GetMapping("/login/newfree")
