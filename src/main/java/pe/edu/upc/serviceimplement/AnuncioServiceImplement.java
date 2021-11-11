@@ -1,9 +1,11 @@
 package pe.edu.upc.serviceimplement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Anuncio;
 import pe.edu.upc.repositories.IAnuncioRepository;
@@ -30,5 +32,17 @@ public class AnuncioServiceImplement implements IAnuncioService{
 		return aR.findAll();
 	}
 	
-
+	@Override
+	@Transactional(readOnly = true)
+	public Anuncio listarId(int id) {
+		Optional<Anuncio> op = aR.findById(id);
+		return op.isPresent() ? op.get() : new Anuncio();
+	}
+	
+	@Override
+	@Transactional
+	public void delete(int idreview) {
+		aR.deleteById(idreview);
+	}
+	
 }

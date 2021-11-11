@@ -36,6 +36,8 @@
 						<th scope="col" class="text-center">Ruc</th>
 						<th scope="col" class="text-center">Nombre del Gerente</th>
 						<th scope="col" class="text-center">logoMype</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Modificar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,6 +47,11 @@
 						<td class="text-center" th:text="${cat.rucMype}"></td>
 						<td class="text-center" th:text="${cat.nameGerenteMype}"></td>
 						<td class="text-center" th:text="${cat.logoMype}"></td>
+						<td><a th:href="@{/mype/delete?id=}+${cat.idMype}"
+							class="btn btn-dark"><i class="fa fa-trash" style="color: rgb(255, 255, 255)g;"></i></a></td>
+						<td align="center"><a
+							th:href="@{'/mype/update/' + ${cat.idMype}}"
+							class="btn btn-dark">Actualizar</a></td>
 					</tr>
 				</tbody>
 			</table>

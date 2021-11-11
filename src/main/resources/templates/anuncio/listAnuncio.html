@@ -37,6 +37,8 @@
 						<th scope="col" class="text-center">Pago</th>
 						<th scope="col" class="text-center">Mype</th>
 						<th scope="col" class="text-center">Tipo Trabajo</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Modificar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,8 +47,13 @@
 						<td class="text-center" th:text="${cat.nameAnuncio}"></td>
 						<td class="text-center" th:text="${cat.descriptionAnuncio}"></td>
 						<td class="text-center" th:text="${cat.pagoAnuncio}"></td>
-						<td class="text-center" th:text="${cat.mype.idMype}"></td>
-						<td class="text-center" th:text="${cat.tipoTrabajo.idTipoTrabajo}"></td>
+						<td class="text-center" th:text="${cat.mype.nameEmpresaMype}"></td>
+						<td class="text-center" th:text="${cat.tipoTrabajo.nombreTrabajo}"></td>
+						<td><a th:href="@{/anuncio/delete?id=}+${cat.idAnuncio}"
+							class="btn btn-dark"><i class="fa fa-trash" style="color: rgb(255, 255, 255)g;"></i></a></td>
+						<td align="center"><a
+							th:href="@{'/anuncio/update/' + ${cat.idAnuncio}}"
+							class="btn btn-dark">Actualizar</a></td>
 					</tr>
 				</tbody>
 			</table>
