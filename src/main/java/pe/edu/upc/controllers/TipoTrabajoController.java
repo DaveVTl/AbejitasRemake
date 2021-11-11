@@ -37,17 +37,19 @@ public class TipoTrabajoController {
 			model.addAttribute("tipotrabajo",new TipoTrabajo());
 			return "tipotrabajo/tipotrabajo";
 		}
+		
 		@GetMapping("/list")
-		public String listCategories(Model model) {
+		public String listTipoTrabajo(Model model) {
 			try {
 				model.addAttribute("tipotrabajo", new TipoTrabajo());
-				model.addAttribute("listaTipoTrabajo", cT.list());
+				model.addAttribute("listaTipoTrabajos", cT.list());
 			} catch (Exception e) {
 				model.addAttribute("error", e.getMessage());
 			}
 			return "tipotrabajo/listTipoTra";
 		}
 		
+		@Secured({"ROLE_ADMIN"})
 		@PostMapping("/save")
 		public String saveMarca(@ModelAttribute("tipotrabajo") @Valid TipoTrabajo tipo, BindingResult result, Model model, SessionStatus status)
 				throws Exception {
@@ -68,6 +70,7 @@ public class TipoTrabajoController {
 			return "redirect:/tipotrabajo/list";
 		}
 		
+		@Secured({"ROLE_ADMIN"})
 		@RequestMapping("/update/{id}")
 		public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
@@ -81,6 +84,7 @@ public class TipoTrabajoController {
 			}
 		}
 		
+		@Secured({"ROLE_ADMIN"})
 		@RequestMapping("/delete")
 		public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 			try {

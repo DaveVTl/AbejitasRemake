@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
@@ -20,57 +19,44 @@
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
 <div class="fondito">
-
+	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-<div class="fondito">
+		<div class="content container">
 
-
-
-		<div class="content container row col-12">
-
-			<div class="col-6">
-
-				<img class="detailimg"
-					th:if="${#strings.length(avance.fotoavance)> 0}"
-					th:src="@{'/avances/uploads/' + ${avance.fotoavance}}"
-					th:alt="${avance.fotoavance}">
+			<div class="d-flex">
+				<h3 class="title-content">Lista de Tipos de trabajo</h3>
+				<a th:href="@{/tipotrabajo/new}" class="btn btn-warning">Nuevo</a>
 			</div>
-			<div class="form-group">
-				<a th:href="@{/avances/list}" class="volverdet" href=""
-					style="color: gray;"><i class="fa fa-arrow-left"></i></a>
-			</div>
-		
-		<div class="col-6 frm-registro">
-			<div class="detalles">
-
-
-				<div class="form-group">
-					<h1 th:text="${avance.nombre}" class="text-center"
-						style="color: rgb(64, 0, 64);"></h1>
-					<br></br>
-					<h2 th:text="${avance.descripcion}" class="text-center"
-						style="color: gray;"></h2>
-					<br></br>
-					<h2 th:text="TRABAJO" class="text-center"
-						style="color: rgb(0, 0, 0);"></h2>
-					<h2 th:text="${avance.trabajo.nameTrabajo}" class="text-center"
-						style="color: gray;"></h2>
-					<br></br>
-					<h2 th:text="FREELANCER" class="text-center"
-						style="color: rgb(0, 0, 0);"></h2>
-					<h2 th:text="${avance.trabajo.freelancers.nameFreelancers}"
-						class="text-center" style="color: gray;"></h2>
-
-				</div>
-			</div>
-</div>
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">Código</th>
+						<th scope="col" class="text-center">Nombre</th>
+						<th scope="col" class="text-center">Eliminar</th>
+						<th scope="col" class="text-center">Operación</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cat : ${listaTipoPago}">
+						<td class="text-center" th:text="${cat.idTipoPago}"></td>
+						<td class="text-center" th:text="${cat.nombrePago}"></td>
+						<td><a th:href="@{/tipopago/delete?id=}+${cat.idTipoPago}"
+							class="btn btn-dark "><i class="fa fa-trash" style="color: rgb(255, 255, 255)g;"></i></a></td>
+						<td align="center"><a
+							th:href="@{'/tipopago/update/' + ${cat.idTipoPago}}"
+							class="btn btn-dark">Actualizar</a></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		</div>
-	
+		<div th:if="${mensaje}" class="alert alert-danger">
+			<p th:text="${mensaje}"></p>
+		</div>
 
-</div>
-</div>
+	</div>
+
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>

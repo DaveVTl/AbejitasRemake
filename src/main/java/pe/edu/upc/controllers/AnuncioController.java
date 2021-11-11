@@ -39,12 +39,12 @@ public class AnuncioController {
 	@GetMapping("/new")
 	public String newAnuncio(Model model) {
 		model.addAttribute("anuncio", new Anuncio());
-		model.addAttribute("listaTipoTrabajo", tService.list());
-		model.addAttribute("listaMype", mService.list());
+		model.addAttribute("listaTipoTrabajos", tService.list());
+		model.addAttribute("listaMypes", mService.list());
 		return "anuncio/anuncio";
 	}
 	
-	@Secured({"ROLE_MYPE"})
+	
 	@GetMapping("/list")
 	public String listAnuncio(Model model) {
 		try {
@@ -60,6 +60,8 @@ public class AnuncioController {
 	public String saveAnuncio(@Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listaTipoTrabajos", tService.list());
+			model.addAttribute("listaMypes", mService.list());
 			return "anuncio/anuncio";
 		} else {
 			int rpta = aC.insert(anuncio);
@@ -75,6 +77,7 @@ public class AnuncioController {
 		return "redirect:/anuncio/list";
 	}
 	
+	@Secured({"ROLE_MYPE"})
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
@@ -91,6 +94,7 @@ public class AnuncioController {
 		}
 	}
 	
+	@Secured({"ROLE_MYPE"})
 	@RequestMapping("/delete")
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
