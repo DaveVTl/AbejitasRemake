@@ -59,6 +59,12 @@ public class FreelancerServiceImplement implements IFreelancerService {
 		return fR.findById(id);
 	}
 
+	@Override
+	public List<Freelancers> findByDNI(String dni) {
+		// TODO Auto-generated method stub
+		return fR.findByDNI(dni);
+	}
+
 	
 
 }

@@ -18,6 +18,9 @@ public interface IFreelancerRepository extends JpaRepository<Freelancers, Intege
 
 	@Query("select f from Freelancers f where f.nameFreelancers like %:name%")
 	List<Freelancers> findByName(String name);
+	
+	@Query("select f from Freelancers f where f.dniFreelancers like %:dni%")
+	List<Freelancers> findByDNI(String dni);
 
 	List<Freelancers> findByNameFreelancersIgnoreCase(String name);
 	

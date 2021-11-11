@@ -21,7 +21,7 @@ public interface IFreelancerService {
 	
 	List<Freelancers> findByNameFreelancersIgnoreCase(String nameFreelancers);
 
-
+	List<Freelancers> findByDNI(String dni);
 
 	
 	

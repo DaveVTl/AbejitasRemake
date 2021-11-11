@@ -84,6 +84,7 @@ public class FreelancerController {
 
 			int rpta = fS.insert(newFreelancer);
 			if (rpta > 0) {
+				model.addAttribute("freelancer", newFreelancer);
 				model.addAttribute("mensaje", "Ya existe");
 				return "freelancer/freelancer";
 			} else {
@@ -112,7 +113,7 @@ public class FreelancerController {
 	}
 
 	@GetMapping("/detalle/{id}")
-	public String detailsCategory(@PathVariable(value = "id") int id, Model model) {
+	public String update(@PathVariable(value = "id") int id, Model model) {
 		try {
 			Optional<Freelancers> freelancer = fS.listarId(id);
 			if (!freelancer.isPresent()) {
@@ -123,6 +124,7 @@ public class FreelancerController {
 			}
 
 		} catch (Exception e) {
+
 			model.addAttribute("error", e.getMessage());
 		}
 		return "/freelancer/update";
@@ -163,11 +165,11 @@ public class FreelancerController {
 			throws ParseException {
 
 		List<Freelancers> listaFreelancers;
-		freelancer.setNameFreelancers(freelancer.getNameFreelancers());
-		listaFreelancers = fS.findByName(freelancer.getNameFreelancers());
+		freelancer.setDniFreelancers(freelancer.getDniFreelancers());
+		listaFreelancers = fS.findByDNI(freelancer.getDniFreelancers());
 
 		if (listaFreelancers.isEmpty()) {
-			listaFreelancers = fS.findByNameFreelancersIgnoreCase(freelancer.getNameFreelancers());
+			listaFreelancers = fS.findByNameFreelancersIgnoreCase(freelancer.getDniFreelancers());
 		}
 		if (listaFreelancers.isEmpty()) {
 			model.put("mensaje", "No se encontró");
