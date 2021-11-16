@@ -101,3 +101,4 @@ public class TipoTrabajoController {
 			return "/tipotrabajo/listTipoTra";
 		}
 }
+//aaaa

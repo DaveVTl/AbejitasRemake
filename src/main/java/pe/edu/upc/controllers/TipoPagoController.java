@@ -100,4 +100,5 @@ public class TipoPagoController {
 			model.put("listTipoPagos", pS.list());
 			return "/tipopago/listTipoPago";
 		}
+		//aaaaa
 }

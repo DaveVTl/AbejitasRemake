@@ -174,7 +174,7 @@ public class FreelancerController {
 		}
 		model.put("listaFreelancers", listaFreelancers);
 		return "freelancer/find";
-
+//aaaaaa
 	}
 
 }
