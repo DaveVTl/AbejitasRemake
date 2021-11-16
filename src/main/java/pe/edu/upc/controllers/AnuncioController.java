@@ -87,8 +87,8 @@ public class AnuncioController {
 			return "redirect:/anuncio/list";
 		} else {
 			model.addAttribute("listaAnuncio", aC.list());
-			model.addAttribute("listaMypess", aC.list());
-			model.addAttribute("listaTipoTrabajo", aC.list());
+			model.addAttribute("listaMypes", aC.list());
+			model.addAttribute("listaTipoTrabajos", aC.list());
 			model.addAttribute("anuncio", objPro);
 			return "anuncio/anuncio";
 		}
