@@ -43,4 +43,9 @@ public class TipoTrabajoServiceImplement implements ITipoTrabajoService {
 	public void delete(int idtipo) {
 		tR.deleteById(idtipo);
 	}
+	@Override
+	public List<String[]> ttrabajoXord() {
+		// TODO Auto-generated method stub
+		return tR.ttrabajoXord();
+	}
 }

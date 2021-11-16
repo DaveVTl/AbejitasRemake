@@ -22,65 +22,32 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
-			</div>
-			<div class="col-3">
-				<h3>Registrar Review</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/reviews/save}" method="post"
-					th:object="${review}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idReview}"></input>
-					</div>
-					<label for="score">Calificación: </label>
-					<select
-						class="form-control" th:field="*{score.idScore}">
-						<option th:each="m: ${listaScores}" th:value="${m.idScore}"
-							th:text="${m.number}"
-							th:selected="(${m.idScore} == *{score.idScore})"></option>
-					</select>
+		<div class="content container">
 
-					<div class="form-group">
-						<label for="descripcion">Descripcion:</label> <input type="text"
-							required th:field="*{descripcionre}" class="form-control"
-							id="descripcion"></input>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('descripcionre')}"
-							th:errors="*{descripcionre}"></div>
-
-					</div>
-					
-					<label for="trabajo">Trabajo: </label>
-					<select
-						class="form-control" th:field="*{trabajo.idTrabajo}">
-						<option th:each="m: ${listaTrabajos}" th:value="${m.idTrabajo}"
-							th:text="${m.nameTrabajo}"
-							th:selected="(${m.idTrabajo} == *{trabajo.idTrabajo})"></option>
-					</select>
-					
-					<label for="trabajo">Freelancer: </label>
-					<select
-						class="form-control" th:field="*{freelancer.idFreelancers}">
-						<option th:each="m: ${listaFreelancers}" th:value="${m.idfreelancer}"
-							th:text="${m.nameFreelancers}"
-							th:selected="(${m.idFreelancers} == *{freelancer.idFreelancers})"></option>
-					</select>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/review/list" class="btn btn-light">Cancelar</a>
-				</form>
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
-				</div>
+			<div class="d-flex">
+				<h3 class="title-content">Reportes</h3>
+				
+			</div>	
+							<div class="creportes d-flex justify-content-around">
+								<div class="cproyecto ">
+									<h3 class="tproyecto ">Tipos de trabajo</h3>
+									<p class="dproyecto ">Lista de la cantidad de anuncios por tipo de trabajo</p>
+									<a class="lnikp " th:href="@{/tipotrabajo/reporte1}">Ver
+										Reporte</a>
+								</div>
+								
+							</div>
+							
+						
+			<div th:if="${mensaje}" class="alert alert-danger">
+				<p th:text="${mensaje}"></p>
 			</div>
-
 		</div>
-	</div>
 
+
+	</div>
 </div>
+
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

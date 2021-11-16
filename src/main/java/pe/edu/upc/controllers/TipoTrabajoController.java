@@ -100,5 +100,17 @@ public class TipoTrabajoController {
 			model.put("listTipoTrabajo", cT.list());
 			return "/tipotrabajo/listTipoTra";
 		}
+		
+		@RequestMapping("/reportes")
+		public String listReports()
+		{
+			return "reports/reportsv";
+		}
+		
+		@RequestMapping("/reporte1")
+		public String productosXimp(Map<String, Object> model) {
+			model.put("listTtrabajoxOrd", cT.ttrabajoXord());
+			return "reports/tipoxanuncio";
+		}
 }
 //aaaa

@@ -22,65 +22,37 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
-			</div>
-			<div class="col-3">
-				<h3>Registrar Review</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/reviews/save}" method="post"
-					th:object="${review}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idReview}"></input>
-					</div>
-					<label for="score">Calificación: </label>
-					<select
-						class="form-control" th:field="*{score.idScore}">
-						<option th:each="m: ${listaScores}" th:value="${m.idScore}"
-							th:text="${m.number}"
-							th:selected="(${m.idScore} == *{score.idScore})"></option>
-					</select>
+		<div class="container-fluid">
 
-					<div class="form-group">
-						<label for="descripcion">Descripcion:</label> <input type="text"
-							required th:field="*{descripcionre}" class="form-control"
-							id="descripcion"></input>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('descripcionre')}"
-							th:errors="*{descripcionre}"></div>
-
+					<div class="bg row">
+						<div class="content container">
+							<div class="cinforeport">
+								<h3 class="title-content">Productos por venta</h3>
+								<p class="inforeport">Lista de el total de veces que un
+									producto fue vendido</p>
+							</div>
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col" class="text-center">Tipo de trabajo</th>
+										<th scope="col" class="text-center">Anuncios</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="rep : ${listTtrabajoxOrd}">
+										<td class="text-center" th:text="${rep[0]}"></td>
+										<td class="text-center" th:text="${rep[1]}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					
-					<label for="trabajo">Trabajo: </label>
-					<select
-						class="form-control" th:field="*{trabajo.idTrabajo}">
-						<option th:each="m: ${listaTrabajos}" th:value="${m.idTrabajo}"
-							th:text="${m.nameTrabajo}"
-							th:selected="(${m.idTrabajo} == *{trabajo.idTrabajo})"></option>
-					</select>
-					
-					<label for="trabajo">Freelancer: </label>
-					<select
-						class="form-control" th:field="*{freelancer.idFreelancers}">
-						<option th:each="m: ${listaFreelancers}" th:value="${m.idfreelancer}"
-							th:text="${m.nameFreelancers}"
-							th:selected="(${m.idFreelancers} == *{freelancer.idFreelancers})"></option>
-					</select>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/review/list" class="btn btn-light">Cancelar</a>
-				</form>
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
 				</div>
-			</div>
 
-		</div>
+
 	</div>
-
 </div>
+
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

@@ -10,4 +10,5 @@ public Integer insert(TipoTrabajo tipo);
 List<TipoTrabajo> list();
 TipoTrabajo listarId(int idtipo);
 public void delete(int idtipo);
+public List<String[]> ttrabajoXord();
 }
