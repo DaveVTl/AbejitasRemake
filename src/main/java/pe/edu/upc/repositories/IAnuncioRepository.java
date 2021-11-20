@@ -12,4 +12,7 @@ public interface IAnuncioRepository extends JpaRepository<Anuncio, Integer>{
 	
 	@Query("select count (a.idAnuncio) from Anuncio a where a.idAnuncio=:name")	
 	public int FindMypeExists(@Param("name") int i);
+	
+	@Query("select count (a.nameAnuncio) from Anuncio a where a.nameAnuncio=:name")	
+	public int FindAnuncio(@Param("name") String name);
 }

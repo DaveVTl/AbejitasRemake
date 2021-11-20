@@ -23,52 +23,81 @@
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
-			</div>
-			<div class="col-3">
-				<h3>Registrar Mype</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/mype/save}" method="post"th:object="${mype}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idMype}"></input>
-							
+			
+				<div class="col-1">
+					<h3></h3>
+				</div>
+				<div class="col-3">
+					<h3>Registrar Mype</h3>
+				</div>
+				<div class="col-8 frm-registro">
+					<form th:action="@{/mype/save}" method="post"
+						th:object="${newMype}" enctype="multipart/form-data">
 						<div class="form-group">
-							<label for="nombre">Nombre Empresa:</label> <input type="text" required
-								th:field="*{nameEmpresaMype}" class="form-control" id="nameEmpresaMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameEmpresaMype')}"
-								th:errors="nameEmpresaMype"></div>
-							<label for="nombre">Ruc:</label> <input type="text" required
-								th:field="*{rucMype}" class="form-control" id="rucMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('rucMype')}"
-								th:errors="rucMype"></div>		
-							<label for="nombre">Nombre Gerente:</label> <input type="text" required
-								th:field="*{nameGerenteMype}" class="form-control" id="nameGerenteMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('nameGerenteMype')}"
-								th:errors="nameGerenteMype"></div>
-							<label for="nombre">Logo:</label> <input type="text" required
-								th:field="*{logoMype}" class="form-control" id="logoMype"></input>
-							<div class="alert alert-danger"
-								th:if="${#fields.hasErrors('logoMype')}"
-								th:errors="logoMype"></div>	
-							</div>
-						</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/mype/list" class="btn btn-light">Cancelar</a>
+							<label>ID:</label> <input type="text" class="form-control"
+								readonly th:field="*{idMype}"></input>
+								
+							<div class="form-group">
 
+
+								<div class="form-group">
+									<label for="nombre">Nombre Empresa:</label> <input type="text" required
+										th:field="*{nameEmpresaMype}" class="form-control" id="nombre"></input>
+								</div>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('nameEmpresaMype')}"
+									th:errors="*{nameEmpresaMype}"></div>
+
+								<div class="form-group">
+									<label for="ruc">RUC:</label> <input type="text" required
+										th:field="*{rucMype}" class="form-control" id="ruc"></input>
+								</div>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('rucMype')}"
+									th:errors="*{rucMype}"></div>
+
+								<div class="form-group">
+									<label for="descripcion">Nombre Gerente:</label> <input
+										type="text" required th:field="*{nameGerenteMype}"
+										class="form-control" id="descripcion"></input>
+								</div>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('nameGerenteMype')}"
+									th:errors="*{nameGerenteMype}"></div>
+
+								<div class="form-group">
+									<label for="fecha">Fecha Inscripcion:</label> <input type="text" required
+										th:field="*{fechaInscripcionMype}" class="form-control"
+										id="fecha"></input>
+								</div>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('fechaInscripcionMype')}"
+									th:errors="*{fechaInscripcionMype}"></div>
+							</div>
+
+							<div class="form-group">
+								<label for="file" class="">Logo:</label>
+								<div class="col-sm-6">
+									<input type="file" name="file" class="form-control"
+										th:text="${newMype.logoMype}" />
+								</div>
+
+							</div>
+
+						</div>
+						<button type="submit" class="btn btn-warning">Aceptar</button>
+						<a href="/mype/list" class="btn btn-light">Cancelar</a>
+			
 				</form>
+</div>
+</div>
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>
 				</div>
 			</div>
 
-		</div>
-	</div>
+		
+	
 
 
 	<script src="/js/popper.min.js"></script>

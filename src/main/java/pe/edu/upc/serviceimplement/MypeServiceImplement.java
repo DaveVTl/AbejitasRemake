@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import pe.edu.upc.entities.Freelancers;
 import pe.edu.upc.entities.Mype;
 import pe.edu.upc.repositories.IMypeRepository;
 import pe.edu.upc.serviceinterface.IMypeService;
@@ -18,9 +20,11 @@ public class MypeServiceImplement implements IMypeService{
 	private IMypeRepository mR;
 	
 	@Override
+	@Transactional
 	public Integer insert(Mype mype) {
-		int rpta=mR.FindMypeExists(mype.getRucMype());
-		if (rpta==0) {
+		
+		int rpta = mR.FindMypesExists(mype.getRucMype());
+		if (rpta == 0) {
 			mR.save(mype);
 		}
 		return rpta;
@@ -29,20 +33,36 @@ public class MypeServiceImplement implements IMypeService{
 	@Override
 	public List<Mype> list() {
 		// TODO Auto-generated method stub
-		return mR.findAll();
+		return mR.findAll(Sort.by(Sort.Direction.DESC, "nameEmpresaMype"));
 	}
 	
 	@Override
-	@Transactional(readOnly = true)
-	public Mype listarId(int idreview) {
-		Optional<Mype> op = mR.findById(idreview);
-		return op.isPresent() ? op.get() : new Mype();
+	public Optional<Mype> findById(int idCustomer) {
+		// TODO Auto-generated method stub
+		return mR.findById(idCustomer);
+	}
+
+	@Override
+	public List<Mype> findByName(String nameEmpresaMype) {
+		// TODO Auto-generated method stub
+		return mR.findByName(nameEmpresaMype);
+	}
+
+	
+	@Override
+	public List<Mype> findByNameEmpresaMypeIgnoreCase(String nameEmpresaMype){
+		return mR.findByNameEmpresaMypeIgnoreCase(nameEmpresaMype);
+	}
+	
+	@Override
+	public Optional<Mype> listarId(int id) {
+		// TODO Auto-generated method stub
+		return mR.findById(id);
 	}
 	
 	@Override
 	@Transactional
-	public void delete(int idreview) {
-		mR.deleteById(idreview);
+	public void delete(int idMype) {
+		mR.deleteById(idMype);
 	}
-	
 }

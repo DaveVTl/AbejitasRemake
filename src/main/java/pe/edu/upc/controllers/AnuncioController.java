@@ -18,7 +18,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Anuncio;
-import pe.edu.upc.entities.Reviews;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.ITipoTrabajoService;
@@ -28,11 +27,10 @@ import pe.edu.upc.serviceinterface.ITipoTrabajoService;
 @Controller
 @RequestMapping("/anuncio")
 public class AnuncioController {
-	
 	@Autowired
-	private IAnuncioService aC;
+	private IAnuncioService aR;
 	@Autowired
-	private IMypeService mService;
+	private IMypeService mS;
 	@Autowired
 	private ITipoTrabajoService tService;
 	
@@ -40,7 +38,7 @@ public class AnuncioController {
 	public String newAnuncio(Model model) {
 		model.addAttribute("anuncio", new Anuncio());
 		model.addAttribute("listaTipoTrabajos", tService.list());
-		model.addAttribute("listaMypes", mService.list());
+		model.addAttribute("listaMype", mS.list());
 		return "anuncio/anuncio";
 	}
 	
@@ -49,7 +47,7 @@ public class AnuncioController {
 	public String listAnuncio(Model model) {
 		try {
 			model.addAttribute("anuncio", new Anuncio());
-			model.addAttribute("listaAnuncios", aC.list());
+			model.addAttribute("listaAnuncio", aR.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
@@ -61,10 +59,10 @@ public class AnuncioController {
 			throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("listaTipoTrabajos", tService.list());
-			model.addAttribute("listaMypes", mService.list());
+			model.addAttribute("listaMype", mS.list());
 			return "anuncio/anuncio";
 		} else {
-			int rpta = aC.insert(anuncio);
+			int rpta = aR.insert(anuncio);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
 				return "anuncio/anuncio";
@@ -81,17 +79,33 @@ public class AnuncioController {
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
-		Anuncio objPro = aC.listarId(id);
+		Anuncio objPro = aR.listarId(id);
 		if (objPro == null) {
 			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
 			return "redirect:/anuncio/list";
 		} else {
-			model.addAttribute("listaAnuncio", aC.list());
-			model.addAttribute("listaMypes", aC.list());
-			model.addAttribute("listaTipoTrabajos", aC.list());
+			model.addAttribute("listaAnuncio", aR.list());
+			model.addAttribute("listaMype", mS.list());
+			model.addAttribute("listaTipoTrabajos", tService.list());
 			model.addAttribute("anuncio", objPro);
 			return "anuncio/anuncio";
 		}
+	}
+	
+	@GetMapping(value = "/view/{id}")
+	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+
+		Anuncio anuncio= aR.listarId(id);
+
+		if (anuncio == null) {
+			flash.addFlashAttribute("error", "El trabajo no existe en la base de datos");
+			return "anuncio/listAnuncio";
+		}
+
+		model.put("anuncio", anuncio);
+		model.put("titulo", "Detalle de Anuncio: " + anuncio.getNameAnuncio());
+
+		return "anuncio/ver";
 	}
 	
 	@Secured({"ROLE_MYPE"})
@@ -99,7 +113,7 @@ public class AnuncioController {
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
 			if (id != null && id > 0) {
-				aC.delete(id);
+				aR.delete(id);
 				model.put("mensaje", "Se eliminó correctamente");
 
 			}
@@ -107,7 +121,7 @@ public class AnuncioController {
 			System.out.println(e.getMessage());
 			model.put("mensaje", "No se puede eliminar un review");
 		}
-		model.put("listAnuncio", aC.list());
+		model.put("listAnuncio", aR.list());
 
 		return "/anuncio/listAnuncio";
 	}

@@ -8,8 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "Mypes")
@@ -18,28 +17,43 @@ public class Mype {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMype;
+	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
+	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
 	@Column(name = "nameEmpresaMype", length = 35, nullable=false)
 	private String nameEmpresaMype;
-	@Column(name = "rucMype", length = 35, nullable=false)
+	
+	@Pattern(regexp = "[0-9]{11}", message = "Escriba un RUC valido")
+	@Column(name = "rucMype", length = 11, nullable=false)
 	private String rucMype;
-	@Column(name = "nameGerenteMype", length = 40, nullable=false)
+	
+	@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto")
+	@Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros")
+	@Column(name = "nameGerenteMype", length = 255, nullable=false)
 	private String nameGerenteMype;
-	@Column(name = "logoMype", length = 40, nullable=false)
+	
+	@Column(name = "logoMype", nullable = true)
 	private String logoMype;
 	
+	private Date fechaInscripcionMype;
+
 	public Mype() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Mype(int idMype, String nameEmpresaMype, String rucMype, String nameGerenteMype, String logoMype,
-			Date dateInscripcion) {
+	public Mype(int idMype,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameEmpresaMype,
+			@Pattern(regexp = "[0-9]{11}", message = "Escriba un RUC valido") String rucMype,
+			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameGerenteMype,
+			String logoMype, Date fechaInscripcionMype) {
 		super();
 		this.idMype = idMype;
 		this.nameEmpresaMype = nameEmpresaMype;
 		this.rucMype = rucMype;
 		this.nameGerenteMype = nameGerenteMype;
 		this.logoMype = logoMype;
+		this.fechaInscripcionMype = fechaInscripcionMype;
 	}
 
 	public int getIdMype() {
@@ -82,4 +96,14 @@ public class Mype {
 		this.logoMype = logoMype;
 	}
 
+	public Date getFechaInscripcionMype() {
+		return fechaInscripcionMype;
+	}
+
+	public void setFechaInscripcionMype(Date fechaInscripcionMype) {
+		this.fechaInscripcionMype = fechaInscripcionMype;
+	}
+	
+	
+	
 }

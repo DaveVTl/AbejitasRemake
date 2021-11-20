@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Anuncio;
+import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.repositories.IAnuncioRepository;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 
@@ -43,6 +44,13 @@ public class AnuncioServiceImplement implements IAnuncioService{
 	@Transactional
 	public void delete(int idreview) {
 		aR.deleteById(idreview);
+	}
+	
+	@Override
+	@Transactional
+	public Optional<Anuncio> findById(int id) {
+		return aR.findById(id);
+
 	}
 	
 }
