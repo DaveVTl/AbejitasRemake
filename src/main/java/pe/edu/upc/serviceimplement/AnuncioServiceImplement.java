@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Anuncio;
-import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.repositories.IAnuncioRepository;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 
@@ -51,6 +50,23 @@ public class AnuncioServiceImplement implements IAnuncioService{
 	public Optional<Anuncio> findById(int id) {
 		return aR.findById(id);
 
+	}
+	
+	@Override
+	public List<Anuncio> fetchAnuncioByName(String name) {
+		return aR.fetchAnuncioByName(name);
+
+	}
+	@Override
+	public List<Anuncio> fetchAnuncioByTrabajoName(String nameTrabajo) {
+		// TODO Auto-generated method stub
+		return aR.findAnuncioByNameTrabajo(nameTrabajo);
+	}
+
+	
+	@Override
+	public List<Anuncio> findByNameAnuncioIgnoreCase(String nameFreelancers){
+		return aR.findByNameAnuncioIgnoreCase(nameFreelancers);
 	}
 	
 }

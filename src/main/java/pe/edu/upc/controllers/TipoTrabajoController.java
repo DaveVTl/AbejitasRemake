@@ -112,5 +112,6 @@ public class TipoTrabajoController {
 			model.put("listTtrabajoxOrd", cT.ttrabajoXord());
 			return "reports/tipoxanuncio";
 		}
+		
 }
 //aaaa

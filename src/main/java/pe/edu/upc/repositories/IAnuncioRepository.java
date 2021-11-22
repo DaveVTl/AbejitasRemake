@@ -1,5 +1,7 @@
 package pe.edu.upc.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +17,14 @@ public interface IAnuncioRepository extends JpaRepository<Anuncio, Integer>{
 	
 	@Query("select count (a.nameAnuncio) from Anuncio a where a.nameAnuncio=:name")	
 	public int FindAnuncio(@Param("name") String name);
+	
+	//cuy
+	
+	@Query("select a from Anuncio a where a.nameAnuncio like %?1%")
+	List<Anuncio> fetchAnuncioByName(String nameAnuncio);
+	
+	@Query("select a from Anuncio a where a.tipoTrabajo.nombreTrabajo like %?1%")
+	public List<Anuncio> findAnuncioByNameTrabajo(String nameTrabajo);
+	
+	List<Anuncio> findByNameAnuncioIgnoreCase(String name);
 }

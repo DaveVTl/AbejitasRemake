@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import pe.edu.upc.entities.Anuncio;
 
+
+
 public interface IAnuncioService {
 	public Integer insert(Anuncio anuncio);
 
@@ -15,5 +17,10 @@ public interface IAnuncioService {
 	Optional<Anuncio> findById(int idAnuncio);
 
 	public void delete(int id);
+	
+	List<Anuncio> findByNameAnuncioIgnoreCase(String name);
+	
+	List<Anuncio> fetchAnuncioByName(String nameAnuncio);
+	public List<Anuncio> fetchAnuncioByTrabajoName(String nameTrabajo);
 	
 }
