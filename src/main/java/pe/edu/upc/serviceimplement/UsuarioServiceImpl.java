@@ -2,13 +2,14 @@ package pe.edu.upc.serviceimplement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import pe.edu.upc.entities.Rol;
 import pe.edu.upc.entities.Usuario;
-import pe.edu.upc.repositories.RoleRepository;
 import pe.edu.upc.repositories.UserRepository;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
@@ -52,12 +53,24 @@ public class UsuarioServiceImpl implements IUsuarioService{
 		return rpta;
 	}
 	
+	@Override
+	public Optional<Usuario> findById(int idUser) {
+		// TODO Auto-generated method stub
+		return uR.findById(idUser);
+	}
+
 	
 
 	@Override
 	public List<Usuario> list() {
 		// TODO Auto-generated method stub
 		return uR.findAll();
+	}
+
+	@Override
+	public Usuario findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return uR.findByUsername(username);
 	}
 	
 }
