@@ -163,16 +163,16 @@ background: linear-gradient(to right, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+
 
 }
 
-#panel {
+#panel{
 	height: 100vh;
 	width: 20%;
 	position: fixed;
 	left: 0;
-	background: #4e54c8;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: rgb(37, 37, 37);  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, rgb(77, 77, 77), rgb(37, 37, 37));  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, rgb(77, 77, 77), rgb(37, 37, 37)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-	z-index: 100;
+	z-index: 200;
 }
 
 #cpanel1head {
@@ -198,8 +198,45 @@ background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, F
 	transform: translate(-75%, 0px);
 }
 
+#panel{
+	height: 100vh;
+	width: 20%;
+	position: fixed;
+	left: 0;
+	background: rgb(37, 37, 37);  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, rgb(77, 77, 77), rgb(37, 37, 37));  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, rgb(77, 77, 77), rgb(37, 37, 37)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	z-index: 200;
+}
+
+#cpanel1head {
+	padding: 20px 10px;
+}
+
+#titulopanel {
+	font-size: 25px;
+	font-weight: bold;
+	padding: 0px;
+	height: auto;
+	color: white;
+}
+
+#iconpanel {
+	font-size: 28px;
+	padding: 0px;
+	height: auto;
+	cursor:pointer;
+		color: white;
+}
+
+.activepanel{
+	transition: 1s;
+	transform: translate(-75%, 0px);
+}
+
 #panel {
-	box-shadow: 2px 0px 25px rgba(44, 44, 44, 0.466);
+	box-shadow: 2px 0px 25px ;
 	transition: 1s;
 }
 
@@ -210,16 +247,20 @@ background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, F
 
 #cpanelbody {
 	margin: 5vh 0px;
+	display:inline;
 }
 
 .panelitem a {
+	display:inline;
 	width: 45px;
+	color: white;
 }
 
 .panelitem {
-	display: flex;
+	display:flex;
 	margin-bottom: 3vh;
 	padding: 0px 10%;
+	color: white;
 }
 
 .panelitem a, p {
@@ -234,6 +275,7 @@ background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, F
 	margin-right: 15px;
 }
 
+
 .bg {
 	width: 100%;
 	height: 100vh;
@@ -242,14 +284,13 @@ background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, F
 }
 
 .topbar {
-	background: #FDC830;  
-	background: -webkit-linear-gradient(to left, #F37335, #FDC830);  
-	background: linear-gradient(to left, #F37335, #FDC830); 
+	background:rgb(37, 37, 37);
 	width: 100%;
 	height: 10vh;
 	margin: 0px;
 	padding: 0px;
 }
+
 
 .topbar h2 {
 	margin-top: 20px;

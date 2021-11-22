@@ -28,8 +28,8 @@
 
 						<label for=fre>Buscar:</label>
 						<div class="col-sm-12">
-							<input type="text" class="form-control" th:field="*{nameFreelancers}" id="fre"
-								placeholder="Ingrese nombre del Freelancer"></input>
+							<input type="text" class="form-control" th:field="*{nameFreelancers}" required id="fre"
+								placeholder="Ingrese nombre del Freelancer" ></input>
 							<div align="right">
 								<button type="submit" class="btn btn-danger">Buscar</button>
 								<a href="/freelancers/listFind" class="btn btn-dark">Cancelar</a>

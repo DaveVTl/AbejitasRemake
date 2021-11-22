@@ -166,6 +166,7 @@ public class FreelancerController {
 		freelancer.setNameFreelancers(freelancer.getNameFreelancers());
 		listaFreelancers = fS.findByName(freelancer.getNameFreelancers());
 
+		
 		if (listaFreelancers.isEmpty()) {
 			listaFreelancers = fS.findByNameFreelancersIgnoreCase(freelancer.getNameFreelancers());
 		}
