@@ -25,7 +25,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 				.antMatchers("/", "/css/**", "/js/**", "/img/**", "/login/**",
-						"/freelancers/new", "/freelancers/save", "/mype/new", "/mype/save")
+						"/freelancers/new", "/freelancers/save", "/mype/new", "/mype/save", "/freelancers/prere")
 				.permitAll().anyRequest().authenticated().and().formLogin().permitAll().loginPage("/login").permitAll()
 				.and().logout().permitAll().and().exceptionHandling().accessDeniedPage("/error");
 	}

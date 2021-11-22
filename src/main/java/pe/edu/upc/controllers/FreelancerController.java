@@ -147,6 +147,11 @@ public class FreelancerController {
 		return "/freelancer/detail";
 	}
 
+	@GetMapping("/prere")
+	public String prere() {
+		return "/preregistro";
+	}
+	
 	@GetMapping("/listFind")
 	public String listFreelancersFind(Model model) {
 		try {

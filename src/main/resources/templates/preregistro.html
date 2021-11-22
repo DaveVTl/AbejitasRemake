@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registro</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap');
+
+		body {
+			margin: 0;
+			font-family: 'Roboto Condensed', sans-serif;
+		}
+
+		.container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			background: url(bg.jpg) center;
+			background-size: cover;
+			height: 100vh;
+		}
+
+
+
+		.left {
+			background-image: url('../img/mypeyaO.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+			opacity: 0.9;
+			background-attachment: fixed;
+			backdrop-filter: blur(2px);
+			display: flex;
+			place-items: center;
+			justify-content: center;
+			text-align: center;
+
+		}
+
+		.left:hover {
+			opacity: 1.25;
+
+		}
+
+
+		.left h1 {
+			color: white;
+			font-size: 50px;
+		}
+
+		.left p {
+			color: white;
+			font-size: 20px;
+		}
+
+		.left a {
+			border-radius: 25px;
+			border: 1px solid white;
+			text-decoration: none;
+			padding: 10px 50px;
+			transition: background 1s;
+			color: white
+		}
+
+		.left a:hover {
+			background: white;
+			color: blue
+		}
+
+		@media (max-width:900px) {
+			.container {
+				grid-template-columns: 3fr 1fr;
+			}
+		}
+
+		.right {
+			background-image: url('../img/ultimitoO.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+			opacity: 0.9;
+			background-attachment: fixed;
+			backdrop-filter: blur(2px);
+			display: flex;
+			place-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+
+		.right:hover {
+			opacity: 1.25;
+
+		}
+
+		.right h1 {
+			color: white;
+			font-size: 50px;
+		}
+
+		.right p {
+			color: white;
+			font-size: 20px;
+		}
+
+		.right a {
+			border-radius: 25px;
+			border: 1px solid white;
+			text-decoration: none;
+			padding: 10px 50px;
+			transition: background 1s;
+			color: white
+		}
+
+		.right a:hover {
+			background: white;
+			color: blue
+		}
+
+		.circulo {
+			position: fixed;
+			width: 200px;
+			height: 200px;
+			background-color: white;
+			border-radius: 100%;
+		}
+
+		.circulo>.imagen {
+			width: 100%;
+			height: 100%;
+			border-radius: 100%;
+		}
+	</style>
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+
+</head>
+
+<body style="background-color:black;">
+	<div class="container">
+		<div class="left">
+			<div class="blur">
+				<h1>MYPE</h1>
+				<p>Registrate aqui si eres Mype</p>
+				<a th:href="@{/login/new}">ENTER</a>
+			</div>
+		</div>
+		<div class="right">
+			<div class="blur">
+				<h1>FREELANCER</h1>
+				<p>Registrate aqui si eres Freelancer</p>
+				<a th:href="@{/login/newfree}">ENTER</a>
+			</div>
+		</div>
+
+	</div>
+	<button onclick="goBack()">Vuelveme</button>
+</body>
+
+</html>
