@@ -13,10 +13,31 @@
 	<link rel="stylesheet" href="/css/dive.css">
 </head>
 
+<style>
+	.h5 {
+		width: 200px;
+		height: 200px;
+		background-color: white;
+		border-radius: 100%;
+	}
 
-<body>
+	.fondito {
+		background-image: url('../img/fondows.gif');
+		font-family: 'Roboto', sans-serif;
+		font-size: 20px;
+		background-repeat: no-repeat;
+		height:100vh;
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+	}
+	
+	
+</style>
 
-	<div class="bg row">
+<body >
+
+	<div class="fondito">
 		<div class="content container row col-12">
 
 			<div class="col-1">
@@ -24,87 +45,87 @@
 			<div class="col-3">
 				<h3>Registro Usuarios</h3>
 			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/mype/save}" method="post" th:object="${newMype}" enctype="multipart/form-data">
+
+			<form th:action="@{/mype/save}" method="post" th:object="${newMype}" enctype="multipart/form-data">
+				<div class="form-group">
+					<label >ID:</label> <input type="text" class="form-control" readonly
+						th:field="*{usuario.id}"></input>
+
+					<div >
+						<label  for="username">Username:</label> <input style="color:black" type="text" required
+							th:field="*{usuario.username}" class="form-control" id="username"></input>
+					</div>
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.username')}"
+						th:errors="*{usuario.username}"></div>
 					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control" readonly
-							th:field="*{usuario.id}"></input>
+						<label  for="password">Password:</label> <input type="password" required
+							th:field="*{usuario.password}" class="form-control" id="password"></input>
+					</div>
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.password')}"
+						th:errors="*{usuario.password}"></div>
+					<div class="form-group">
+						<label  for="name">Estado:</label>
+						<div class="col-sm-6">
 
-						<div class="form-group">
-							<label for="username">Username:</label> <input type="text" required th:field="*{usuario.username}"
-								class="form-control" id="username"></input>
-						</div>
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.username')}"
-							th:errors="*{username}"></div>
-						<div class="form-group">
-							<label for="password">Password:</label> <input type="password" required
-								th:field="*{usuario.password}" class="form-control" id="password"></input>
-						</div>
-						<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.password')}"
-							th:errors="*{usuario.password}"></div>
-						<div class="form-group">
-							<label for="name" class="col-sm-2 col-form-label">Estado:</label>
-							<div class="col-sm-6">
-
-								<input type="checkbox" th:field="*{usuario.enabled}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
-									th:if="${#fields.hasErrors('usuario.enabled')}" th:errors="{usuario.enabled}"></small>
-							</div>
+							<input type="checkbox" th:field="*{usuario.enabled}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+								th:if="${#fields.hasErrors('usuario.enabled')}" th:errors="{usuario.enabled}"></small>
 						</div>
 					</div>
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control" readonly
-							th:field="*{idMype}"></input>
-
-						<div class="form-group">
-
-
-							<div class="form-group">
-								<label for="nombre">Nombre Empresa:</label> <input type="text" required
-									th:field="*{nameEmpresaMype}" class="form-control" id="nombre"></input>
-							</div>
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('nameEmpresaMype')}"
-								th:errors="*{nameEmpresaMype}"></div>
-
-							<div class="form-group">
-								<label for="ruc">RUC:</label> <input type="text" required th:field="*{rucMype}"
-									class="form-control" id="ruc"></input>
-							</div>
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('rucMype')}"
-								th:errors="*{rucMype}"></div>
-
-							<div class="form-group">
-								<label for="descripcion">Nombre Gerente:</label> <input type="text" required
-									th:field="*{nameGerenteMype}" class="form-control" id="descripcion"></input>
-							</div>
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('nameGerenteMype')}"
-								th:errors="*{nameGerenteMype}"></div>
-
-							<div class="form-group">
-								<label for="fecha">Fecha Inscripcion:</label> <input type="text" required
-									th:field="*{fechaInscripcionMype}" class="form-control" id="fecha"></input>
-							</div>
-							<div class="alert alert-danger" th:if="${#fields.hasErrors('fechaInscripcionMype')}"
-								th:errors="*{fechaInscripcionMype}"></div>
-						</div>
-
-						<div class="form-group">
-							<label for="file" class="">Logo:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control" th:text="${newMype.logoMype}" />
-							</div>
-
-						</div>
-
-					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="@{/login}" class="btn btn-light">Cancelar</a>
-
-				</form>
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
 				</div>
+				<div class="form-group">
+					<label>ID:</label> <input type="text" class="form-control" readonly
+						th:field="*{idMype}"></input>
+
+					<div class="form-group">
+
+
+						<div class="form-group">
+							<label  for="nombre">Nombre Empresa:</label> <input type="text" required
+								th:field="*{nameEmpresaMype}" class="form-control" id="nombre"></input>
+						</div>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nameEmpresaMype')}"
+							th:errors="*{nameEmpresaMype}"></div>
+
+						<div class="form-group">
+							<label  for="ruc">RUC:</label> <input type="text" required
+								th:field="*{rucMype}" class="form-control" id="ruc"></input>
+						</div>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('rucMype')}" th:errors="*{rucMype}">
+						</div>
+
+						<div class="form-group">
+							<label  for="descripcion">Nombre Gerente:</label> <input type="text"
+								required th:field="*{nameGerenteMype}" class="form-control" id="descripcion"></input>
+						</div>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('nameGerenteMype')}"
+							th:errors="*{nameGerenteMype}"></div>
+
+						<div class="form-group">
+							<label  for="fecha">Fecha Inscripcion:</label> <input type="text"
+								required th:field="*{fechaInscripcionMype}" class="form-control" id="fecha"></input>
+						</div>
+						<div class="alert alert-danger" th:if="${#fields.hasErrors('fechaInscripcionMype')}"
+							th:errors="*{fechaInscripcionMype}"></div>
+					</div>
+
+					<div class="form-group">
+						<label  for="file">Logo:</label>
+						<div class="col-sm-6">
+							<input type="file" name="file" class="form-control" th:text="${newMype.logoMype}" />
+						</div>
+
+					</div>
+
+				</div>
+				<button type="submit" class="btn btn-warning">Aceptar</button>
+				<a href="@{/login}" class="btn btn-light">Cancelar</a>
+
+			</form>
+			<div th:if="${mensaje}" class="alert alert-danger">
+				<p th:text="${mensaje}"></p>
 			</div>
+
 
 		</div>
 	</div>

@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Freelancer")
 public class Freelancers {
@@ -38,6 +40,7 @@ public class Freelancers {
 	@Column(name = "fotoFreelancers", nullable = true)
 	private String fotoFreelancers;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaInscripcionFreelancers;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -48,6 +51,7 @@ public class Freelancers {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public Freelancers(int idFreelancers,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
 			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
@@ -63,6 +67,7 @@ public class Freelancers {
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 		this.usuario = usuario;
 	}
+
 
 	public int getIdFreelancers() {
 		return idFreelancers;

@@ -12,11 +12,29 @@
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/dive.css">
 </head>
+<style>
+	.h5 {
+		width: 200px;
+		height: 200px;
+		background-color: white;
+		border-radius: 100%;
+	}
 
+	.fondito {
+		background-image: url('../img/fondows.gif');
+		font-family: 'Roboto', sans-serif;
+		font-size: 20px;
+		background-repeat: no-repeat;
+		height: 100vh;
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+	}
+</style>
 
 <body>
 
-	<div class="bg row">
+	<div class="fondito">
 		<div class="content container row col-12">
 
 			<div class="col-1">
@@ -28,13 +46,14 @@
 				<form th:action="@{/freelancers/save}" method="post" th:object="${newFreelancer}"
 					enctype="multipart/form-data">
 					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control" readonly th:field="*{usuario.id}"></input>
+						<label>ID:</label> <input type="text" class="form-control" readonly
+							th:field="*{usuario.id}"></input>
 
 						<div class="form-group">
 
 
-							<label for="username">Username:</label> <input type="text" required th:field="*{usuario.username}"
-								class="form-control" id="username"></input>
+							<label for="username">Username:</label> <input style="color:black" type="text" required
+								th:field="*{usuario.username}" class="form-control" id="username"></input>
 						</div>
 						<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.username')}"
 							th:errors="*{usuario.username}"></div>
@@ -50,7 +69,8 @@
 
 								<input type="checkbox" th:field="*{usuario.enabled}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
-									th:if="${#fields.hasErrors('usuario.enabled')}" th:errors="{usuario.enabled}"></small>
+									th:if="${#fields.hasErrors('usuario.enabled')}"
+									th:errors="{usuario.enabled}"></small>
 							</div>
 						</div>
 
@@ -92,9 +112,13 @@
 							<div class="alert alert-danger" th:if="${#fields.hasErrors('CVFreelancers')}"
 								th:errors="*{CVFreelancers}"></div>
 
+
+
+
 							<div class="form-group">
-								<label for="fecha">FECHA:</label> <input type="text" required
-									th:field="*{fechaInscripcionFreelancers}" class="form-control" id="fecha"></input>
+								<input id="date" type="date" name="trip-start" th:field="*{fechaInscripcionFreelancers}"/>
+								
+
 							</div>
 							<div class="alert alert-danger" th:if="${#fields.hasErrors('fechaInscripcionFreelancers')}"
 								th:errors="*{fechaInscripcionFreelancers}"></div>
