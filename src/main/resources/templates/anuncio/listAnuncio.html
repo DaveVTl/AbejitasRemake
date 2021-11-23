@@ -44,9 +44,12 @@
 							<br>
 							<a class="btn btn-primary" th:href="@{'/anuncio/detail/' + ${anu.idAnuncio}}"
 								role="button">Ver Anuncio</a>
-							<a class="btn btn-primary" th:href="@{'/anuncio/delete/'}"
+							<a class="btn btn-primary" th:href="@{'/anuncio/delete/' + ${anu.idAnuncio}}"
 								role="button">Eliminar</a>
-
+							<br>
+							<br>
+							<a class="btn btn-primary" th:href="@{'/anuncio/update/' + ${anu.idAnuncio}}"
+								role="button">Modificar</a>
 							<br>
 							<br>
 							<br>

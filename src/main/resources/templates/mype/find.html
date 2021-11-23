@@ -28,10 +28,10 @@
 
 						<label for=fre>Buscar:</label>
 						<div class="col-sm-12">
-							<input type="text" class="form-control" th:field="*{nameEmpresaMype}" id="myp"
-								placeholder="Ingrese nombre del Mype"></input>
+							<input type="text" class="form-control" th:field="*{nameEmpresaMype}" required id="m"
+								placeholder="Ingrese Mype" ></input>
 							<div align="right">
-								<button type="submit" class="btn btn-danger">Buscar</button>
+								<button type="submit" class="btn btn-dark">Buscar</button>
 								<a href="/mype/listFind" class="btn btn-dark">Cancelar</a>
 							</div>
 						</div>
@@ -42,28 +42,34 @@
 			</div>
 
 			<div class="row pt-5">
-				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="free : ${listaMype}">
+				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="myp : ${listaMype}">
 					<div class="row">
 						<div class="col-lg-5 col-md-6 col-sm-6 col-6">
 							<img style="border-radius: 20px" ; class="img-fluid"
 								th:if="${#strings.length(myp.logoMype)> 0}"
 								th:src="@{'/mype/uploads/' + ${myp.logoMype}}"
-								th:alt="${fmyp.logoMype}">
+								th:alt="${myp.logoMype}">
 						</div>
 						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
-							<h5 th:text=" ${myp.nameEmpresaMype}">Nombre Empresa</h5>
-							<small>DISPONIBLE</small>
+							<h5 th:text=" ${myp.nameEmpresaMype}">Name</h5>
+							Gerente
 							<p th:text=" ${myp.nameGerenteMype}">Nombre Gerente</p>
-							<span><i class="fas fa-star"> 4,8 (745)</i></span>
-							<a class="btn btn-primary" th:href="@{'/mype/detail/' + ${myp.idMype}}"
+							RUC
+							<p th:text=" ${myp.rucMype}">Ruc Empresa</p>
+							<br>
+							<a class="btn btn-dark" th:href="@{'/mype/detail/' + ${myp.idMype}}"
 								role="button">VerPerfil</a>
-							<a class="btn btn-primary" th:href="@{'/mype/detalle/' + ${myp.idMype}}"
-								role="button">Editar</a>
+								
+							<a class="btn btn-dark" th:href="@{'/mype/delete/' + ${myp.idMype}}"
+								role="button">Eliminar</a>
+							<br>
+							<br>
+							<a class="btn btn-dark" th:href="@{'/mype/detalle/' + ${myp.idMype}}"
+								role="button">Modificar</a>
 							<br>
 							<br>
 							<br>
 							<br>
-						</div>
 					</div>
 
 				</div>

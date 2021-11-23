@@ -28,23 +28,23 @@
 				<h3>Actualizar Mype</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<div th:object="${freelancer}" th:remove="tag">
+				<div th:object="${mype}" th:remove="tag">
 					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
 						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 					</ul>
 				</div>
-				<form th:action="@{/freelancers/save}" method="post" th:object="${mype}"
+				<form th:action="@{/mype/save}" method="post" th:object="${mype}"
 					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="id" class="col-sm-2 col-form-label">Id</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{idFreelancers}" class="form-control" readonly
+							<input type="text" th:field="*{idMype}" class="form-control" readonly
 								th:errorclass="'form-control alert-success'" /> <small class="form-text text-success"
 								th:if="${#fields.hasErrors('idMype')}" th:errors="*{idMype}"></small>
 							<div class="form-group">
 
 
-								<label for="name" class="col-sm-2 col-form-label">Nombre Empresa</label>
+								<label for="name" class="col-sm-2 col-form-label">Nombre Mype</label>
 								<div class="col-sm-6">
 									<input type="text" th:field="*{nameEmpresaMype}" class="form-control"
 										th:errorclass="'form-control alert-danger'" /> <small
@@ -53,16 +53,15 @@
 								</div>
 
 								<div class="form-group">
-									<label for="ruc">Ruc:</label> <input type="text" required
+									<label for="ruc">RUC:</label> <input type="text" required
 										th:field="*{rucMype}" class="form-control" id="ruc"></input>
 								</div>
 								<div class="alert alert-danger" th:if="${#fields.hasErrors('rucMype')}"
 									th:errors="*{rucMype}"></div>
 
 								<div class="form-group">
-									<label for="descripcion">Nombre Gerente:</label> <input type="text" required
-										th:field="*{nameGerenteMype}" class="form-control"
-										id="descripcion"></input>
+									<label for="Gerente">Nombre Gerente:</label> <input type="text" required
+										th:field="*{nameGerenteMype}" class="form-control"id="Gerente"></input>
 								</div>
 								<div class="alert alert-danger" th:if="${#fields.hasErrors('nameGerenteMype')}"
 									th:errors="*{nameGerenteMype}"></div>
@@ -80,7 +79,7 @@
 
 
 							<div class="form-group">
-								<label for="file" class="">FOTO:</label>
+								<label for="file" class="">Logo:</label>
 								<div class="col-sm-6">
 									<input type="file" name="file" class="form-control"
 										th:text="${mype.logoMype}" />

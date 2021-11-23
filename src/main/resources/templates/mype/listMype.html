@@ -20,12 +20,11 @@
 	<div class="fondito">
 
 
+			
 		<div class="content container">
-
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Mypes</h3>
-				<a th:href="@{/mype/new}" class="btn btn-warning">Nuevo</a>
-				<a th:href="@{/mype/listFind}" class="btn btn-warning">Buscar</a>
+				<a th:href="@{/mype/listFind}" class="btn btn-dark">Buscar Mype</a>
 			</div>
 
 			<div class="row pt-5">
@@ -39,15 +38,18 @@
 						</div>
 						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
 							<h5 th:text=" ${myp.nameEmpresaMype}">Name</h5>
-							Gerente
+							Gerente:
 							<p th:text=" ${myp.nameGerenteMype}">Nombre Gerente</p>
-							RUC
+							RUC:
 							<p th:text=" ${myp.rucMype}">Ruc Empresa</p>
 							<br>
-							<a class="btn btn-primary" th:href="@{'/mype/detail/' + ${myp.idMype}}"
+							<a class="btn btn-dark" th:href="@{'/mype/detail/' + ${myp.idMype}}"
 								role="button">VerPerfil</a>
-								
-							<a class="btn btn-primary" th:href="@{'/mype/delete/' + ${myp.idMype}}"
+								<a class="btn btn-dark" th:href="@{'/mype/detalle/' + ${myp.idMype}}"
+								role="button">Modificar</a>
+							<br>
+							<br>
+							<a class="btn btn-dark" th:href="@{'/mype/delete/' + ${myp.idMype}}"
 								role="button">Eliminar</a>
 							<br>
 							<br>

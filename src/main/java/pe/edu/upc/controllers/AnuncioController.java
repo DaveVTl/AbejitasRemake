@@ -23,7 +23,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Anuncio;
-
+import pe.edu.upc.entities.Mype;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.ITipoTrabajoService;
@@ -136,21 +136,24 @@ public class AnuncioController {
 		return "/anuncio/detail";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
+	@RequestMapping("/delete/{id}")
+	public String delete(@PathVariable(value = "id") int id, Model model) {
 		try {
-			if (id != null && id > 0) {
-				aR.delete(id);
-				model.put("mensaje", "Se eliminó correctamente");
+			Optional<Anuncio> anuncio = aR.findById(id);
 
+			if (!anuncio.isPresent()) {
+				model.addAttribute("info", "Anuncio no existe");
+				return "redirect:/anuncio/listAnuncio";
+			} else {
+				aR.delete(id);
 			}
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			model.put("mensaje", "No se puede eliminar un review");
 		}
-		model.put("listAnuncio", aR.list());
 
-		return "/anuncio/listAnuncio";
+		return "/anuncio/list";
 	}
+
 	
 }

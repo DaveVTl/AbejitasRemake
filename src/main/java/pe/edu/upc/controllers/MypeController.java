@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.edu.upc.entities.Avances;
 import pe.edu.upc.entities.Freelancers;
 import pe.edu.upc.entities.Mype;
+import pe.edu.upc.entities.TipoTrabajo;
 import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
@@ -158,22 +159,21 @@ public class MypeController {
 
 			if (!mype.isPresent()) {
 				model.addAttribute("info", "Mype no existe");
-				return "redirect:/mype/listMype";
+				return "redirect:/mype/list";
 			} else {
 				mC.delete(id);
 			}
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
-		return "/mype/list";
+		return "redirect:/mype/list";
 	}
+	
 
 	@GetMapping("/listFind")
 	public String listMypeFind(Model model) {
 		try {
-			model.addAttribute("mype", new Freelancers());
+			model.addAttribute("mype", new Mype());
 			model.addAttribute("listaMype", mC.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
