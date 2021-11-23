@@ -14,6 +14,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,7 @@ import pe.edu.upc.entities.Freelancers;
 import pe.edu.upc.entities.Mype;
 import pe.edu.upc.entities.TipoTrabajo;
 import pe.edu.upc.entities.Trabajo;
+import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
 
@@ -44,10 +46,14 @@ public class MypeController {
 	@Autowired
 	private IUploadFileService uploadFileService;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@GetMapping("/new")
 	public String newMype(Model model) {
+		model.addAttribute("usuario", new Usuario());
 		model.addAttribute("newMype", new Mype());
-		return "mype/mype";
+		return "/registro";
 	}
 	
 	@GetMapping("/list")
@@ -82,7 +88,7 @@ public class MypeController {
 			Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			return "mype/mype";
+			return "/registro";
 		} else {
 			if (!foto.isEmpty()) {
 
@@ -102,18 +108,19 @@ public class MypeController {
 				flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
 				newMype.setLogoMype(uniqueFilename);
 			}
-
+			String bcryptPassword = passwordEncoder.encode(newMype.getUsuario().getPassword());
+			newMype.getUsuario().setPassword(bcryptPassword);
 			int rpta = mC.insert(newMype);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe");
-				return "mype/mype";
+				return "/registro";
 			} else {
 				model.addAttribute("mensaje", "Se guardó correctamente");
 				status.setComplete();
 			}
 		}
-		model.addAttribute("mype", new Mype());
-		return "redirect:/mype/list";
+		model.addAttribute("newMype", new Mype());
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/detalle/{id}")

@@ -1,5 +1,6 @@
 package pe.edu.upc.serviceimplement;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,8 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.entities.Freelancers;
+
 import pe.edu.upc.entities.Mype;
+import pe.edu.upc.entities.Rol;
 import pe.edu.upc.repositories.IMypeRepository;
 import pe.edu.upc.serviceinterface.IMypeService;
 
@@ -25,6 +27,11 @@ public class MypeServiceImplement implements IMypeService{
 		
 		int rpta = mR.FindMypesExists(mype.getRucMype());
 		if (rpta == 0) {
+			Rol role = new Rol();
+			role.setType("ROLE_MYPE");
+			List<Rol> roles = new ArrayList<Rol>();
+			roles.add(role);
+			mype.getUsuario().setRoles(roles);
 			mR.save(mype);
 		}
 		return rpta;
