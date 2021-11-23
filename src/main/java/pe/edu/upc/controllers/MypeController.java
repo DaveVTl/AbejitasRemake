@@ -178,7 +178,7 @@ public class MypeController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/mype/listMype";
+		return "/mype/find";
 	}
 
 	@RequestMapping("/find")
