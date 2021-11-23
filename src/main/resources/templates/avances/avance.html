@@ -46,7 +46,7 @@
 							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 
 						<div class="form-group">
-							<label for="descripcion">DESCRIPCION:</label> <input type="text"
+							<textarea for="descripcion">DESCRIPCION:</textarea> <input type="text"
 								th:field="*{descripcion}" class="form-control" id="descripcion"></input>
 						</div>
 						<div class="alert alert-danger"

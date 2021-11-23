@@ -1,6 +1,7 @@
 package pe.edu.upc.controllers;
 
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Reviews;
+import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IFreelancerService;
 import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.IReviewsService;
@@ -35,8 +37,7 @@ public class ReviewController {
 	private IScoreService sS;
 	@Autowired
 	private IMypeService mS;
-	@Autowired
-	private IFreelancerService fS;
+	
 	
 	@GetMapping("/new")
 	public String newReview(Model model) {
@@ -44,7 +45,7 @@ public class ReviewController {
 		model.addAttribute("listaTrabajos", tS.list());
 		model.addAttribute("listaScores", sS.list());
 		model.addAttribute("listaMypes", mS.list());
-		model.addAttribute("listaFreelancers", fS.list());
+		
 		return "review/review";
 	}
 
@@ -66,7 +67,7 @@ public class ReviewController {
 			model.addAttribute("listaTrabajos", tS.list());
 			model.addAttribute("listaScores", sS.list());
 			model.addAttribute("listaMypes", mS.list());
-			model.addAttribute("listaFreelancers", fS.list());
+	
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);
@@ -115,4 +116,22 @@ public class ReviewController {
 		return "/review/listReviews";
 	}
 	//aaaaa
+	@GetMapping("/form/{id}")
+	public String formOrder(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Trabajo> trabajo = tS.findById(id);
+			if (!trabajo.isPresent()) {
+				model.addAttribute("info", "Cliente no existe");
+				return "redirect:/trabajos/list";
+			} else {
+				Reviews a = new Reviews();
+				a.setTrabajo(trabajo.get());
+				model.addAttribute("review", a);
+				model.addAttribute("listaScores", sS.list());
+			}
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "review/review";
+	}
 }

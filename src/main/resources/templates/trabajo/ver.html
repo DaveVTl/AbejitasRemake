@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
@@ -18,46 +19,82 @@
 
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
-<div class="fondito">
-	<div class="bg row">
+	<div class="fondito">
+
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
+		<div class="fondito">
 
-			<div class="d-flex">
-				<h3 class="title-content">Lista de Tipos de trabajo</h3>
-				<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tipotrabajo/new}" class="btn btn-warning" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">Nuevo</a>
+
+
+			<div class="content container row col-6"
+				style="background-color: rgb(36, 36, 36);">
+
+				<div class="form-group">
+					<a th:href="@{/trabajos/list}" class="volverdet" href=""
+						style="color: rgb(242, 223, 157);"><i class="fa fa-arrow-left"></i></a>
+				</div>
+
+				<div class="col-6 frm-registro">
+					<div class="detalles">
+
+
+						<div class="form-group">
+							<h2 th:text="NOMBRE" class="text-center"
+								style="color: rgb(242, 223, 157);"></h2>
+							<h1 th:text="${trabajo.nameTrabajo}" class="text-center"
+								style="color: rgb(255, 255, 255);"></h1>
+							<br></br>
+							<h2 th:text="DESCRIPCION" class="text-center"
+								style="color: rgb(242, 223, 157);"></h2>
+							<h2 th:text="${trabajo.descriptionTrabajo}" class="text-center"
+								style="color: rgb(255, 255, 255)"></h2>
+							<br></br>
+							<h2 th:text="PAGO" class="text-center"
+								style="color: rgb(242, 223, 157);"></h2>
+							<h2 th:text="${trabajo.pagoTrabajo}" class="text-center"
+								style="color: rgb(255, 255, 255);"></h2>
+							<br></br>
+							<td align="center"><a
+								th:href="@{'/avances/form/' + ${trabajo.idTrabajo}}"
+								class="btn btn-dark">Avance nuevo</a></td>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-6 frm-registro">
+					<div class="detalles">
+
+
+						<h2 th:text="FREELANCER" class="text-center"
+							style="color: rgb(242, 223, 157);"></h2>
+						<h2 th:text="${trabajo.freelancers.nameFreelancers}"
+							class="text-center" style="color:rgb(255, 255, 255);"></h2>
+								<br></br>
+						<h2 th:text="ANUNCIO" class="text-center"
+							style="color: rgb(242, 223, 157);"></h2>
+						<h2 th:text="${trabajo.anuncio.nameAnuncio}" class="text-center"
+							style="color: rgb(255, 255, 255);"></h2>
+								<br></br>
+						<h2 th:text="TIPO" class="text-center"
+							style="color: rgb(242, 223, 157);"></h2>
+						<h2 th:text="${trabajo.tipoPago.nombrePago}" class="text-center"
+							style="color:rgb(255, 255, 255);"></h2>
+								<br></br>
+						<td align="center"><a
+							th:href="@{'/reviews/form/' + ${trabajo.idTrabajo}}"
+							class="btn btn-dark">Review nuevo</a></td>
+
+					</div>
+				</div>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
-						<th  scope="col" class="text-center">Código</th>
-						<th scope="col" class="text-center">Nombre</th>
-						<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" class="text-center" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">Eliminar</th>
-						<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col" class="text-center" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">Operación</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="cat : ${listaTipoTrabajos}">
-						<td class="text-center" th:text="${cat.idTipoTrabajo}"></td>
-						<td class="text-center" th:text="${cat.nombreTrabajo}"></td>
-						<td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tipotrabajo/delete?id=}+${cat.idTipoTrabajo}" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5>Operación</th"
-							class="btn btn-dark "><i class="fa fa-trash" style="color: rgb(255, 255, 255)g;"></i></a></td>
-						<td align="center">
-						<a sec:authorize="hasRole('ROLE_ADMIN')"
-							th:href="@{'/tipotrabajo/update/' + ${cat.idTipoTrabajo}}"
-							class="btn btn-dark" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"></th>Actualizar</a></td>
-					</tr>
-				</tbody>
-			</table>
 		</div>
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
-
 	</div>
 
-</div>
+
+	</div>
+	</div>
+
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

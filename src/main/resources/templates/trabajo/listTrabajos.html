@@ -34,30 +34,26 @@
 
 						<th scope="col" class="text-center">CODIGO</th>
 						<th scope="col" class="text-center">TITULO</th>
-						<th scope="col" class="text-center">DESCRIPCION</th>
 						<th scope="col" class="text-center">ESTADO</th>
 						<th scope="col" class="text-center">FECHA</th>
-						<th scope="col" class="text-center">PAGO</th>
 						<th scope="col" class="text-center">FREELANCER</th>
 						<th scope="col" class="text-center">ANUNCIO</th>
-						<th scope="col" class="text-center">TIPO_PAGO</th>
-						<th scope="col" class="text-center">Operación</th>
+
+						
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="tr : ${listaTrabajos}">
-						<td class="text-center" th:text="${tr.idTrabajo}"></td>
-						<td class="text-center" th:text="${tr.nameTrabajo}"></td>
-						<td class="text-center" th:text="${tr.descriptionTrabajo}"></td>
+						<td class="text-center"><a class="btn btn-warning btn-xs" style="background-color: rgb(30, 30, 30);color: rgb(255, 255, 255);" 
+							th:href="@{/trabajos/view/} + ${tr.idTrabajo}"
+							th:text="${tr.idTrabajo}"></a></td>
+						<td class="text-center" th:text="${tr.nameTrabajo}"></td>		
 						<td class="text-center" th:text="${tr.EstadoTrabajo}"></td>
 						<td class="text-center" th:text="${tr.dateCreacionAnuncio}"></td>
-						<td class="text-center" th:text="${tr.anuncio.pagoAnuncio}"></td>
 						<td class="text-center" th:text="${tr.freelancers.nameFreelancers}"></td>
 						<td class="text-center" th:text="${tr.anuncio.nameAnuncio}"></td>
-						<td class="text-center" th:text="${tr.tipoPago.nombrePago}"></td>
-						<td align="center"><a
-							th:href="@{'/avances/form/' + ${tr.idTrabajo}}"
-							class="btn btn-dark">Avance nuevo</a></td>
+
+						
 						
 						
 					</tr>

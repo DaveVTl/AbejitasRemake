@@ -98,7 +98,7 @@ public class TipoTrabajoController {
 				model.put("mensaje", "No se puede eliminar un review");
 			}
 			model.put("listTipoTrabajo", cT.list());
-			return "/tipotrabajo/listTipoTra";
+			return "redirect:/tipotrabajo/list";
 		}
 		
 		@RequestMapping("/reportes")
