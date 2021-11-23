@@ -23,16 +23,27 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Anuncio</h3>
-				<a th:href="@{/anuncio/new}" class="btn btn-warning">Nuevo</a>
-				<a th:href="@{/anuncio/listFind}" class="btn btn-dark">Buscar</a>
+				<form th:action="@{/anuncio/find}" method="post" th:object="${anuncio}">
+					<div class="form-group">
+
+						<label for=fre>Buscar:</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" th:field="*{nameAnuncio}" required id="a"
+								placeholder="Ingrese Anuncio" ></input>
+							<div align="right">
+								<button type="submit" class="btn btn-dark">Buscar</button>
+								<a href="/anuncio/listFind" class="btn btn-dark">Cancelar</a>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
 			</div>
 
 			<div class="row pt-5">
-				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="anu: ${listaAnuncio}">
+				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="anu : ${listaAnuncio}">
 					<div class="row">
-						<div class="col-lg-5 col-md-6 col-sm-6 col-6">
-						</div>
 						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
 							<h5 th:text=" ${anu.nameAnuncio}">Name</h5>
 							Descripcion:
@@ -42,19 +53,19 @@
 							Paga:
 							<p th:text=" ${anu.pagoAnuncio}">Pago Ofrecido</p>
 							<br>
-							<a class="btn btn-dark" th:href="@{'/anuncio/detail/' + ${anu.idAnuncio}}"
-								role="button">Ver Anuncio</a>
-							<a class="btn btn-dark" th:href="@{'/anuncio/delete/' + ${anu.idAnuncio}}"
+							<a class="btn btn-dark" th:href="@{'/anuncio/detail/' + ${anu.idMype}}"
+								role="button">VerPerfil</a>
+								
+							<a class="btn btn-dark" th:href="@{'/anuncio/delete/' + ${anu.idMype}}"
 								role="button">Eliminar</a>
 							<br>
 							<br>
-							<a class="btn btn-dark" th:href="@{'/anuncio/detalle/' + ${anu.idAnuncio}}"
+							<a class="btn btn-dark" th:href="@{'/anuncio/detalle/' + ${anu.idMype}}"
 								role="button">Modificar</a>
 							<br>
 							<br>
 							<br>
 							<br>
-						</div>
 					</div>
 
 				</div>
@@ -62,10 +73,15 @@
 
 		</div>
 
+
+
 	</div>
 	<div th:if="${mensaje}" class="alert alert-danger">
 		<p th:text="${mensaje}"></p>
 	</div>
+
+	</div>
+
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
