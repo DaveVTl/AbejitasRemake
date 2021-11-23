@@ -27,22 +27,22 @@
 					<div class="bg row">
 						<div class="content container">
 							<div class="cinforeport">
-								<h3 class="title-content">Mypes con mas Anuncios</h3>
-								<p class="inforeport">Lista de Mypes con mas Anuncios</p>
+								<h3 class="title-content">Anuncios deltro del Rango</h3>
+								<p class="inforeport">Lista de anuncios dentro del rango de paga entre 250 y 500</p>
 							</div>
 							<table class="table">
 								<thead class="thead-light">
 									<tr>
-										<th scope="col" class="text-center">ID</th>
+										<th scope="col" class="text-center">ID Anuncio</th>
 										<th scope="col" class="text-center">Mype</th>
-										<th scope="col" class="text-center">Cantidad de Anuncios</th>
+										<th scope="col" class="text-center">Pago</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="rep : ${listMypeAnuncio}">
-										<td class="text-center" th:text="${rep[0]}"></td>
-										<td class="text-center" th:text="${rep[1]}"></td>
-										<td class="text-center" th:text="${rep[2]}"></td>
+									<tr th:each="repo : ${listMypeAnuncios}">
+										<td class="text-center" th:text="${repo[0]}"></td>
+										<td class="text-center" th:text="${repo[1]}"></td>
+										<td class="text-center" th:text="${repo[2]}"></td>
 									</tr>
 								</tbody>
 							</table>

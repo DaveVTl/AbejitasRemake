@@ -207,6 +207,13 @@ public class MypeController {
 		return "reports/mypeMasAnuncio";
 	}
 	
+	@RequestMapping("/reporte2")
+	public String reporte2(Map<String, Object> model) {
+
+		model.put("listMypeAnuncios", mC.reporte2());
+		return "reports/anuncioRango";
+	}
+	
 	@RequestMapping("/reportes")
 	public String listReports()
 	{

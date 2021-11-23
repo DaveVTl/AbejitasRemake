@@ -26,4 +26,10 @@ public interface IMypeRepository extends JpaRepository<Mype, Integer>{
 	nativeQuery = true )
 	public List<String[]> mypeMasAnuncios();
 	
+	@Query(value="Select a.id_anuncio,m.name_empresa_mype,a.pago_anuncio"
+	+ "from anuncio a join mypes m on a.id_mype=m.id_mype"
+	+ "where pago_anuncio between 250 and 500"
+	+ "group by a.id_anuncio,m.name_empresa_mype,a.pago_anuncio",
+	nativeQuery = true )
+	public List<String[]> reporte2();
 }
