@@ -191,5 +191,11 @@ public class FreelancerController {
 		return "freelancer/find";
 //aaaaaa
 	}
+	
+	@RequestMapping("/reportefree")
+	public String FreelancerXimp(Map<String, Object> model) {
+		model.put("listFreelancerxOrd", fS.freelancerXord());
+		return "reports/freeprom";
+	}
 
 }

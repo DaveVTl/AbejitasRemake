@@ -37,15 +37,14 @@ public class ReviewController {
 	private IScoreService sS;
 	@Autowired
 	private IMypeService mS;
-	
-	
+
 	@GetMapping("/new")
 	public String newReview(Model model) {
 		model.addAttribute("review", new Reviews());
 		model.addAttribute("listaTrabajos", tS.list());
 		model.addAttribute("listaScores", sS.list());
 		model.addAttribute("listaMypes", mS.list());
-		
+
 		return "review/review";
 	}
 
@@ -61,13 +60,13 @@ public class ReviewController {
 	}
 
 	@PostMapping("/save")
-	public String saveReview(@ModelAttribute("review") @Valid Reviews tipo, BindingResult result, Model model, SessionStatus status)
-			throws Exception {
+	public String saveReview(@ModelAttribute("review") @Valid Reviews tipo, BindingResult result, Model model,
+			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("listaTrabajos", tS.list());
 			model.addAttribute("listaScores", sS.list());
 			model.addAttribute("listaMypes", mS.list());
-	
+
 			return "review/review";
 		} else {
 			int rpta = rS.insert(tipo);
@@ -83,7 +82,7 @@ public class ReviewController {
 		model.addAttribute("reviews", new Reviews());
 		return "redirect:/reviews/list";
 	}
-	
+
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
@@ -98,7 +97,7 @@ public class ReviewController {
 			return "review/review";
 		}
 	}
-	
+
 	@RequestMapping("/delete")
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -112,10 +111,11 @@ public class ReviewController {
 			model.put("mensaje", "No se puede eliminar un review");
 		}
 		model.put("listReviews", rS.list());
-;
-		return "/review/listReviews";
+		
+		return "redirect:/reviews/list";
 	}
-	//aaaaa
+
+	// aaaaa
 	@GetMapping("/form/{id}")
 	public String formOrder(@PathVariable(value = "id") int id, Model model) {
 		try {

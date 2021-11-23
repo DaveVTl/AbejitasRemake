@@ -24,7 +24,7 @@ public interface IFreelancerService {
 	
 	public Freelancers findByUsuario(Usuario usuario);
 
-
+	public List<String[]> freelancerXord();
 
 	
 	
