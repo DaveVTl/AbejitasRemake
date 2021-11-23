@@ -3,7 +3,7 @@ package pe.edu.upc.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +65,21 @@ public class UserController {
 
 		return "redirect:/users/list";
 	}
+	
+	
+	@GetMapping("/myProfile")
+	public String myProfile(Model model) {
+		
+		try {
+			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+			Usuario user = uService.findByUsername(currentUserName);
+			model.addAttribute("user", user);
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/usuarios/myProfile";
+	}
+	
 	
 	@PostMapping("/savemype")
 	public String saveUsermype(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
