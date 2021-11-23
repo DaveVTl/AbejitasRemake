@@ -49,10 +49,7 @@ public class AnuncioServiceImplement implements IAnuncioService{
 	}
 
 	
-	@Override
-	public List<Anuncio> findByNameAnuncioIgnoreCase(String nameAnuncio){
-		return aR.findByNameAnuncioIgnoreCase(nameAnuncio);
-	}
+	
 	
 	@Override
 	public Optional<Anuncio> listarId(int id) {
@@ -66,16 +63,6 @@ public class AnuncioServiceImplement implements IAnuncioService{
 		aR.deleteById(idAnuncio);
 	}
 
-	@Override
-	public List<Anuncio> fetchAnuncioByName(String nameAnuncio) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<Anuncio> fetchAnuncioByTrabajoName(String nameTrabajo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

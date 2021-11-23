@@ -22,9 +22,8 @@ public interface IAnuncioService {
 
 	public void delete(int idAnuncio);
 	
-	List<Anuncio> findByNameAnuncioIgnoreCase(String name);
 	
-	List<Anuncio> fetchAnuncioByName(String nameAnuncio);
-	public List<Anuncio> fetchAnuncioByTrabajoName(String nameTrabajo);
+	
+	
 	
 }
