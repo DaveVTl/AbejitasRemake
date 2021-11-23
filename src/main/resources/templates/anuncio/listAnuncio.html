@@ -25,6 +25,7 @@
 			<div class="d-flex">
 				<h3 class="title-content">Lista de Anuncio</h3>
 				<a th:href="@{/anuncio/new}" class="btn btn-warning">Nuevo</a>
+				<a th:href="@{/anuncio/listFind}" class="btn btn-dark">Buscar</a>
 			</div>
 
 			<div class="row pt-5">
@@ -41,13 +42,13 @@
 							Paga:
 							<p th:text=" ${anu.pagoAnuncio}">Pago Ofrecido</p>
 							<br>
-							<a class="btn btn-primary" th:href="@{'/anuncio/detail/' + ${anu.idAnuncio}}"
+							<a class="btn btn-dark" th:href="@{'/anuncio/detail/' + ${anu.idAnuncio}}"
 								role="button">Ver Anuncio</a>
-							<a class="btn btn-primary" th:href="@{'/anuncio/delete/' + ${anu.idAnuncio}}"
+							<a class="btn btn-dark" th:href="@{'/anuncio/delete/' + ${anu.idAnuncio}}"
 								role="button">Eliminar</a>
 							<br>
 							<br>
-							<a class="btn btn-primary" th:href="@{'/anuncio/detalle/' + ${anu.idAnuncio}}"
+							<a class="btn btn-dark" th:href="@{'/anuncio/detalle/' + ${anu.idAnuncio}}"
 								role="button">Modificar</a>
 							<br>
 							<br>

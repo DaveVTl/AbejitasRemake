@@ -122,6 +122,17 @@ public class AnuncioController {
 				.body(recurso);
 	}
 	
+	@GetMapping("/listFind")
+	public String listAnuncioFind(Model model) {
+		try {
+			model.addAttribute("anuncio", new Mype());
+			model.addAttribute("listaAnuncio", aR.list());
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+		return "/anuncio/find";
+	}
+	
 	@GetMapping("/detail/{id}")
 	public String detailsAnuncio(@PathVariable(value = "id") int id, Model model) {
 		try {

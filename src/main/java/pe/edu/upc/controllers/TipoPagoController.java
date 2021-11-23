@@ -98,7 +98,7 @@ public class TipoPagoController {
 				model.put("mensaje", "No se puede eliminar un tipo pago");
 			}
 			model.put("listTipoPagos", pS.list());
-			return "/tipopago/listTipoPago";
+			return "redirect:/tipopago/list";
 		}
 		//aaaaa
 }

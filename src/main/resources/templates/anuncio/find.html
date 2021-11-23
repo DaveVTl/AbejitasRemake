@@ -15,58 +15,73 @@
 
 <body>
 
-
 	<div th:replace="fragments/sidebar :: sidebar" id="panel" class="activepanel"></div>
-<div class="fondito">
-	<div class="bg row">
-		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
-		
+	<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
+	<div class="fondito">
+
 
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Trabajos</h3>
-				<a th:href="@{/trabajos/new}" class="btn btn-warning">Nuevo</a>
+				<form th:action="@{/anuncio/find}" method="post" th:object="${anuncio}">
+					<div class="form-group">
+
+						<label for=fre>Buscar:</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" th:field="*{nameAnuncio}" required id="a"
+								placeholder="Ingrese Anuncio" ></input>
+							<div align="right">
+								<button type="submit" class="btn btn-dark">Buscar</button>
+								<a href="/anuncio/listFind" class="btn btn-dark">Cancelar</a>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
 			</div>
-			<table class="table">
-				<thead class="thead-light">
-					<tr>
 
-						<th scope="col" class="text-center">CODIGO</th>
-						<th scope="col" class="text-center">TITULO</th>
-						<th scope="col" class="text-center">ESTADO</th>
-						<th scope="col" class="text-center">FECHA</th>
-						<th scope="col" class="text-center">FREELANCER</th>
-						<th scope="col" class="text-center">ANUNCIO</th>
+			<div class="row pt-5">
+				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="anu : ${listaAnuncio}">
+					<div class="row">
+						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
+							<h5 th:text=" ${anu.nameAnuncio}">Name</h5>
+							Descripcion:
+							<p th:text=" ${anu.descriptionAnuncio}">Descripcion</p>
+							Tipo:
+							<p th:text=" ${anu.tipoTrabajo.nombreTrabajo}">Tipo Trabajo</p>
+							Paga:
+							<p th:text=" ${anu.pagoAnuncio}">Pago Ofrecido</p>
+							<br>
+							<a class="btn btn-dark" th:href="@{'/anuncio/detail/' + ${anu.idMype}}"
+								role="button">VerPerfil</a>
+								
+							<a class="btn btn-dark" th:href="@{'/anuncio/delete/' + ${anu.idMype}}"
+								role="button">Eliminar</a>
+							<br>
+							<br>
+							<a class="btn btn-dark" th:href="@{'/anuncio/detalle/' + ${anu.idMype}}"
+								role="button">Modificar</a>
+							<br>
+							<br>
+							<br>
+							<br>
+					</div>
 
-						
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="tr : ${listaTrabajos}">
-						<td class="text-center"><a class="btn btn-warning btn-xs" style="background-color: rgb(30, 30, 30);color: rgb(255, 255, 255);" 
-							th:href="@{/trabajos/view/} + ${tr.idTrabajo}"
-							th:text="${tr.idTrabajo}"></a></td>
-						<td class="text-center" th:text="${tr.nameTrabajo}"></td>		
-						<td class="text-center" th:text="${tr.EstadoTrabajo}"></td>
-						<td class="text-center" th:text="${tr.dateCreacionAnuncio}"></td>
-						<td class="text-center" th:text="${tr.freelancers.nameFreelancers}"></td>
-						<td class="text-center" th:text="${tr.anuncio.nameAnuncio}"></td>
+				</div>
+			</div>
 
-						
-						
-						
-					</tr>
-				</tbody>
-			</table>
 		</div>
-		
-		<div th:if="${mensaje}" class="alert alert-danger">
-			<p th:text="${mensaje}"></p>
-		</div>
+
+
 
 	</div>
-</div>
+	<div th:if="${mensaje}" class="alert alert-danger">
+		<p th:text="${mensaje}"></p>
+	</div>
+
+	</div>
+
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>

@@ -54,21 +54,18 @@
 
 					</div>
 					
-					<label for="trabajo">Trabajo: </label>
-					<select
-						class="form-control" th:field="*{trabajo.idTrabajo}">
-						<option th:each="m: ${listaTrabajos}" th:value="${m.idTrabajo}"
-							th:text="${m.nameTrabajo}"
-							th:selected="(${m.idTrabajo} == *{trabajo.idTrabajo})"></option>
-					</select>
+					<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">TRABAJO
+							</label>
+							<div class="col-sm-6">
+								<input type="text" readonly class="form-control-plaintext"
+									id="nombre" th:field="${review.trabajo.idTrabajo}"></input> <input
+									type="text" readonly class="form-control-plaintext" id="nombre"
+									th:text="${review.trabajo.nameTrabajo}"></input>
+							</div>
+						</div>
 					
-					<label for="trabajo">Freelancer: </label>
-					<select
-						class="form-control" th:field="*{freelancer.idFreelancers}">
-						<option th:each="m: ${listaFreelancers}" th:value="${m.idfreelancer}"
-							th:text="${m.nameFreelancers}"
-							th:selected="(${m.idFreelancers} == *{freelancer.idFreelancers})"></option>
-					</select>
+					
 					<button type="submit" class="btn btn-warning">Aceptar</button>
 					<a href="/review/list" class="btn btn-light">Cancelar</a>
 				</form>
