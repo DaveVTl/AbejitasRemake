@@ -67,7 +67,7 @@ public class AnuncioController {
 	}
 	
 	@PostMapping("/save")
-	public String saveAnuncio(@Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
+	public String saveAnuncio(@ModelAttribute("newAnuncio") @Valid Anuncio anuncio, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("listaTipoTrabajos", tService.list());

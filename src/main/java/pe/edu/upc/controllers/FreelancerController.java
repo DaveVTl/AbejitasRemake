@@ -73,7 +73,6 @@ public class FreelancerController {
 
 				if (newFreelancer.getIdFreelancers() > 0 && newFreelancer.getFotoFreelancers() != null
 						&& newFreelancer.getFotoFreelancers().length() > 0) {
-
 					uploadFileService.delete(newFreelancer.getFotoFreelancers());
 				}
 
@@ -194,13 +193,19 @@ public class FreelancerController {
 		}
 		model.put("listaFreelancers", listaFreelancers);
 		return "freelancer/find";
-//aaaaaa
+
 	}
 	
 	@RequestMapping("/reportefree")
 	public String FreelancerXimp(Map<String, Object> model) {
 		model.put("listFreelancerxOrd", fS.freelancerXord());
 		return "reports/freeprom";
+	}
+	
+	@RequestMapping("/reportefree2")
+	public String FreeXTrabajos(Map<String, Object> model) {
+		model.put("listFreelancerxTra", fS.freeXtrabajo());
+		return "reports/freetra";
 	}
 
 }

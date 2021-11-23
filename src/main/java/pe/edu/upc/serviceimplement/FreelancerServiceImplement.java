@@ -78,5 +78,11 @@ public class FreelancerServiceImplement implements IFreelancerService {
 		// TODO Auto-generated method stub
 		return fR.freelancerXord();
 	}
+	
+	@Override
+	public List<String[]> freeXtrabajo() {
+		// TODO Auto-generated method stub
+		return fR.freeXtrabajo();
+	}
 
 }

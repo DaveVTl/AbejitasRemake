@@ -5,6 +5,7 @@ import java.util.Optional;
 
 
 import pe.edu.upc.entities.Freelancers;
+import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.entities.Usuario;
 
 
@@ -26,6 +27,6 @@ public interface IFreelancerService {
 
 	public List<String[]> freelancerXord();
 
-	
+	public List<String[]> freeXtrabajo();
 	
 }

@@ -22,65 +22,33 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
+		<div class="container-fluid">
 
-			<div class="d-flex">
-				<h3 class="title-content">Reportes</h3>
+					<div class="bg row">
+						<div class="content container">
+							<div class="cinforeport">
+								<h3 class="title-content">Freelancer x Trabajos</h3>
+								<p class="inforeport">Lista de freelancers mas trabajadores</p>
+							</div>
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col" class="text-center">Freelancer</th>
+											<th scope="col" class="text-center">Trabajos</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="rep : ${listFreelancerxTra}">
+										<td class="text-center" th:text="${rep[0]}"></td>
+										<td class="text-center" th:text="${rep[1]}"></td>
 				
-			</div>	
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Tipos de trabajo</h3>
-									<p class="dproyecto ">Lista de la cantidad de anuncios por tipo de trabajo</p>
-									<a class="lnikp " th:href="@{/tipotrabajo/reporte1}">Ver
-										Reporte</a>
-								</div>
-							</div>
-							
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Promedio de freelancers</h3>
-									<p class="dproyecto ">Lista de la cantidad de anuncios por tipo de trabajo</p>
-									<a class="lnikp " th:href="@{/freelancers/reportefree}">Ver
-										Reporte</a>
-								</div>
-							</div>
-							
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Freelancers Trabajadores</h3>
-									<p class="dproyecto ">Lista de los mas trabajadores</p>
-									<a class="lnikp " th:href="@{/freelancers/reportefree2}">Ver
-										Reporte</a>
-								</div>
-							</div>
-							
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Mype con mas Anuncios</h3>
-									<p class="dproyecto ">Lista de Mypes con Mas Anuncios</p>
-									<a class="lnikp " th:href="@{/mype/reporte1}">Ver Reporte</a>
-								</div>
-							</div>
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Mype con mas Anuncios</h3>
-									<p class="dproyecto ">Lista de Mypes con Mas Anuncios</p>
-									<a class="lnikp " th:href="@{/mype/reporte1}">Ver Reporte</a>
-								</div>
-							</div>
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Rango 250-500</h3>
-									<p class="dproyecto ">Lista Rango de precios</p>
-									<a class="lnikp " th:href="@{/mype/reporte2}">Ver Reporte</a>
-								</div>
-							</div>
-						
-			<div th:if="${mensaje}" class="alert alert-danger">
-				<p th:text="${mensaje}"></p>
-			</div>
-		</div>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
 
 	</div>

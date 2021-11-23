@@ -34,4 +34,11 @@ public interface IFreelancerRepository extends JpaRepository<Freelancers, Intege
 			nativeQuery = true )
 	public List<String[]> freelancerXord();
 
+	
+	@Query(value="SELECT f.name_Freelancers, COUNT(t.id_Freelancers)"
+			+ "from Freelancer f join Trabajo t on  f.id_Freelancers = t.id_Freelancers "
+			+ "group by t.id_freelancers , f.id_freelancers",
+			nativeQuery = true )
+	public List<String[]> freeXtrabajo();
+	
 }
