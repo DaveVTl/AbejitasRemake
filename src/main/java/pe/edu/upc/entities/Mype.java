@@ -2,11 +2,13 @@ package pe.edu.upc.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -37,16 +39,34 @@ public class Mype {
 	
 	private Date fechaInscripcionMype;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private Usuario usuario;
+
+	
 	public Mype() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+
 	public Mype(int idMype,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameEmpresaMype,
 			@Pattern(regexp = "[0-9]{11}", message = "Escriba un RUC valido") String rucMype,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameGerenteMype,
-			String logoMype, Date fechaInscripcionMype) {
+			String logoMype, Date fechaInscripcionMype, Usuario usuario) {
 		super();
 		this.idMype = idMype;
 		this.nameEmpresaMype = nameEmpresaMype;
@@ -54,7 +74,10 @@ public class Mype {
 		this.nameGerenteMype = nameGerenteMype;
 		this.logoMype = logoMype;
 		this.fechaInscripcionMype = fechaInscripcionMype;
+		this.usuario = usuario;
 	}
+
+
 
 	public int getIdMype() {
 		return idMype;

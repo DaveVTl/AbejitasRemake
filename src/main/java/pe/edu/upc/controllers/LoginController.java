@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Freelancers;
+import pe.edu.upc.entities.Mype;
 import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
@@ -53,7 +54,8 @@ public class LoginController {
 	
 	@GetMapping("/login/new")
 	public String newUser(Model model) {
-		model.addAttribute("newUser", new Usuario());
+		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("newMype", new Mype());
 		return "registro";
 	}
 	
