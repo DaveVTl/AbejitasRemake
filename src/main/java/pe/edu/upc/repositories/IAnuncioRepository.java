@@ -18,6 +18,6 @@ public interface IAnuncioRepository extends JpaRepository<Anuncio, Integer>{
 	@Query("select a from Anuncio a where a.nameAnuncio like %:name%")
 	List<Anuncio> findByName(String name);
 
-	List<Anuncio> findByNameAnuncioIgnoreCase(String name);
 
+	
 }
