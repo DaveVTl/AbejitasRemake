@@ -80,9 +80,9 @@
 
 
 					</div>
-					<button style="margin: 0px 30px;" type="submit"
+					<button style="margin: 0px 30px;" type="submit" th:href="@{/trabajos/view/} + ${avance.trabajo.idTrabajo}"
 						class="btnadd btn btn-primary">Aceptar</button>
-					<a href="/avances/list" class="btn btn-danger">Cancelar</a>
+					<a th:href="@{/trabajos/view/} + ${avance.trabajo.idTrabajo}" class="btn btn-danger">Cancelar</a>
 				</form>
 
 				<div th:if="${mensaje}" class="alert alert-danger">

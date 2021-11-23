@@ -16,5 +16,6 @@ public interface ITrabajoRepository extends JpaRepository<Trabajo,Integer>{
 	@Query("select count (t.nameTrabajo) from Trabajo t where t.nameTrabajo=:name")	
 	public int FindJob(@Param("name") String name);
 
+	
 
 }
