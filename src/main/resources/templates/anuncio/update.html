@@ -25,72 +25,74 @@
 				<h3></h3>
 			</div>
 			<div class="col-3">
-				<h3>Actualizar Mype</h3>
+				<h3>Actualizar Anuncio</h3>
 			</div>
 			<div class="col-8 frm-registro">
-				<div th:object="${freelancer}" th:remove="tag">
+				<div th:object="${anuncio}" th:remove="tag">
 					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
 						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 					</ul>
 				</div>
-				<form th:action="@{/freelancers/save}" method="post" th:object="${mype}"
+				<form th:action="@{/anuncio/save}" method="post" th:object="${anuncio}"
 					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="id" class="col-sm-2 col-form-label">Id</label>
 						<div class="col-sm-6">
-							<input type="text" th:field="*{idFreelancers}" class="form-control" readonly
+							<input type="text" th:field="*{idAnuncio}" class="form-control" readonly
 								th:errorclass="'form-control alert-success'" /> <small class="form-text text-success"
-								th:if="${#fields.hasErrors('idMype')}" th:errors="*{idMype}"></small>
+								th:if="${#fields.hasErrors('idAnuncio')}" th:errors="*{idAnuncio}"></small>
 							<div class="form-group">
 
 
-								<label for="name" class="col-sm-2 col-form-label">Nombre Empresa</label>
-								<div class="col-sm-6">
-									<input type="text" th:field="*{nameEmpresaMype}" class="form-control"
-										th:errorclass="'form-control alert-danger'" /> <small
-										class="form-text text-danger" th:if="${#fields.hasErrors('nameEmpresaMype')}"
-										th:errors="*{nameEmpresaMype}"></small>
+						<div class="form-group">
+							<label for="mype">Mype:</label> <select class="form-control"
+								th:field="*{mype.idMype}">
+								<option th:each="m: ${listaMype}" th:value="${m.idMype}"
+									th:text="${m.nameEmpresaMype}"
+									th:selected="(${m.idMype} == *{mype.idMype})"></option>
+							</select>
+						</div>
+							<div class="form-group">
+							<label for="tipoTrabajo">Tipo Trabajo:</label> <select class="form-control"
+								th:field="*{tipoTrabajo.idTipoTrabajo}">
+								<option th:each="t: ${listaTipoTrabajo}" th:value="${t.idTipoTrabajo}"
+									th:text="${t.nombreTrabajo}"
+									th:selected="(${t.idTipoTrabajo} == *{tipoTrabajo.idTipoTrabajo})"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="price">Paga Ofrecida:</label>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">S/.</span>
 								</div>
+								<input type="number" th:field="*{pagoAnuncio}" class="form-control" required
+									id="price"></input>
+								<div class="input-group-append">
+									<span class="input-group-text">.00</span>
+								</div>
+							</div>
+						</div>
 
 								<div class="form-group">
-									<label for="ruc">Ruc:</label> <input type="text" required
-										th:field="*{rucMype}" class="form-control" id="ruc"></input>
+									<label for="nombre">Nombre Anuncio:</label> <input type="text" required
+										th:field="*{nameAnuncio}" class="form-control" id="nombre"></input>
 								</div>
-								<div class="alert alert-danger" th:if="${#fields.hasErrors('rucMype')}"
-									th:errors="*{rucMype}"></div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('nameAnuncio')}"
+									th:errors="*{nameAnuncio}"></div>
 
 								<div class="form-group">
-									<label for="descripcion">Nombre Gerente:</label> <input type="text" required
-										th:field="*{nameGerenteMype}" class="form-control"
+									<label for="descripcion">Descripcion Anuncio:</label> <input type="text" required
+										th:field="*{descriptionAnuncio}" class="form-control"
 										id="descripcion"></input>
 								</div>
-								<div class="alert alert-danger" th:if="${#fields.hasErrors('nameGerenteMype')}"
-									th:errors="*{nameGerenteMype}"></div>
-
-								<div class="form-group">
-									<label for="fecha">Fecha Inscripcion:</label> <input type="text" required
-										th:field="*{fechaInscripcionMype}" class="form-control"
-										id="fecha"></input>
-								</div>
-								<div class="alert alert-danger"
-									th:if="${#fields.hasErrors('fechaInscripcionMype')}"
-									th:errors="*{fechaInscripcionMype}"></div>
-
-							</div>
-
-
-							<div class="form-group">
-								<label for="file" class="">FOTO:</label>
-								<div class="col-sm-6">
-									<input type="file" name="file" class="form-control"
-										th:text="${mype.logoMype}" />
-								</div>
-
-							</div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('descriptionAnuncio')}"
+									th:errors="*{descriptionAnuncio}"></div>
 
 						</div>
 						<input type="submit" value="Guardar" class="btn btn-warning">Aceptar</input>
-						<a href="/mype/list" class="btn btn-light">Cancelar</a>
+						<a href="/anuncio/list" class="btn btn-light">Cancelar</a>
 
 				</form>
 				<div th:if="${mensaje}" class="alert alert-danger">

@@ -96,6 +96,8 @@ public class AnuncioController {
 				return "redirect:/anuncio/list";
 			} else {
 				model.addAttribute("anuncio", anuncio.get());
+				model.addAttribute("listaTipoTrabajo", tService.list());
+				model.addAttribute("listaMype", mS.list());
 			}
 
 		} catch (Exception e) {
@@ -154,8 +156,7 @@ public class AnuncioController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
-		return "/anuncio/list";
+		return "/anuncio/listAnuncio";
 	}
 
 	

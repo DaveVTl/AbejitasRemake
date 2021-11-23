@@ -22,49 +22,33 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container">
+		<div class="container-fluid">
 
-			<div class="d-flex">
-				<h3 class="title-content">Reportes</h3>
-				
-			</div>	
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Tipos de trabajo</h3>
-									<p class="dproyecto ">Lista de la cantidad de anuncios por tipo de trabajo</p>
-									<a class="lnikp " th:href="@{/tipotrabajo/reporte1}">Ver
-										Reporte</a>
-								</div>
+					<div class="bg row">
+						<div class="content container">
+							<div class="cinforeport">
+								<h3 class="title-content">Anuncios deltro del Rango</h3>
+								<p class="inforeport">Lista de anuncios dentro del rango de paga entre 250 y 500</p>
 							</div>
-							
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Mype con mas Anuncios</h3>
-									<p class="dproyecto ">Lista de Mypes con Mas Anuncios</p>
-									<a class="lnikp " th:href="@{/mype/reporte1}">Ver Reporte</a>
-								</div>
-							</div>
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Mype con mas Anuncios</h3>
-									<p class="dproyecto ">Lista de Mypes con Mas Anuncios</p>
-									<a class="lnikp " th:href="@{/mype/reporte1}">Ver Reporte</a>
-								</div>
-							</div>
-							<div class="creportes d-flex justify-content-around">
-								<div class="cproyecto ">
-									<h3 class="tproyecto ">Rango 250-500</h3>
-									<p class="dproyecto ">Lista Rango de precios</p>
-									<a class="lnikp " th:href="@{/mype/reporte2}">Ver Reporte</a>
-								</div>
-							</div>
-						
-			<div th:if="${mensaje}" class="alert alert-danger">
-				<p th:text="${mensaje}"></p>
-			</div>
-		</div>
-
-
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col" class="text-center">ID Anuncio</th>
+										<th scope="col" class="text-center">Mype</th>
+										<th scope="col" class="text-center">Pago</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="repo: ${listMypeAnuncios}">
+										<td class="text-center" th:text="${repo[0]}"></td>
+										<td class="text-center" th:text="${repo[1]}"></td>
+										<td class="text-center" th:text="${repo[2]}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 	</div>
 </div>
 

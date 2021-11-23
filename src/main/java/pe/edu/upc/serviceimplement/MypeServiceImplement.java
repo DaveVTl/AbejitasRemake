@@ -78,4 +78,11 @@ public class MypeServiceImplement implements IMypeService{
 		// TODO Auto-generated method stub
 		return mR.mypeMasAnuncios();
 	}
+
+	@Override
+	public List<String[]> anuncioRango() {
+		// TODO Auto-generated method stub
+		return mR.anuncioRango();
+	}
+	
 }
