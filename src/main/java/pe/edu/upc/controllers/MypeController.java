@@ -150,9 +150,28 @@ public class MypeController {
 
 		return "/mype/detail";
 	}
+	
+	@RequestMapping("/delete/{id}")
+	public String delete(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Mype> mype = mC.findById(id);
+
+			if (!mype.isPresent()) {
+				model.addAttribute("info", "Mype no existe");
+				return "redirect:/mype/listMype";
+			} else {
+				mC.delete(id);
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return "/mype/list";
+	}
 
 	@GetMapping("/listFind")
-	public String listFreelancersFind(Model model) {
+	public String listMypeFind(Model model) {
 		try {
 			model.addAttribute("mype", new Freelancers());
 			model.addAttribute("listaMype", mC.list());
@@ -180,21 +199,6 @@ public class MypeController {
 		return "mype/find";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
-		try {
-			if (id != null && id > 0) {
-				mC.delete(id);
-				model.put("mensaje", "Se eliminó correctamente");
-
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			model.put("mensaje", "No se puede eliminar un review");
-		}
-		model.put("listMype", mC.list());
-		return "/mype/mype";
-	}
 	
 	@RequestMapping("/reporte1")
 	public String tipoMasPagado(Map<String, Object> model) {

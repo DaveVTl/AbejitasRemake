@@ -35,13 +35,17 @@
 						</div>
 						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
 							<h5 th:text=" ${anu.nameAnuncio}">Name</h5>
-							<small>DISPONIBLE</small>
+							Descripcion:
 							<p th:text=" ${anu.descriptionAnuncio}">Descripcion</p>
+							Tipo:
 							<p th:text=" ${anu.tipoTrabajo.nombreTrabajo}">Tipo Trabajo</p>
+							Paga:
 							<p th:text=" ${anu.pagoAnuncio}">Pago Ofrecido</p>
-							<span><i class="fas fa-star"> 4,8 (745)</i></span>
+							<br>
 							<a class="btn btn-primary" th:href="@{'/anuncio/detail/' + ${anu.idAnuncio}}"
 								role="button">Ver Anuncio</a>
+							<a class="btn btn-primary" th:href="@{'/anuncio/delete/'}"
+								role="button">Eliminar</a>
 
 							<br>
 							<br>
