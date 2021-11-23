@@ -19,9 +19,7 @@ public interface IAnuncioService {
 	Optional <Anuncio>findById(int idAnuncio);
 	
 	List<Anuncio> findByName(String nameAnuncio);
-	
-	List<Anuncio> findByNameAnuncioIgnoreCase(String nameAnuncio);
-	
+
 	public void delete(int idAnuncio);
 	
 	List<Anuncio> findByNameAnuncioIgnoreCase(String name);

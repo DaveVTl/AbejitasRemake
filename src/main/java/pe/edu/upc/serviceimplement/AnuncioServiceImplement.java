@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Anuncio;
 import pe.edu.upc.entities.Mype;
-import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.repositories.IAnuncioRepository;
 import pe.edu.upc.serviceinterface.IAnuncioService;
 
@@ -65,6 +64,18 @@ public class AnuncioServiceImplement implements IAnuncioService{
 	@Transactional
 	public void delete(int idAnuncio) {
 		aR.deleteById(idAnuncio);
+	}
+
+	@Override
+	public List<Anuncio> fetchAnuncioByName(String nameAnuncio) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Anuncio> fetchAnuncioByTrabajoName(String nameTrabajo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
