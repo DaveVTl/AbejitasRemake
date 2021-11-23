@@ -22,5 +22,5 @@ public interface IFreelancerRepository extends JpaRepository<Freelancers, Intege
 
 	List<Freelancers> findByNameFreelancersIgnoreCase(String name);
 	
-	public Freelancers findByUsuario(Usuario usuario);
+	public Freelancers findByUsuarioUsername(String username);
 }

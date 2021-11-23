@@ -82,16 +82,13 @@ public class UserController {
 
 		try {
 			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-			Usuario user = uService.findByUsername(currentUserName);
-
-			Optional<Freelancers> freelancer = fS.findById(user.getId());
-			if (freelancer.isPresent()) {
-				Freelancers free = fS.findByUsuario(user);
+			Mype mype = mS.findByUsuarioUsername(currentUserName);
+			if (mype==null) {
+				Freelancers free = fS.findByUsuarioUsername(currentUserName);
 				model.addAttribute("free", free);
 				return "/usuarios/myProfile";
 
 			} else {
-				Mype mype = mS.findByUsuario(user);
 				model.addAttribute("mype", mype);
 				return "/usuarios/myProfileMy";
 
@@ -99,7 +96,7 @@ public class UserController {
 
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
-			return "/preregistro";
+			return "/error";
 		}
 
 	}

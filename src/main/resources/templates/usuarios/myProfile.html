@@ -25,19 +25,22 @@
 				<div class="main-body">
 
 					<!-- Breadcrumb -->
-		
+
 
 					<div class="row gutters-sm">
 						<div class="col-md-4 mb-3">
 							<div class="card">
 								<div class="card-body">
 									<div class="d-flex flex-column align-items-center text-center">
-										<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
-											class="rounded-circle" width="150">
+										<img style="border-radius: 20px"
+											th:if="${#strings.length(free.fotoFreelancers)> 0}"
+											th:src="@{'/freelancers/uploads/' + ${free.fotoFreelancers}}"
+											th:alt="${free.fotoFreelancers}" class="rounded-circle" width="150">
 										<div class="mt-3">
 											<h4 th:text=" ${free.nameFreelancers}">John Doe</h4>
-											<p class="text-secondary mb-1">Full Stack Developer</p>
-											<p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+											<p class="text-secondary mb-1" th:text=" ${free.email}">Full Stack Developer
+											</p>
+											<p class="text-muted font-size-sm">Freelancer</p>
 											<button class="btn btn-primary">Follow</button>
 											<button class="btn btn-outline-primary">Message</button>
 										</div>
@@ -116,27 +119,27 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-sm-3">
-											<h6 class="mb-0">Full Name</h6>
+											<h6 class="mb-0">Usuario</h6>
 										</div>
-										<div class="col-sm-9 text-secondary">
+										<div th:text=" ${free.usuario.username}" class="col-sm-9 text-secondary">
 											Kenneth Valdez
 										</div>
 									</div>
 									<hr>
 									<div class="row">
 										<div class="col-sm-3">
-											<h6 class="mb-0">Email</h6>
+											<h6 class="mb-0">Curriculum</h6>
 										</div>
-										<div class="col-sm-9 text-secondary">
+										<div th:text=" ${free.CVFreelancers}" class="col-sm-9 text-secondary">
 											fip@jukmuh.al
 										</div>
 									</div>
 									<hr>
 									<div class="row">
 										<div class="col-sm-3">
-											<h6 class="mb-0">Phone</h6>
+											<h6 class="mb-0">DNI</h6>
 										</div>
-										<div class="col-sm-9 text-secondary">
+										<div th:text=" ${free.dniFreelancers}" class="col-sm-9 text-secondary">
 											(239) 816-9029
 										</div>
 									</div>
@@ -145,7 +148,7 @@
 										<div class="col-sm-3">
 											<h6 class="mb-0">Mobile</h6>
 										</div>
-										<div class="col-sm-9 text-secondary">
+										<div th:text=" ${free.number}" class="col-sm-9 text-secondary">
 											(320) 380-4539
 										</div>
 									</div>
@@ -154,7 +157,7 @@
 										<div class="col-sm-3">
 											<h6 class="mb-0">Address</h6>
 										</div>
-										<div class="col-sm-9 text-secondary">
+										<div th:text=" ${free.Address}" class="col-sm-9 text-secondary">
 											Bay Area, San Francisco, CA
 										</div>
 									</div>
@@ -162,7 +165,7 @@
 									<div class="row">
 										<div class="col-sm-12">
 											<a class="btn btn-info " target="__blank"
-												href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
+												th:href="@{'/freelancers/detalle/' + ${free.idFreelancers}}">Edit</a>
 										</div>
 									</div>
 								</div>
@@ -173,38 +176,13 @@
 									<div class="card h-100">
 										<div class="card-body">
 											<h6 class="d-flex align-items-center mb-3"><i
-													class="material-icons text-info mr-2">assignment</i>Project Status
+													class="material-icons text-info mr-2">freelancer</i>Fecha de Ingreso
 											</h6>
-											<small>Web Design</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-													aria-valuemax="100"></div>
+											<div th:text=" ${free.fechaInscripcionFreelancers}"
+												class="col-sm-9 text-secondary">
+
 											</div>
-											<small>Website Markup</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-											<small>One Page</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-											<small>Mobile Template</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-											<small>Backend API</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
+
 										</div>
 									</div>
 								</div>
@@ -212,38 +190,13 @@
 									<div class="card h-100">
 										<div class="card-body">
 											<h6 class="d-flex align-items-center mb-3"><i
-													class="material-icons text-info mr-2">assignment</i>Project Status
+													class="material-icons text-info mr-2">freelancer</i>Descripcion
 											</h6>
-											<small>Web Design</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-													aria-valuemax="100"></div>
+											<div th:text=" ${free.descriptionFreelancers}"
+												class="col-sm-9 text-secondary">
+
 											</div>
-											<small>Website Markup</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-											<small>One Page</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-											<small>Mobile Template</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
-											<small>Backend API</small>
-											<div class="progress mb-3" style="height: 5px">
-												<div class="progress-bar bg-primary" role="progressbar"
-													style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-													aria-valuemax="100"></div>
-											</div>
+
 										</div>
 									</div>
 								</div>

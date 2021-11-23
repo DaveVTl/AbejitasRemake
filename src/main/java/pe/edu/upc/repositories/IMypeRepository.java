@@ -35,6 +35,6 @@ public interface IMypeRepository extends JpaRepository<Mype, Integer>{
 	public List<String[]> anuncioRango();
 	
 	
-	public Mype findByUsuario(Usuario usuario);
+	public Mype findByUsuarioUsername(String username);
 	
 }

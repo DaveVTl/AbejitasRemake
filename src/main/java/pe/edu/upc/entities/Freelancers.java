@@ -37,6 +37,16 @@ public class Freelancers {
 	@Column(name = "CVFreelancers", nullable = false, length = 100)
 	private String CVFreelancers;
 
+	@Pattern(regexp = "[0-9]{9}", message = "Escriba un numero valido")
+	@Column(name = "number", nullable = false, length = 15)
+	private String number;
+
+	@Column(name = "Address", nullable = false, length = 100)
+	private String Address;
+
+	@Column(name = "email", nullable = false, length = 100)
+	private String email;
+
 	@Column(name = "fotoFreelancers", nullable = true)
 	private String fotoFreelancers;
 
@@ -51,23 +61,25 @@ public class Freelancers {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	public Freelancers(int idFreelancers,
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
 			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
-			String descriptionFreelancers, String cVFreelancers, String fotoFreelancers,
-			Date fechaInscripcionFreelancers, Usuario usuario) {
+			String descriptionFreelancers, String cVFreelancers,
+			@Pattern(regexp = "[0-9]{8}", message = "Escriba un numero valido") String number, String address,
+			String email, String fotoFreelancers, Date fechaInscripcionFreelancers, Usuario usuario) {
 		super();
 		this.idFreelancers = idFreelancers;
 		this.nameFreelancers = nameFreelancers;
 		this.dniFreelancers = dniFreelancers;
 		this.descriptionFreelancers = descriptionFreelancers;
 		CVFreelancers = cVFreelancers;
+		this.number = number;
+		Address = address;
+		this.email = email;
 		this.fotoFreelancers = fotoFreelancers;
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
 		this.usuario = usuario;
 	}
-
 
 	public int getIdFreelancers() {
 		return idFreelancers;
@@ -131,6 +143,30 @@ public class Freelancers {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

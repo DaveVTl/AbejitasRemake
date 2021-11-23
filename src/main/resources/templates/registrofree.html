@@ -98,9 +98,35 @@
 							<div class="alert alert-danger" th:if="${#fields.hasErrors('dniFreelancers')}"
 								th:errors="*{dniFreelancers}"></div>
 
+
+
 							<div class="form-group">
-								<label for="descripcion">DESCRIPCION:</label> <input type="text" required
-									th:field="*{descriptionFreelancers}" class="form-control" id="descripcion"></input>
+								<label for="email">EMAIL:</label> <input type="text" required th:field="*{email}"
+									class="form-control" id="email"></input>
+							</div>
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+							</div>
+							
+							
+							<div class="form-group">
+								<label for="Address">ADDRESS:</label> <input type="text" required th:field="*{Address}"
+									class="form-control" id="Address"></input>
+							</div>
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('Address')}" th:errors="*{Address}">
+							</div>
+							
+							<div class="form-group">
+								<label for="number">NUMBER:</label> <input type="text" required th:field="*{number}"
+									class="form-control" id="number"></input>
+							</div>
+							<div class="alert alert-danger" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">
+							</div>
+
+
+							<div class="form-group">
+
+								<label for="descripcion">DESCRIPCION:</label> <textarea  type="text" required
+									th:field="*{descriptionFreelancers}" class="form-control" id="descripcion"></textarea >
 							</div>
 							<div class="alert alert-danger" th:if="${#fields.hasErrors('descriptionFreelancers')}"
 								th:errors="*{descriptionFreelancers}"></div>
@@ -116,8 +142,9 @@
 
 
 							<div class="form-group">
-								<input id="date" type="date" name="trip-start" th:field="*{fechaInscripcionFreelancers}"/>
-								
+								<input id="date" type="date" name="trip-start"
+									th:field="*{fechaInscripcionFreelancers}" />
+
 
 							</div>
 							<div class="alert alert-danger" th:if="${#fields.hasErrors('fechaInscripcionFreelancers')}"

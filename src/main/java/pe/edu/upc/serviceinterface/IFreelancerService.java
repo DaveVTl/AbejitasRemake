@@ -22,7 +22,7 @@ public interface IFreelancerService {
 	
 	List<Freelancers> findByNameFreelancersIgnoreCase(String nameFreelancers);
 	
-	public Freelancers findByUsuario(Usuario usuario);
+	public Freelancers findByUsuarioUsername(String username);
 
 
 

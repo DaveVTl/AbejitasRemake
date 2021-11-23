@@ -86,9 +86,9 @@ public class MypeServiceImplement implements IMypeService{
 	}
 
 	@Override
-	public Mype findByUsuario(Usuario usuario) {
+	public Mype findByUsuarioUsername(String username) {
 		// TODO Auto-generated method stub
-		return mR.findByUsuario(usuario);
+		return mR.findByUsuarioUsername(username);
 	}
 	
 }

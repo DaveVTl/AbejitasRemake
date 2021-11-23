@@ -44,6 +44,37 @@
 							<div class="form-group">
 
 
+								<label>ID:</label> <input type="text" class="form-control" readonly
+									th:field="*{usuario.id}"></input>
+
+								<div class="form-group">
+
+
+									<label for="username">Username:</label> <input style="color:black" type="text"
+										required th:field="*{usuario.username}" class="form-control"
+										id="username"></input>
+								</div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.username')}"
+									th:errors="*{usuario.username}"></div>
+								<div class="form-group">
+									<label for="password">Password:</label> <input type="password" required
+										th:field="*{usuario.password}" class="form-control" id="password"></input>
+								</div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('usuario.password')}"
+									th:errors="*{usuario.password}"></div>
+								<div class="form-group">
+									<label for="name" class="col-sm-2 col-form-label">Estado:</label>
+									<div class="col-sm-6">
+
+										<input type="checkbox" th:field="*{usuario.enabled}" class="form-control"
+											th:errorclass="'form-control alert-danger'" /> <small
+											class="form-text text-danger"
+											th:if="${#fields.hasErrors('usuario.enabled')}"
+											th:errors="{usuario.enabled}"></small>
+									</div>
+								</div>
+
+
 								<label for="name" class="col-sm-2 col-form-label">Nombre</label>
 								<div class="col-sm-6">
 									<input type="text" th:field="*{nameFreelancers}" class="form-control"
@@ -58,6 +89,31 @@
 								</div>
 								<div class="alert alert-danger" th:if="${#fields.hasErrors('dniFreelancers')}"
 									th:errors="*{dniFreelancers}"></div>
+
+
+
+								<div class="form-group">
+									<label for="number">Number:</label> <input type="text" required th:field="*{number}"
+										class="form-control" id="number"></input>
+								</div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('number')}"
+									th:errors="*{number}"></div>
+
+								<div class="form-group">
+									<label for="email">Email:</label> <input type="text" required th:field="*{email}"
+										class="form-control" id="email"></input>
+								</div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('email')}"
+									th:errors="*{email}"></div>
+
+								<div class="form-group">
+									<label for="Address">Address:</label> <input type="text" required
+										th:field="*{Address}" class="form-control" id="Address"></input>
+								</div>
+								<div class="alert alert-danger" th:if="${#fields.hasErrors('Address')}"
+									th:errors="*{Address}"></div>
+
+
 
 								<div class="form-group">
 									<label for="descripcion">DESCRIPCION:</label> <input type="text" required
@@ -75,9 +131,9 @@
 									th:errors="*{CVFreelancers}"></div>
 
 								<div class="form-group">
-									<label for="fecha">FECHA:</label> <input type="text" required
-										th:field="*{fechaInscripcionFreelancers}" class="form-control"
-										id="fecha"></input>
+									<label for="fecha">FECHA:</label> <input id="date" type="date" name="trip-start"
+										th:field="*{fechaInscripcionFreelancers}" />
+
 								</div>
 								<div class="alert alert-danger"
 									th:if="${#fields.hasErrors('fechaInscripcionFreelancers')}"

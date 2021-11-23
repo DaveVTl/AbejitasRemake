@@ -68,9 +68,9 @@ public class FreelancerServiceImplement implements IFreelancerService {
 	}
 
 	@Override
-	public Freelancers findByUsuario(Usuario usuario) {
+	public Freelancers findByUsuarioUsername(String username) {
 		// TODO Auto-generated method stub
-		return fR.findByUsuario(usuario);
+		return fR.findByUsuarioUsername(username);
 	}
 
 

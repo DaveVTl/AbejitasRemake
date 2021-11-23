@@ -101,6 +101,9 @@ public class FreelancerController {
 		model.addAttribute("newFreelancer", new Freelancers());
 		return "redirect:/login";
 	}
+	
+	
+	
 
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
@@ -153,6 +156,8 @@ public class FreelancerController {
 
 		return "/freelancer/detail";
 	}
+	
+	
 
 	@GetMapping("/prere")
 	public String prere(Model model) {

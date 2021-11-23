@@ -27,7 +27,7 @@ public interface IMypeService {
 	
 	public List<String[]> anuncioRango();
 	
-	public Mype findByUsuario(Usuario usuario);
+	public Mype findByUsuarioUsername(String username);
 }
 
 
