@@ -1,5 +1,6 @@
 package pe.edu.upc.serviceimplement;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Freelancers;
+import pe.edu.upc.entities.Rol;
 import pe.edu.upc.repositories.IFreelancerRepository;
 import pe.edu.upc.serviceinterface.IFreelancerService;
 
@@ -24,6 +26,11 @@ public class FreelancerServiceImplement implements IFreelancerService {
 		
 		int rpta = fR.FindFreelancersExists(freelancer.getDniFreelancers());
 		if (rpta == 0) {
+			Rol role = new Rol();
+			role.setType("ROLE_FREELANCER");
+			List<Rol> roles = new ArrayList<Rol>();
+			roles.add(role);
+			freelancer.getUsuario().setRoles(roles);
 			fR.save(freelancer);
 		}
 		return rpta;

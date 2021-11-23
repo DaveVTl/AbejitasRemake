@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entities.Freelancers;
 import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
@@ -78,7 +79,8 @@ public class LoginController {
 	
 	@GetMapping("/login/newfree")
 	public String newUserFreelancer(Model model) {
-		model.addAttribute("newUserFree", new Usuario());
+		model.addAttribute("usuario", new Usuario());
+		model.addAttribute("newFreelancer", new Freelancers());
 		return "registrofree";
 	}
 	

@@ -2,14 +2,13 @@ package pe.edu.upc.entities;
 
 import java.util.Date;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -41,6 +40,9 @@ public class Freelancers {
 
 	private Date fechaInscripcionFreelancers;
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private Usuario usuario;
+
 	public Freelancers() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -50,7 +52,7 @@ public class Freelancers {
 			@Pattern(regexp = "[^!\"#$%&'()*+,-./:;<=>?@^_`{|}~]+", message = "Escriba un nombre correcto") @Pattern(regexp = "[^0-9]+", message = "Escriba un nombre sin numeros") String nameFreelancers,
 			@Pattern(regexp = "[0-9]{8}", message = "Escriba un Dni valido") String dniFreelancers,
 			String descriptionFreelancers, String cVFreelancers, String fotoFreelancers,
-			Date fechaInscripcionFreelancers) {
+			Date fechaInscripcionFreelancers, Usuario usuario) {
 		super();
 		this.idFreelancers = idFreelancers;
 		this.nameFreelancers = nameFreelancers;
@@ -59,6 +61,7 @@ public class Freelancers {
 		CVFreelancers = cVFreelancers;
 		this.fotoFreelancers = fotoFreelancers;
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
+		this.usuario = usuario;
 	}
 
 	public int getIdFreelancers() {
@@ -115,6 +118,14 @@ public class Freelancers {
 
 	public void setFechaInscripcionFreelancers(Date fechaInscripcionFreelancers) {
 		this.fechaInscripcionFreelancers = fechaInscripcionFreelancers;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
