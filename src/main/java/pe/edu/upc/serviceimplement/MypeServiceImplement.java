@@ -65,4 +65,10 @@ public class MypeServiceImplement implements IMypeService{
 	public void delete(int idMype) {
 		mR.deleteById(idMype);
 	}
+
+	@Override
+	public List<String[]> mypeMasAnuncios() {
+		// TODO Auto-generated method stub
+		return mR.mypeMasAnuncios();
+	}
 }

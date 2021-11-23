@@ -23,26 +23,42 @@
 		<div class="content container">
 
 			<div class="d-flex">
-				<h3 class="title-content">Lista de Anuncio</h3>
-				<a th:href="@{/anuncio/new}" class="btn btn-warning">Nuevo</a>
-				<a th:href="@{/anuncio/listFind}" class="btn btn-warning">Buscar</a>
+				<form th:action="@{/mype/find}" method="post" th:object="${mype}">
+					<div class="form-group">
+
+						<label for=fre>Buscar:</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" th:field="*{nameEmpresaMype}" id="myp"
+								placeholder="Ingrese nombre del Mype"></input>
+							<div align="right">
+								<button type="submit" class="btn btn-danger">Buscar</button>
+								<a href="/mype/listFind" class="btn btn-dark">Cancelar</a>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
 			</div>
 
 			<div class="row pt-5">
-				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="anu: ${listaAnuncio}">
+				<div class="col-lg-6 col-md-12 col-sm-12 col-12" th:each="free : ${listaMype}">
 					<div class="row">
 						<div class="col-lg-5 col-md-6 col-sm-6 col-6">
+							<img style="border-radius: 20px" ; class="img-fluid"
+								th:if="${#strings.length(myp.logoMype)> 0}"
+								th:src="@{'/mype/uploads/' + ${myp.logoMype}}"
+								th:alt="${fmyp.logoMype}">
 						</div>
 						<div class="col-lg-7 col-md-6 col-sm-6 col-6 pt-3">
-							<h5 th:text=" ${anu.nameAnuncio}">Name</h5>
+							<h5 th:text=" ${myp.nameEmpresaMype}">Nombre Empresa</h5>
 							<small>DISPONIBLE</small>
-							<p th:text=" ${anu.descriptionAnuncio}">Descripcion</p>
-							<p th:text=" ${anu.tipoTrabajo.nombreTrabajo}">Tipo Trabajo</p>
-							<p th:text=" ${anu.pagoAnuncio}">Pago Ofrecido</p>
+							<p th:text=" ${myp.nameGerenteMype}">Nombre Gerente</p>
 							<span><i class="fas fa-star"> 4,8 (745)</i></span>
-							<a class="btn btn-primary" th:href="@{'/anuncio/detail/' + ${anu.idAnuncio}}"
-								role="button">Ver Anuncio</a>
-
+							<a class="btn btn-primary" th:href="@{'/mype/detail/' + ${myp.idMype}}"
+								role="button">VerPerfil</a>
+							<a class="btn btn-primary" th:href="@{'/mype/detalle/' + ${myp.idMype}}"
+								role="button">Editar</a>
 							<br>
 							<br>
 							<br>
@@ -55,10 +71,15 @@
 
 		</div>
 
+
+
 	</div>
 	<div th:if="${mensaje}" class="alert alert-danger">
 		<p th:text="${mensaje}"></p>
 	</div>
+
+	</div>
+
 
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>

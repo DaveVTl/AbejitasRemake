@@ -22,6 +22,8 @@ public interface IMypeService {
 	
 	public void delete(int idMype);
 	
+	public List<String[]> mypeMasAnuncios();
+	
 }
 
 

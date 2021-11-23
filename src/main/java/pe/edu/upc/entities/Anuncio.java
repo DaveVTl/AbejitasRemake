@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,8 +26,12 @@ public class Anuncio {
 	private String nameAnuncio	;
 	@Column(name = "descriptionAnuncio", nullable = false, length = 254)
 	private String descriptionAnuncio;
-	@Column(name = "pagoAnuncio", nullable = false, length = 254)
-	private String pagoAnuncio;
+	
+	@NotNull
+	@DecimalMin("1.00")
+	@Positive
+	@Column(name = "pagoAnuncio",columnDefinition = "Decimal(8,2)", nullable = false)
+	private Double pagoAnuncio;
 	
 	@ManyToOne
     @JoinColumn(name="idMype", nullable = false)
@@ -38,7 +45,7 @@ public class Anuncio {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Anuncio(int idAnuncio, String nameAnuncio, String descriptionAnuncio, String pagoAnuncio, Mype mype,
+	public Anuncio(int idAnuncio, String nameAnuncio, String descriptionAnuncio, Double pagoAnuncio, Mype mype,
 			TipoTrabajo tipoTrabajo) {
 		super();
 		this.idAnuncio = idAnuncio;
@@ -73,11 +80,11 @@ public class Anuncio {
 		this.descriptionAnuncio = descriptionAnuncio;
 	}
 
-	public String getPagoAnuncio() {
+	public Double getPagoAnuncio() {
 		return pagoAnuncio;
 	}
 
-	public void setPagoAnuncio(String pagoAnuncio) {
+	public void setPagoAnuncio(Double pagoAnuncio) {
 		this.pagoAnuncio = pagoAnuncio;
 	}
 

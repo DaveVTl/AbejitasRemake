@@ -19,4 +19,11 @@ public interface IMypeRepository extends JpaRepository<Mype, Integer>{
 	List<Mype> findByName(String name);
 
 	List<Mype> findByNameEmpresaMypeIgnoreCase(String name);
+	
+	@Query(value="Select a.id_Mype, m.name_empresa_mype, COUNT(a.id_anuncio)"
+			+ "from Mypes m join Anuncio a on  m.id_Mype =  a.id_Mype "
+			+ "group by a.id_Mype, m.name_empresa_mype ",
+	nativeQuery = true )
+	public List<String[]> mypeMasAnuncios();
+	
 }

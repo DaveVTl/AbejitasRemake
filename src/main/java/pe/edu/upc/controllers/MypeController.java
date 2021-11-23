@@ -180,7 +180,6 @@ public class MypeController {
 		return "mype/find";
 	}
 	
-	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("/delete")
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -195,5 +194,18 @@ public class MypeController {
 		}
 		model.put("listMype", mC.list());
 		return "/mype/mype";
+	}
+	
+	@RequestMapping("/reporte1")
+	public String tipoMasPagado(Map<String, Object> model) {
+
+		model.put("listMypeAnuncio", mC.mypeMasAnuncios());
+		return "reports/mypeMasAnuncio";
+	}
+	
+	@RequestMapping("/reportes")
+	public String listReports()
+	{
+		return "reports/reportsv";
 	}
 }

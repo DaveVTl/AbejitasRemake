@@ -1,10 +1,15 @@
 package pe.edu.upc.controllers;
 
+import java.net.MalformedURLException;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +23,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Anuncio;
+
 import pe.edu.upc.serviceinterface.IAnuncioService;
 import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.ITipoTrabajoService;
+import pe.edu.upc.serviceinterface.IUploadFileService;
 
 
 
@@ -33,11 +40,13 @@ public class AnuncioController {
 	private IMypeService mS;
 	@Autowired
 	private ITipoTrabajoService tService;
+	@Autowired
+	private IUploadFileService uploadFileService;
 	
 	@GetMapping("/new")
 	public String newAnuncio(Model model) {
-		model.addAttribute("anuncio", new Anuncio());
-		model.addAttribute("listaTipoTrabajos", tService.list());
+		model.addAttribute("newAnuncio", new Anuncio());
+		model.addAttribute("listaTipoTrabajo", tService.list());
 		model.addAttribute("listaMype", mS.list());
 		return "anuncio/anuncio";
 	}
@@ -75,40 +84,58 @@ public class AnuncioController {
 		return "redirect:/anuncio/list";
 	}
 	
-	@Secured({"ROLE_MYPE"})
-	@RequestMapping("/update/{id}")
-	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+	@GetMapping("/detalle/{id}")
+	public String detailsMype(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Anuncio> anuncio = aR.listarId(id);
+			if (!anuncio.isPresent()) {
+				model.addAttribute("info", "Anuncio no existe");
+				return "redirect:/anuncio/list";
+			} else {
+				model.addAttribute("anuncio", anuncio.get());
+			}
 
-		Anuncio objPro = aR.listarId(id);
-		if (objPro == null) {
-			objRedir.addFlashAttribute("mensaje", "OcurriÃ³ un error");
-			return "redirect:/anuncio/list";
-		} else {
-			model.addAttribute("listaAnuncio", aR.list());
-			model.addAttribute("listaMype", mS.list());
-			model.addAttribute("listaTipoTrabajos", tService.list());
-			model.addAttribute("anuncio", objPro);
-			return "anuncio/anuncio";
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
 		}
+		return "/anuncio/update";
 	}
 	
-	@GetMapping(value = "/view/{id}")
-	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
+	@GetMapping(value = "/uploads/{filename:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
-		Anuncio anuncio= aR.listarId(id);
+		Resource recurso = null;
 
-		if (anuncio == null) {
-			flash.addFlashAttribute("error", "El trabajo no existe en la base de datos");
-			return "anuncio/listAnuncio";
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		model.put("anuncio", anuncio);
-		model.put("titulo", "Detalle de Anuncio: " + anuncio.getNameAnuncio());
-
-		return "anuncio/ver";
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
 	}
 	
-	@Secured({"ROLE_MYPE"})
+	@GetMapping("/detail/{id}")
+	public String detailsAnuncio(@PathVariable(value = "id") int id, Model model) {
+		try {
+			Optional<Anuncio> anuncio = aR.findById(id);
+
+			if (!anuncio.isPresent()) {
+				model.addAttribute("info", "Anuncio no existe");
+				return "redirect:/anuncio/list";
+			} else {
+				model.addAttribute("anuncio", anuncio.get());
+			}
+
+		} catch (Exception e) {
+			model.addAttribute("error", e.getMessage());
+		}
+
+		return "/anuncio/detail";
+	}
+	
 	@RequestMapping("/delete")
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {

@@ -18,73 +18,92 @@
 
 	<div th:replace="fragments/sidebar :: sidebar" id="panel"
 		class="activepanel"></div>
-<div class="fondito">
+
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
 		<div class="content container row col-12">
-			<div class="col-1">
-				<h3></h3>
-			</div>
-			<div class="col-3">
-				<h3>Registrar Anuncio</h3>
-			</div>
-			<div class="col-8 frm-registro">
-				<form th:action="@{/anuncio/save}" method="post"
-					th:object="${anuncio}">
-					<div class="form-group">
-						<label>ID:</label> <input type="text" class="form-control"
-							readonly th:field="*{idAnuncio}"></input>
-					</div>
-					<div class="form-group">
-						<label for="nombre">Nombre Anuncio:</label> <input type="text"
-							required th:field="*{nameAnuncio}" class="form-control"
-							id="nameAnuncio"></input>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('nameAnuncio')}"
-							th:errors="nameAnuncio"></div>
-						<label for="nombre">Descripcion:</label> <input type="text"
-							required th:field="*{descriptionAnuncio}" class="form-control"
-							id="descriptionAnuncio"></input>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('descriptionAnuncio')}"
-							th:errors="descriptionAnuncio"></div>
-						<label for="nombre">Pago Anuncio:</label> <input type="text"
-							required th:field="*{pagoAnuncio}" class="form-control"
-							id="pagoAnuncio"></input>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('pagoAnuncio')}"
-							th:errors="pagoAnuncio"></div>
+			
+				<div class="col-1">
+					<h3></h3>
+				</div>
+				<div class="col-3">
+					<h3>Registrar Anuncio</h3>
+				</div>
+				<div class="col-8 frm-registro">
+					<form th:action="@{/anuncio/save}" method="post"
+						th:object="${newAnuncio}" enctype="multipart/form-data">
+						<div class="form-group">
+							<label>ID:</label> <input type="text" class="form-control"
+								readonly th:field="*{idAnuncio}"></input>
+								
+							<div class="form-group">
 
-						<label for="mype">Mype: </label> 
-						<select class="form-control"
-							th:field="*{mype.idMype}">
-							<option th:each="a: ${listaMypes}" th:value="${a.idMype}"
-								th:text="${a.nameEmpresaMype}"
-								th:selected="(${a.idMype} == *{mype.idMype})"></option>
-						</select> 
-						<label for="raza">Tipo de Trabajo: </label> 
-						<select
-							class="form-control" th:field="*{tipoTrabajo.idTipoTrabajo}">
-							<option th:each="a: ${listaTipoTrabajos}"
-								th:value="${a.idTipoTrabajo}" th:text="${a.nombreTrabajo}"
-								th:selected="(${a.idTipoTrabajo} == *{tipoTrabajo.idTipoTrabajo})"></option>
-						</select>
+								<div class="form-group">
+									<label for="nombre">Nombre Anuncio:</label> <input type="text" required
+										th:field="*{nameAnuncio}" class="form-control" id="nombre"></input>
+								</div>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('nameAnuncio')}"
+									th:errors="*{nameEmpresaMype}"></div>
 
-					</div>
-					<button type="submit" class="btn btn-warning">Aceptar</button>
-					<a href="/anuncio/list" class="btn btn-light">Cancelar</a>
+								<div class="form-group">
+									<label for="descripcion">Descripcion del Anuncio:</label> <input type="text" required
+										th:field="*{descriptionAnuncio}" class="form-control" id="descripcion"></input>
+								</div>
+								<div class="alert alert-danger"
+									th:if="${#fields.hasErrors('descriptionAnuncio')}"
+									th:errors="*{descriptionAnuncio}"></div>
 
+						<div class="form-group">
+							<label for="mype">Mype:</label> <select class="form-control"
+								th:field="*{mype.idMype}">
+								<option th:each="m: ${listaMype}" th:value="${m.idMype}"
+									th:text="${m.nameEmpresaMype}"
+									th:selected="(${m.idMype} == *{mype.idMype})"></option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label for="tipoTrabajo">Tipo Trabajo:</label> <select class="form-control"
+								th:field="*{tipoTrabajo.idTipoTrabajo}">
+								<option th:each="t: ${listaTipoTrabajo}" th:value="${t.idTipoTrabajo}"
+									th:text="${t.nombreTrabajo}"
+									th:selected="(${t.idTipoTrabajo} == *{tipoTrabajo.idTipoTrabajo})"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="price">Paga Ofrecida:</label>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">S/.</span>
+								</div>
+								<input type="number" th:field="*{pagoAnuncio}" class="form-control" required
+									id="price"></input>
+								<div class="input-group-append">
+									<span class="input-group-text">.00</span>
+								</div>
+							</div>
+						</div>
+									
+						</div>
+						</div>
+						<button type="submit" class="btn btn-warning">Aceptar</button>
+						<a href="/anuncio/list" class="btn btn-light">Cancelar</a>
+			
 				</form>
+</div>
+</div>
 				<div th:if="${mensaje}" class="alert alert-danger">
 					<p th:text="${mensaje}"></p>
 				</div>
 			</div>
 
-		</div>
-	</div>
+		
+	
 
-</div>
+
 	<script src="/js/popper.min.js"></script>
 	<script src="/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>

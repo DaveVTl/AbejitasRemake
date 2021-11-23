@@ -26,13 +26,13 @@
 
 		<div class="card user-card-full">
 			<div class="row m-l-0 m-r-0">
-				<div class="col-sm-4 bg-c-lite-green user-profile">
+				<div class="col-sm-4 bg-c-lite-green user-profile" th:each="anu: ${listaMype}">
 					<div class="card-block text-center text-white">
 						<div class="m-b-25">
 							<img style="border-radius: 20px" ; class="img-fluid"
-								th:if="${#strings.length(mype.logoMype)> 0}"
-								th:src="@{'/mype/uploads/' + ${mype.logoMype}}"
-								th:alt="${mype.logoMype}">
+								th:if="${#strings.length(anu.logoMype)> 0}"
+								th:src="@{'/anuncio/uploads/' + ${mype.logoMype}}"
+								th:alt="${anu.logoMype}">
 						</div>
 						<h6 class="f-w-600" th:text=" ${mype.nameEmpresaMype}"></h6>
 						<p>Mype</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
@@ -40,37 +40,31 @@
 				</div>
 				<div class="col-sm-8">
 					<div class="card-block">
-						<h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+						<h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informacion del Anuncio</h6>
 						<div class="row">
+
 							<div class="col-sm-6">
-								<p class="m-b-10 f-w-600">Nombre del Gerente</p>
-								<h6 th:text=" ${mype.nameGerenteMype}" class="text-muted f-w-400">
+								<p class="m-b-10 f-w-600">nombre del Anuncio</p>
+								<h6 th:text=" ${anuncio.nameAnuncio}" class="text-muted f-w-400">
 								</h6>
 							</div>
 							<div class="col-sm-6">
-								<p class="m-b-10 f-w-600">Ruc</p>
-								<h6 th:text=" ${mype.rucMype}" class="text-muted f-w-400">
+								<p class="m-b-10 f-w-600">Descripcin del Anuncio</p>
+								<h6 th:text=" ${anuncio.descriptionAnuncio}" class="text-muted f-w-400">
 								</h6>
 							</div>
 							<div class="col-sm-6">
-								<p class="m-b-10 f-w-600">Fecha de Ingreso</p>
-								<h6 th:text=" ${mype.fechaInscripcionMype}" class="text-muted f-w-400">
+								<p class="m-b-10 f-w-600">Pago</p>
+								<h6 th:text=" ${anuncio.pagoAnuncio}" class="text-muted f-w-400">
 								</h6>
 							</div>
-						</div>
-						<p class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Nombre Anuncio</p>
-						<h6 th:text=" ${mype.nameEmpresaMype}" class="text-muted f-w-400"> </h6>
-						<div class="row">
 							<div class="col-sm-6">
-								<p class="m-b-10 f-w-600">Anuncio</p>
-								<h6 class="text-muted f-w-400"> aaaa </h6>
+								<p class="m-b-10 f-w-600">Tipo Trabajo</p>
+								<h6 th:text=" ${anuncio.tipoTrabajo.nombreTrabajo}" class="text-muted f-w-400">
+								</h6>
 							</div>
-							<div class="col-sm-6">
-								<p class="m-b-10 f-w-600">Puntuacion Promedio</p>
-								<h6 class="text-muted f-w-400">Numero</h6>
-							</div>
-							<a href="/mype/list" class="btn btn-light">Regresar</a>					
-						</div>
+
+							<a href="/anuncio/list" class="btn btn-light">Regresar</a>					
 						<ul class="social-link list-unstyled m-t-40 m-b-10">
 							<li><a href="#!" data-toggle="tooltip" data-placement="bottom" title=""
 									data-original-title="facebook" data-abc="true"><i
