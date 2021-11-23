@@ -21,15 +21,15 @@ public interface IMypeRepository extends JpaRepository<Mype, Integer>{
 	List<Mype> findByNameEmpresaMypeIgnoreCase(String name);
 	
 	@Query(value="Select a.id_Mype, m.name_empresa_mype, COUNT(a.id_anuncio)"
-			+ "from Mypes m join Anuncio a on  m.id_Mype =  a.id_Mype "
+			+ "from Mypes m join Anuncio a on  m.id_Mype = a.id_Mype "
 			+ "group by a.id_Mype, m.name_empresa_mype ",
 	nativeQuery = true )
 	public List<String[]> mypeMasAnuncios();
 	
-	@Query(value="Select a.id_anuncio,m.name_empresa_mype,a.pago_anuncio"
-	+ "from anuncio a join mypes m on a.id_mype=m.id_mype"
+	@Query(value="Select a.id_Anuncio,m.name_Empresa_Mype,a.pago_Anuncio"
+	+ "from anuncio a join mypes m on a.id_Mype=m.id_Mype"
 	+ "where pago_anuncio between 250 and 500"
-	+ "group by a.id_anuncio,m.name_empresa_mype,a.pago_anuncio",
+	+ "group by a.id_Anuncio,m.name_Empresa_Mype,a.pago_Anuncio",
 	nativeQuery = true )
-	public List<String[]> reporte2();
+	public List<String[]> anuncioRango();
 }

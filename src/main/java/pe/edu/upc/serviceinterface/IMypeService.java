@@ -24,7 +24,7 @@ public interface IMypeService {
 	
 	public List<String[]> mypeMasAnuncios();
 	
-	public List<String[]> reporte2();
+	public List<String[]> anuncioRango();
 	
 }
 

@@ -80,9 +80,9 @@ public class MypeServiceImplement implements IMypeService{
 	}
 
 	@Override
-	public List<String[]> reporte2() {
+	public List<String[]> anuncioRango() {
 		// TODO Auto-generated method stub
-		return mR.reporte2();
+		return mR.anuncioRango();
 	}
 	
 }
