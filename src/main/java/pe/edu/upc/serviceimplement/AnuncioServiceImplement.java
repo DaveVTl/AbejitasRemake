@@ -49,8 +49,6 @@ public class AnuncioServiceImplement implements IAnuncioService{
 	}
 
 	
-	
-	
 	@Override
 	public Optional<Anuncio> listarId(int id) {
 		// TODO Auto-generated method stub

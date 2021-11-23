@@ -25,15 +25,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
 import pe.edu.upc.entities.Avances;
 import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.serviceinterface.IAvanceService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
 import pe.edu.upc.serviceinterface.IUploadFileService;
-
-
 
 @Controller
 @RequestMapping("/avances")
@@ -51,7 +47,7 @@ public class AvanceController {
 		model.addAttribute("avance", new Avances());
 		model.addAttribute("listaTrabajo", tService.list());
 		return "avances/avance";
-		
+
 	}
 
 	@Transactional
@@ -83,11 +79,13 @@ public class AvanceController {
 			boolean flag = pService.insert(objPro);
 			if (flag) {
 				status.setComplete();
-				return "redirect:/avances/list";
+				Trabajo trab=new Trabajo();
+				trab=objPro.getTrabajo();
+				return "redirect:/trabajos/view/"+trab.getIdTrabajo();
 			} else {
 				model.addAttribute("avance", objPro);
 				model.addAttribute("mensaje", "Ocurrió un error");
-				return "avances/avance";
+				return "trabajo/listTrabajos";
 			}
 		}
 	}
@@ -141,7 +139,7 @@ public class AvanceController {
 		return "avance/listAvances";
 
 	}
-	
+
 	@RequestMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 
@@ -155,7 +153,7 @@ public class AvanceController {
 			return "avances/avance";
 		}
 	}
-	
+
 	@RequestMapping("/delete")
 	public String delete(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -170,9 +168,10 @@ public class AvanceController {
 		}
 		model.put("listAvances", pService.list());
 
-//		return "redirect:/categories/list";
-		return "/avances/listAvances";
+		return "redirect:/trabajos/list";
+		// return "/trabajo/listTrabajos";
 	}
+
 	@GetMapping("/form/{id}")
 	public String formOrder(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -190,5 +189,5 @@ public class AvanceController {
 		}
 		return "avances/avance";
 	}
-	//aaaaa
+	// aaaaa
 }

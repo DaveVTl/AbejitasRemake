@@ -73,6 +73,10 @@ public class FreelancerServiceImplement implements IFreelancerService {
 		return fR.findByUsuarioUsername(username);
 	}
 
-
+	@Override
+	public List<String[]> freelancerXord() {
+		// TODO Auto-generated method stub
+		return fR.freelancerXord();
+	}
 
 }

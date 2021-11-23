@@ -22,75 +22,35 @@
 	<div class="bg row">
 		<div th:replace="fragments/nav :: nav" class="row topbar col-lg-12"></div>
 
-		<div class="content container row col-12">
-			<div class="col-6">
-				<h3>Registrar Avance</h3>
-				<img class="detailimg" alt="" th:src="@{/img/form/abejita.png}">
-			</div>
-			<div class="col-6 frm-registro">
-				<form th:action="@{/avances/save}" method="post" class="row"
-					th:object="${avance}" enctype="multipart/form-data" height=100px;
-					width=100px;>
+		<div class="container-fluid">
 
-					<div class="col-6">
-						<div class="form-group">
-							<label for="idAvance">ID:</label> <input type="text" readonly
-								class="form-control" th:field="*{idAvance}"></input>
-						</div>
-
-						<div class="form-group">
-							<label for="nombre">NOMBRE:</label> <input type="text" required
-								th:field="*{nombre}" class="form-control" id="nombre"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
-
-						<div class="form-group">
-							<textarea for="descripcion">DESCRIPCION:</textarea> <input type="text"
-								th:field="*{descripcion}" class="form-control" id="descripcion"></input>
-						</div>
-						<div class="alert alert-danger"
-							th:if="${#fields.hasErrors('descripcion')}"
-							th:errors="*{descripcion}"></div>
-					</div>
-					<div class="col-6">
-
-						<div class="form-group">
-							<label for="file" class="">FOTO:</label>
-							<div class="col-sm-6">
-								<input type="file" name="file" class="form-control"
-									th:text="${avance.fotoavance}" />
+					<div class="bg row">
+						<div class="content container">
+							<div class="cinforeport">
+								<h3 class="title-content">Promedio de Freelancer</h3>
+								<p class="inforeport">Lista de el Promedio de calificaciones de los freelancers</p>
 							</div>
+							<table class="table">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col" class="text-center">Freelancer</th>
+											<th scope="col" class="text-center">Promedio</th>
 
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="rep : ${listFreelancerxOrd}">
+										<td class="text-center" th:text="${rep[0]}"></td>
+										<td class="text-center" th:text="${rep[1]}"></td>
+				
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div class="form-group row">
-							<label for="nombre" class="col-sm-2 col-form-label">TRABAJO
-							</label>
-							<div class="col-sm-6">
-								<input type="text" readonly class="form-control-plaintext"
-									id="nombre" th:field="${avance.trabajo.idTrabajo}"></input> <input
-									type="text" readonly class="form-control-plaintext" id="nombre"
-									th:text="${avance.trabajo.nameTrabajo}"></input>
-							</div>
-						</div>
-
-
-
-
-
-
 					</div>
-					<button style="margin: 0px 30px;" type="submit" th:href="@{/trabajos/view/} + ${avance.trabajo.idTrabajo}"
-						class="btnadd btn btn-primary">Aceptar</button>
-					<a th:href="@{/trabajos/view/} + ${avance.trabajo.idTrabajo}" class="btn btn-danger">Cancelar</a>
-				</form>
-
-				<div th:if="${mensaje}" class="alert alert-danger">
-					<p th:text="${mensaje}"></p>
 				</div>
-			</div>
 
-		</div>
+
 	</div>
 </div>
 

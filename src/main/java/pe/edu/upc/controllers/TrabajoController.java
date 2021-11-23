@@ -1,7 +1,7 @@
 package pe.edu.upc.controllers;
 
-
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,8 +19,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entities.Trabajo;
+import pe.edu.upc.entities.Avances;
 
 import pe.edu.upc.serviceinterface.IAnuncioService;
+import pe.edu.upc.serviceinterface.IAvanceService;
 import pe.edu.upc.serviceinterface.IFreelancerService;
 import pe.edu.upc.serviceinterface.ITipoPagoService;
 import pe.edu.upc.serviceinterface.ITrabajoService;
@@ -36,7 +38,8 @@ public class TrabajoController {
 	private IFreelancerService fS;
 	@Autowired
 	private ITipoPagoService tpS;
-
+	@Autowired
+	private IAvanceService avS;
 
 	@GetMapping("/new")
 	public String newTrabajo(Model model) {
@@ -67,7 +70,7 @@ public class TrabajoController {
 			model.addAttribute("listaTipoPagos", tpS.list());
 			return "trabajo/trabajo";
 		} else {
-			
+
 			boolean flag = tS.insert(objTrabajo);
 			if (flag) {
 				return "redirect:/trabajos/list";
@@ -78,7 +81,6 @@ public class TrabajoController {
 		}
 	}
 
-	
 	@GetMapping(value = "/view/{id}")
 	public String view(@PathVariable(value = "id") int id, Map<String, Object> model, RedirectAttributes flash) {
 
@@ -88,13 +90,14 @@ public class TrabajoController {
 			flash.addFlashAttribute("error", "El trabajo no existe en la base de datos");
 			return "trabajo/listTrabajos";
 		}
-
+		List<Avances> listAvancefil=avS.FindByTrabajo(id);
 		model.put("trabajo", trabajo);
+		model.put("listAvancefil", listAvancefil);
 		model.put("titulo", "Detalle de Trabajo: " + trabajo.getNameTrabajo());
 
 		return "trabajo/ver";
 	}
-	
+
 	@RequestMapping("/list")
 	public String listTrabajos(Map<String, Object> model) {
 		model.put("listaTrabajos", tS.list());
@@ -124,5 +127,5 @@ public class TrabajoController {
 			return "trabajo/trabajo";
 		}
 	}
-	
+
 }

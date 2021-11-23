@@ -170,6 +170,22 @@ public class AnuncioController {
 		return "/anuncio/listAnuncio";
 	}
 
-	
+	@RequestMapping("/find")
+	public String findByAnuncio(Map<String, Object> model,@ModelAttribute("anuncio") @Valid Anuncio anuncio)
+			throws ParseException {
+
+		List<Anuncio> listaAnuncio;
+		anuncio.setNameAnuncio(anuncio.getNameAnuncio());
+		listaAnuncio = aR.findByName(anuncio.getNameAnuncio());
+
+		if (listaAnuncio.isEmpty()) {
+			listaAnuncio = aR.findByName(anuncio.getNameAnuncio());
+		}
+		if (listaAnuncio.isEmpty()) {
+			model.put("mensaje", "No se encontró");
+		}
+		model.put("listaAnuncio", listaAnuncio);
+		return "anuncio/find";
+	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Avances;
+import pe.edu.upc.entities.Trabajo;
 import pe.edu.upc.repositories.IAvanceRepository;
 import pe.edu.upc.serviceinterface.IAvanceService;
 
@@ -44,4 +45,11 @@ public class AvanceServiceImplement implements IAvanceService{
 	public void delete(int idAvance) {
 		aR.deleteById(idAvance);
 	}
+	
+	@Override
+	public List<Avances> FindByTrabajo(int idtrabajo) {
+		// TODO Auto-generated method stub
+		return aR.FindByTrabajo(idtrabajo);
+	}
+	
 }

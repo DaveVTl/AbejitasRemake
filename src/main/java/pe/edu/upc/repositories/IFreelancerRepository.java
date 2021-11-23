@@ -22,5 +22,16 @@ public interface IFreelancerRepository extends JpaRepository<Freelancers, Intege
 
 	List<Freelancers> findByNameFreelancersIgnoreCase(String name);
 	
+<<<<<<< HEAD
 	public Freelancers findByUsuarioUsername(String username);
+=======
+	public Freelancers findByUsuario(Usuario usuario);
+	
+	@Query( value="SELECT f.name_freelancers,AVG(r.id_score)"
+			+ "from trabajo t join reviews r on t.id_trabajo = r.id_trabajo "
+			+ "join freelancer f on t.id_freelancers = f.id_freelancers "
+			+ "group by f.name_freelancers ",
+			nativeQuery = true )
+	public List<String[]> freelancerXord();
+>>>>>>> 003f12c74fb4ccac4aa319d2f785dbb4d7d30086
 }
