@@ -5,6 +5,7 @@ import java.util.Optional;
 
 
 import pe.edu.upc.entities.Freelancers;
+import pe.edu.upc.entities.Usuario;
 
 
 public interface IFreelancerService {
@@ -20,6 +21,8 @@ public interface IFreelancerService {
 	List<Freelancers> findByName(String nameFreelancers);
 	
 	List<Freelancers> findByNameFreelancersIgnoreCase(String nameFreelancers);
+	
+	public Freelancers findByUsuario(Usuario usuario);
 
 
 

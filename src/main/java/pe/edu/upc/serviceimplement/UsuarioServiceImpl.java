@@ -18,8 +18,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Autowired
 	private UserRepository uR;
-	
-	
+
 	
 	@Override
 	public Integer insert_mype(Usuario u) {

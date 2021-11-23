@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entities.Mype;
+import pe.edu.upc.entities.Usuario;
 
 @Repository
 public interface IMypeRepository extends JpaRepository<Mype, Integer>{
@@ -32,4 +33,8 @@ public interface IMypeRepository extends JpaRepository<Mype, Integer>{
 	+ "group by a.id_Anuncio,m.name_Empresa_Mype,a.pago_Anuncio",
 	nativeQuery = true )
 	public List<String[]> anuncioRango();
+	
+	
+	public Mype findByUsuario(Usuario usuario);
+	
 }

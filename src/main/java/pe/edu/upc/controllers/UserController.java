@@ -1,5 +1,7 @@
 package pe.edu.upc.controllers;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.entities.Freelancers;
+import pe.edu.upc.entities.Mype;
 import pe.edu.upc.entities.Usuario;
+import pe.edu.upc.serviceinterface.IFreelancerService;
+import pe.edu.upc.serviceinterface.IMypeService;
 import pe.edu.upc.serviceinterface.IUsuarioService;
 
 @Controller
@@ -22,9 +28,15 @@ import pe.edu.upc.serviceinterface.IUsuarioService;
 public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private IUsuarioService uService;
+
+	@Autowired
+	private IFreelancerService fS;
+
+	@Autowired
+	private IMypeService mS;
 
 	@GetMapping("/new")
 	public String newUser(Model model) {
@@ -43,12 +55,11 @@ public class UserController {
 		return "usuarios/listUser";
 	}
 
-	
 	@PostMapping("/savefree")
-	public String saveUserfree(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
-			throws Exception {
+	public String saveUserfree(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model,
+			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-			//return "usuarios/user";
+			// return "usuarios/user";
 		} else {
 			String bcryptPassword = passwordEncoder.encode(user.getPassword());
 			user.setPassword(bcryptPassword);
@@ -65,27 +76,39 @@ public class UserController {
 
 		return "redirect:/users/list";
 	}
-	
-	
+
 	@GetMapping("/myProfile")
 	public String myProfile(Model model) {
-		
+
 		try {
 			final String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
 			Usuario user = uService.findByUsername(currentUserName);
-			model.addAttribute("user", user);
+
+			Optional<Freelancers> freelancer = fS.findById(user.getId());
+			if (freelancer.isPresent()) {
+				Freelancers free = fS.findByUsuario(user);
+				model.addAttribute("free", free);
+				return "/usuarios/myProfile";
+
+			} else {
+				Mype mype = mS.findByUsuario(user);
+				model.addAttribute("mype", mype);
+				return "/usuarios/myProfileMy";
+
+			}
+
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
+			return "/preregistro";
 		}
-		return "/usuarios/myProfile";
+
 	}
-	
-	
+
 	@PostMapping("/savemype")
-	public String saveUsermype(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model, SessionStatus status)
-			throws Exception {
+	public String saveUsermype(@ModelAttribute("newUser") @Valid Usuario user, BindingResult result, Model model,
+			SessionStatus status) throws Exception {
 		if (result.hasErrors()) {
-			//return "usuarios/user";
+			// return "usuarios/user";
 		} else {
 			String bcryptPassword = passwordEncoder.encode(user.getPassword());
 			user.setPassword(bcryptPassword);

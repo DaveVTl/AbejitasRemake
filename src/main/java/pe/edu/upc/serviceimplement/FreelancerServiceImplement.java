@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entities.Freelancers;
 import pe.edu.upc.entities.Rol;
+import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.repositories.IFreelancerRepository;
 import pe.edu.upc.serviceinterface.IFreelancerService;
 
@@ -66,6 +67,12 @@ public class FreelancerServiceImplement implements IFreelancerService {
 		return fR.findById(id);
 	}
 
-	
+	@Override
+	public Freelancers findByUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return fR.findByUsuario(usuario);
+	}
+
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entities.Freelancers;
+import pe.edu.upc.entities.Usuario;
 
 
 @Repository
@@ -21,4 +22,5 @@ public interface IFreelancerRepository extends JpaRepository<Freelancers, Intege
 
 	List<Freelancers> findByNameFreelancersIgnoreCase(String name);
 	
+	public Freelancers findByUsuario(Usuario usuario);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import pe.edu.upc.entities.Mype;
+import pe.edu.upc.entities.Usuario;
 
 
 public interface IMypeService {
@@ -26,6 +27,7 @@ public interface IMypeService {
 	
 	public List<String[]> anuncioRango();
 	
+	public Mype findByUsuario(Usuario usuario);
 }
 
 

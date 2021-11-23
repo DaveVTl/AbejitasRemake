@@ -9,9 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import pe.edu.upc.entities.Mype;
 import pe.edu.upc.entities.Rol;
+import pe.edu.upc.entities.Usuario;
 import pe.edu.upc.repositories.IMypeRepository;
 import pe.edu.upc.serviceinterface.IMypeService;
 
@@ -83,6 +83,12 @@ public class MypeServiceImplement implements IMypeService{
 	public List<String[]> anuncioRango() {
 		// TODO Auto-generated method stub
 		return mR.anuncioRango();
+	}
+
+	@Override
+	public Mype findByUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return mR.findByUsuario(usuario);
 	}
 	
 }
