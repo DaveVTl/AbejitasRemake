@@ -169,21 +169,6 @@ public class MypeController {
 		return "redirect:/mype/list";
 	}
 	
-	@RequestMapping("/update/{id}")
-	public String update(@PathVariable(value = "id") int id, Model model) {
-		try {
-			Optional<Mype> mype = mC.findById(id);
-			if (!mype.isPresent()) {
-				model.addAttribute("info", "Mype no existe");
-				return "redirect:/mype/listMype";
-			} else {
-				model.addAttribute("mensaje", "OcurriÃ³ un error");
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return "/mype/update";
-	}
 
 	@GetMapping("/listFind")
 	public String listMypeFind(Model model) {
